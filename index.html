@@ -537,6 +537,20 @@
   </style>
 </head>
 <body>
+<!-- Hidden Netlify form for application submissions -->
+<form name="application" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="application">
+  <input name="bot-field">
+  <input name="first-name">
+  <input name="last-name">
+  <input name="email">
+  <input name="phone">
+  <input name="degree">
+  <input name="university">
+  <input name="program">
+  <input name="message">
+</form>
+
 
 <!-- NAV -->
 <nav>
@@ -2082,6 +2096,19 @@ function submitApplication() {
     document.getElementById('step3-error').textContent = '⚠ Please upload Transcripts and Passport / ID (required).'; return;
   }
   document.getElementById('step3-error').textContent = '';
+  // Submit to Netlify Forms
+  const formData = new FormData();
+  formData.append('form-name', 'application');
+  formData.append('first-name', document.getElementById('reg-fname').value);
+  formData.append('last-name', document.getElementById('reg-lname').value || '');
+  formData.append('email', document.getElementById('reg-email').value);
+  formData.append('phone', document.getElementById('reg-phone').value || '');
+  formData.append('degree', document.getElementById('reg-degree').value);
+  const uniEl = document.getElementById('reg-university');
+  formData.append('university', uniEl.options[uniEl.selectedIndex] ? uniEl.options[uniEl.selectedIndex].text : '');
+  const progEl = document.getElementById('reg-program');
+  formData.append('program', progEl.options[progEl.selectedIndex] ? progEl.options[progEl.selectedIndex].text : '');
+  fetch('/', { method: 'POST', body: formData }).catch(err => console.log('Form submission error:', err));
   const fname = document.getElementById('reg-fname').value.trim();
   const uni = document.getElementById('reg-university');
   const prog = document.getElementById('reg-program');
