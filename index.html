@@ -106,6 +106,8 @@
       text-decoration: none; letter-spacing: .02em;
       transition: transform .2s, box-shadow .2s;
       box-shadow: 4px 4px 0 var(--dark);
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
 
@@ -347,7 +349,13 @@
       .nav-register-btn { padding: .45rem .9rem; font-size: .8rem; }
       .hero-left { padding: 6rem 5vw 2.5rem; }
       h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
-      .hero-tagline { font-size: .76rem; margin-bottom: 1rem; }
+      .hero-tagline {
+      font-size: 1rem; font-weight: 600;
+      color: var(--red);
+      letter-spacing: .04em;
+      font-style: italic;
+      margin-top: .9rem; margin-bottom: 1.75rem;
+    }
       .hero-sub { font-size: .9rem; }
       .hero-actions { flex-direction: column; gap: .75rem; }
       .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; justify-content: center; }
@@ -486,7 +494,124 @@
       .modal { padding: 2rem 1.5rem; }
       .modal-form-row { grid-template-columns: 1fr; }
     }
-  </style>
+
+    .prog-search-wrap {
+      position: relative; display: flex; align-items: center;
+      border: 2px solid var(--red); border-radius: 6px;
+      background: var(--white); margin-bottom: .75rem; overflow: visible;
+    }
+    .prog-search-icon { padding: 0 .75rem; font-size: 1rem; color: var(--muted); flex-shrink: 0; }
+    .prog-search-input {
+      flex: 1; border: none; outline: none; padding: .75rem 0;
+      font-family: 'DM Sans', sans-serif; font-size: .95rem; background: transparent;
+      color: var(--dark);
+    }
+    .prog-search-input::placeholder { color: #b0a89a; }
+    .prog-search-clear {
+      border: none; background: none; cursor: pointer; padding: 0 .75rem;
+      font-size: 1rem; color: var(--muted); line-height: 1;
+    }
+    .prog-search-clear:hover { color: var(--red); }
+    .prog-filter-row {
+      display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .75rem;
+    }
+    .prog-chip {
+      padding: .3rem .85rem; border-radius: 20px; border: 1.5px solid #ddd;
+      background: var(--white); font-size: .78rem; font-weight: 500; cursor: pointer;
+      color: var(--muted); transition: all .15s; font-family: 'DM Sans', sans-serif;
+    }
+    .prog-chip.active { background: var(--red); border-color: var(--red); color: white; }
+    .prog-chip:hover:not(.active) { border-color: var(--red); color: var(--red); }
+    .prog-results-wrap {
+      border: 1.5px solid #e2d9cf; border-radius: 6px;
+      max-height: 220px; overflow-y: auto; margin-bottom: .75rem;
+      background: white; box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    .prog-result-item {
+      padding: .65rem 1rem; cursor: pointer; border-bottom: 1px solid #f0ebe4;
+      transition: background .1s; display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+    }
+    .prog-result-item:last-child { border-bottom: none; }
+    .prog-result-item:hover { background: #fdf5f0; }
+    .prog-result-item.selected { background: #fff0ed; opacity: .6; cursor: default; }
+    .prog-result-info { flex: 1; min-width: 0; }
+    .prog-result-name { font-size: .9rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prog-result-meta { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+    .prog-result-fee { font-size: .82rem; font-weight: 700; color: var(--red); white-space: nowrap; flex-shrink: 0; }
+    .prog-result-add {
+      background: var(--red); color: white; border: none; border-radius: 4px;
+      padding: .25rem .6rem; font-size: .75rem; cursor: pointer; flex-shrink: 0;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; transition: background .15s;
+    }
+    .prog-result-add:hover { background: #a00e18; }
+    .prog-result-added { font-size: .72rem; color: #27ae60; font-weight: 600; white-space: nowrap; }
+    .prog-no-results { padding: 1.2rem; text-align: center; color: var(--muted); font-size: .88rem; }
+    .prog-selected-wrap { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .5rem; }
+    .prog-slot {
+      border-radius: 6px; border: 1.5px dashed #ddd; overflow: hidden;
+    }
+    .prog-slot-required { border-color: var(--red); }
+    .prog-slot-label {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .75rem; font-weight: 600; padding: .3rem .75rem;
+      background: #f8f4f0; color: var(--muted);
+    }
+    .prog-slot-required .prog-slot-label { background: #fff0ed; color: var(--red); }
+    .prog-required-badge {
+      background: var(--red); color: white; border-radius: 10px;
+      padding: .1rem .4rem; font-size: .65rem; font-weight: 700;
+    }
+    .prog-optional-badge {
+      background: #e0dbd5; color: var(--muted); border-radius: 10px;
+      padding: .1rem .4rem; font-size: .65rem; font-weight: 700;
+    }
+    .prog-slot-content {
+      padding: .5rem .75rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+    }
+    .prog-slot-content.empty { opacity: .6; }
+    .prog-slot-placeholder { font-size: .8rem; color: #b0a89a; font-style: italic; }
+    .prog-slot-filled { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; }
+    .prog-slot-filled-info { flex: 1; min-width: 0; }
+    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prog-slot-filled-meta { font-size: .72rem; color: var(--muted); margin-top: .05rem; }
+    .prog-slot-filled-fee { font-size: .8rem; font-weight: 700; color: var(--red); white-space: nowrap; }
+    .prog-slot-remove {
+      background: none; border: none; cursor: pointer; color: #ccc;
+      font-size: 1rem; padding: 0 .2rem; transition: color .15s; flex-shrink: 0;
+    }
+    .prog-slot-remove:hover { color: var(--red); }
+    .prog-count-hint { font-size: .78rem; color: var(--muted); text-align: right; margin-bottom: .3rem; }
+</script>
+</body>
+        .footer-social {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .footer-link {
+      color: #f0c060;
+      text-decoration: none; font-size: .875rem;
+      transition: color .2s, opacity .2s;
+      display: flex; align-items: center; gap: 6px;
+      opacity: .9;
+    }
+    .footer-link:hover { color: #fff; opacity: 1; }
+    [dir="rtl"] .footer-link { flex-direction: row-reverse; }
+    
+    .hero-mobile-cta {
+      display: none;
+    }
+    @media (max-width: 640px) {
+      .hero-mobile-cta {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        font-size: .85rem; font-weight: 500;
+        color: var(--red);
+        text-decoration: none;
+        border-bottom: 1.5px solid var(--red);
+        padding-bottom: 1px;
+        letter-spacing: .01em;
+      }
+    }
+    </style>
 </head>
 <body>
 
@@ -521,33 +646,72 @@
     <div class="modal-step" id="step1">
       <p class="modal-tag" data-i18n="modal_step1_tag">Step 1 of 3</p>
       <h2 data-i18n="modal_step1_h2">Choose Your Program</h2>
-      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program or language.</p>
+      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
+
+      <!-- Search bar -->
       <div class="prog-search-wrap">
         <span class="prog-search-icon">🔍</span>
-        <input type="text" id="progSearchInput" class="prog-search-input" placeholder="Search university, degree, program, language…" autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
+        <input type="text" id="progSearchInput" class="prog-search-input"
+          placeholder="Search university, degree, program, language…"
+          autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
         <button class="prog-search-clear" id="progSearchClear" onclick="clearProgSearch()" style="display:none">✕</button>
       </div>
+
+      <!-- Filter chips -->
       <div class="prog-filter-row" id="progFilterRow">
-        <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')">All</button>
-        <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')">Bachelor's</button>
-        <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')">Associate</button>
-        <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')">Master's</button>
-        <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')">PhD</button>
+        <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')" data-i18n-filter="all">All</button>
+        <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')" data-i18n-filter="bachelor">Bachelor's</button>
+        <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')" data-i18n-filter="associate">Associate</button>
+        <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')" data-i18n-filter="master">Master's</button>
+        <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')" data-i18n-filter="phd">PhD</button>
       </div>
-      <div class="prog-results-wrap" id="progResultsWrap" style="display:none"><div class="prog-results" id="progResults"></div></div>
+
+      <!-- Results dropdown -->
+      <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
+        <div class="prog-results" id="progResults"></div>
+      </div>
+
+      <!-- Selected programs (up to 5 slots) -->
       <div class="prog-selected-wrap">
-        <div class="prog-slot prog-slot-required" id="progSlot0"><span class="prog-slot-label">1st Choice <span class="prog-required-badge">Required</span></span><div class="prog-slot-content empty" id="progSlotContent0"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
-        <div class="prog-slot prog-slot-optional" id="progSlot1"><span class="prog-slot-label">2nd Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent1"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
-        <div class="prog-slot prog-slot-optional" id="progSlot2"><span class="prog-slot-label">3rd Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent2"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
-        <div class="prog-slot prog-slot-optional" id="progSlot3"><span class="prog-slot-label">4th Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent3"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
-        <div class="prog-slot prog-slot-optional" id="progSlot4"><span class="prog-slot-label">5th Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent4"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
+        <div class="prog-slot prog-slot-required" id="progSlot0">
+          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent0">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot1">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent1">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot2">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent2">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot3">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent3">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot4">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent4">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
       </div>
+
       <p class="modal-step-error" id="step1-error"></p>
       <div class="modal-nav-row" style="justify-content:flex-end">
         <button class="modal-submit" onclick="goToStep(2)" data-i18n="modal_continue1">Continue → Your Details</button>
       </div>
     </div>
-    <!-- STEP 2 -->
+
+    <!-- STEP 2: Personal Info -->
     <div class="modal-step" id="step2" style="display:none">
       <p class="modal-tag" data-i18n="modal_step2_tag">Step 2 of 3</p>
       <h2 data-i18n="modal_step2_h2">Your Details</h2>
@@ -603,6 +767,7 @@
       <button class="btn-primary" onclick="openModal()" data-i18n="hero_cta1">Apply Now — It's Free</button>
       <a href="#how" class="btn-ghost" data-i18n="hero_cta2">How it works →</a>
     </div>
+    <a class="hero-mobile-cta" href="#apply" data-i18n="nav_cta">Get Free Consultation ↓</a>
     <div class="hero-stats">
       <div class="stat-item">
         <span class="stat-num">500+</span>
@@ -759,8 +924,8 @@
   </div>
   <div class="footer-copy" data-i18n="footer_copy">© 2026 Aspire Education. All rights reserved.</div>
   <div class="footer-social">
-    <a href="#" class="footer-link" onclick="this.href='mail'+'to:'+'info'+'@'+'aspire.tr';return true;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px;vertical-align:middle"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@aspire.tr
+    <a id="footer-email" href="#" class="footer-link" onclick="this.href='mail'+'to:'+'info'+'@'+'aspire.tr';return true;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:middle"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@aspire.tr
     </a>
     <a href="https://instagram.com/aspire.tr" target="_blank" class="footer-link">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px;vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@aspire.tr
@@ -768,7 +933,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const PROG_DB = [
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (English)", "tr": "Tıp (İngilizce)", "ar": "الطب (إنجليزي)", "fee": "$25,000/yr", "lang": "English", "s": "istanbul atlas university bachelor medicine (english) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (Turkish)", "tr": "Tıp (Türkçe)", "ar": "الطب (تركي)", "fee": "$20,000/yr", "lang": "Turkish", "s": "istanbul atlas university bachelor medicine (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
@@ -2012,7 +2177,7 @@ const translations = {
     hero_h1:          'Geleceğine <span style="color:var(--red)">Türkiye\'de</span> Başla ',
     hero_sub:         "Aspire Education, uluslararası öğrencilere üniversite başvuru sürecinin her adımında rehberlik eder — doğru programı seçmekten kabul mektubunu almaya kadar.",
     hero_cta1:        "Hemen Başvur — Ücretsiz",
-    hero_cta2:        "Nasıl çalışır →",
+    hero_cta2:        "Adımları Gör →",
     stat1:            "Yerleştirilen Öğrenci",
     stat2:            "Ortak Üniversite",
     stat3:            "Kabul Oranı",
@@ -2124,7 +2289,7 @@ const translations = {
     hero_h1:          'مستقبلك يبدأ من <span style="color:var(--red)">تركيا</span> ',
     hero_sub:         "تُرشد Aspire Education الطلاب الدوليين في كل خطوة من خطوات التقديم للجامعات — من اختيار البرنامج المناسب إلى استلام رسالة القبول.",
     hero_cta1:        "قدّم الآن — مجاناً",
-    hero_cta2:        "كيف يعمل →",
+    hero_cta2:        "ماهي الخطوات؟ →",
     stat1:            "طالب تم قبوله",
     stat2:            "جامعة شريكة",
     stat3:            "نسبة القبول",
@@ -2335,43 +2500,75 @@ function setDegreeFilter(btn,filter){
   document.querySelectorAll('.prog-chip').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
   if(progSearchQuery||filter!=='all'){ renderProgResults(); document.getElementById('progResultsWrap').style.display='block'; }
 }
-function renderProgResults(){
-  const el=document.getElementById('progResults');
-  const lang=document.querySelector('.lang-btn.active')?.dataset.lang||'en';
-  const t=translations[lang]||translations.en;
-  const dL={bachelor:t.deg_bachelor||"Bachelor's",associate:t.deg_associate||"Associate",master:t.deg_master||"Master's",phd:t.deg_phd||"PhD"};
-  let filtered=PROG_DB.filter(p=>{
-    if(progDegreeFilter!=='all'&&p.d!==progDegreeFilter) return false;
-    if(!progSearchQuery) return false;
-    const ar=p.ar?p.ar.toLowerCase():''; const tr=p.tr?p.tr.toLowerCase():'';
-    return p.s.includes(progSearchQuery)||tr.includes(progSearchQuery)||ar.includes(progSearchQuery);
+function renderProgResults() {
+  const resultsEl = document.getElementById('progResults');
+  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
+  const t = translations[lang] || translations.en;
+
+  let filtered = PROG_DB.filter(p => {
+    const matchDeg = progDegreeFilter === 'all' || p.d === progDegreeFilter;
+    if (!matchDeg) return false;
+    if (!progSearchQuery) return false;
+    const arSearch = p.ar ? p.ar.toLowerCase() : '';
+    const trSearch = p.tr ? p.tr.toLowerCase() : '';
+    return p.s.includes(progSearchQuery) || trSearch.includes(progSearchQuery) || arSearch.includes(progSearchQuery);
   });
-  if(!progSearchQuery&&progDegreeFilter==='all'){ el.innerHTML='<div class="prog-no-results">'+(t.prog_search_hint||'Start typing to search…')+'</div>'; return; }
-  if(filtered.length===0){ el.innerHTML='<div class="prog-no-results">'+(t.prog_no_results||'No programs found.')+'</div>'; return; }
-  const shown=filtered.slice(0,100);
-  const selKeys=progSelected.filter(Boolean).map(p=>p.u+'|'+p.en);
-  el.innerHTML=shown.map(p=>{
-    const isSel=selKeys.includes(p.u+'|'+p.en);
-    const name=lang==='tr'?(p.tr||p.en):lang==='ar'?(p.ar||p.en):p.en;
-    const uSh=p.u.replace('Istanbul ','').replace(' University','').replace('Bahçeşehir ','BAU ').trim();
-    const lL=p.lang==='English'?(t.lang_english||'English'):p.lang==='Turkish'?(t.lang_turkish||'Turkish'):p.lang;
-    const logo=p.logo?`<img src="${p.logo}" alt="" style="height:18px;width:auto;object-fit:contain;flex-shrink:0;margin-right:5px;border-radius:2px" onerror="this.style.display='none'">`:'';
-    return `<div class="prog-result-item${isSel?' selected':''}" ${!isSel?'onclick="addProgram(this)"':''}
-      data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)}
-      data-tr=${JSON.stringify(p.tr||'')} data-ar=${JSON.stringify(p.ar||'')}
-      data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
-      <div style="display:flex;align-items:center;flex:1;min-width:0">${logo}<div style="min-width:0"><div class="prog-result-name">${name}</div><div class="prog-result-meta">${uSh} · ${dL[p.d]||p.d} · ${lL}</div></div></div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:2px">
+
+  if (!progSearchQuery && progDegreeFilter === 'all') {
+    resultsEl.innerHTML = '<div class="prog-no-results">' + (t.prog_search_hint || 'Start typing to search programs…') + '</div>';
+    return;
+  }
+  if (filtered.length === 0) {
+    resultsEl.innerHTML = '<div class="prog-no-results">' + (t.prog_no_results || 'No programs found. Try a different search.') + '</div>';
+    return;
+  }
+
+  const shown = filtered.slice(0, 100);
+  const selectedKeys = progSelected.filter(Boolean).map(p => p.u + '|' + p.en);
+  const degLabels = {
+    bachelor: t.deg_bachelor || "Bachelor's",
+    associate: t.deg_associate || "Associate",
+    master: t.deg_master || "Master's",
+    phd: t.deg_phd || "PhD"
+  };
+
+  resultsEl.innerHTML = shown.map(p => {
+    const isSelected = selectedKeys.includes(p.u + '|' + p.en);
+    const progName = lang === 'tr' ? (p.tr || p.en) : lang === 'ar' ? (p.ar || p.en) : p.en;
+    const degLabel = degLabels[p.d] || p.d;
+    const langLabel = p.lang === 'English' ? (t.lang_english || 'English') : p.lang === 'Turkish' ? (t.lang_turkish || 'Turkish') : p.lang;
+    const uniShort = p.u.replace('Istanbul ','').replace(' University','').replace('University','').replace('Bahçeşehir ','BAU ').trim();
+    const logoHtml = p.logo ? `<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px" onerror="this.style.display='none'">` : '';
+    return `<div class="prog-result-item${isSelected ? ' selected' : ''}" ${!isSelected ? `onclick="addProgram(this)"` : ''} data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)} data-tr=${JSON.stringify(p.tr)} data-ar=${JSON.stringify(p.ar)} data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
+      <div class="prog-result-info" style="display:flex;align-items:center">
+        ${logoHtml}
+        <div>
+          <div class="prog-result-name">${progName}</div>
+          <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0">
         <span class="prog-result-fee">${p.fee}</span>
-        ${isSel?'<span class="prog-result-added">'+(t.prog_added||'Added ✓')+'</span>':'<span class="prog-result-add">+ '+(t.prog_add||'Add')+'</span>'}
-      </div></div>`;
+        ${isSelected ? '<span class="prog-result-added">' + (t.prog_added || 'Added ✓') + '</span>' : '<span class="prog-result-add">+ ' + (t.prog_add || 'Add') + '</span>'}
+      </div>
+    </div>`;
   }).join('');
-  if(filtered.length>100) el.innerHTML+=`<div class="prog-no-results" style="font-size:.73rem">Showing 100 of ${filtered.length} — refine your search</div>`;
+
+  if (filtered.length > 100) {
+    resultsEl.innerHTML += `<div class="prog-no-results" style="font-size:.75rem;color:var(--muted)">Showing 100 of ${filtered.length} results — refine your search</div>`;
+  }
 }
-function addProgram(el){
-  const p={u:el.dataset.u,d:el.dataset.d,en:el.dataset.en,tr:el.dataset.tr,ar:el.dataset.ar,fee:el.dataset.fee,lang:el.dataset.lang,logo:el.dataset.logo||''};
-  const slot=progSelected.indexOf(null); if(slot===-1) return;
-  progSelected[slot]=p; renderProgSlots(); renderProgResults();
+function addProgram(el) {
+  const p = {
+    u: el.dataset.u, d: el.dataset.d,
+    en: el.dataset.en, tr: el.dataset.tr, ar: el.dataset.ar,
+    fee: el.dataset.fee, lang: el.dataset.lang, logo: el.dataset.logo||''
+  };
+  const emptySlot = progSelected.indexOf(null);
+  if (emptySlot === -1) return;
+  progSelected[emptySlot] = p;
+  renderProgSlots();
+  renderProgResults();
 }
 function removeProgram(slot){
   progSelected[slot]=null;
@@ -2379,25 +2576,49 @@ function removeProgram(slot){
   for(let i=0;i<5;i++) progSelected[i]=compact[i]||null;
   renderProgSlots(); renderProgResults();
 }
-function renderProgSlots(){
-  const lang=document.querySelector('.lang-btn.active')?.dataset.lang||'en';
-  const t=translations[lang]||translations.en;
-  const labs=[t.prog_slot_1||'1st Choice',t.prog_slot_2||'2nd Choice',t.prog_slot_3||'3rd Choice',t.prog_slot_4||'4th Choice',t.prog_slot_5||'5th Choice'];
-  const req=t.prog_required||'Required', opt=t.prog_optional||'Optional', ph=t.prog_slot_ph||'Search above and click to add';
-  const dL={bachelor:t.deg_bachelor||"Bachelor's",associate:t.deg_associate||'Associate',master:t.deg_master||"Master's",phd:t.deg_phd||'PhD'};
-  for(let i=0;i<5;i++){
-    const content=document.getElementById('progSlotContent'+i);
-    const labelEl=document.querySelector('#progSlot'+i+' .prog-slot-label');
-    if(!content) continue;
-    const badge=i===0?`<span class="prog-required-badge">${req}</span>`:`<span class="prog-optional-badge">${opt}</span>`;
-    if(labelEl) labelEl.innerHTML=labs[i]+' '+badge;
-    const p=progSelected[i];
-    if(!p){ content.className='prog-slot-content empty'; content.innerHTML=`<span class="prog-slot-placeholder">${ph}</span>`; }
-    else {
-      const name=lang==='tr'?(p.tr||p.en):lang==='ar'?(p.ar||p.en):p.en;
-      const logo=p.logo?`<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px" onerror="this.style.display='none'">`:'';
-      content.className='prog-slot-content filled';
-      content.innerHTML=`<div class="prog-slot-filled">${logo}<div class="prog-slot-filled-info"><div class="prog-slot-filled-name">${name}</div><div class="prog-slot-filled-meta">${p.u} · ${dL[p.d]||p.d} · <strong>${p.fee}</strong></div></div><button class="prog-slot-remove" onclick="removeProgram(${i})" title="Remove">✕</button></div>`;
+function renderProgSlots() {
+  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
+  const t = translations[lang] || translations.en;
+  const slotLabels = [
+    t.prog_slot_1 || '1st Choice',
+    t.prog_slot_2 || '2nd Choice',
+    t.prog_slot_3 || '3rd Choice',
+    t.prog_slot_4 || '4th Choice',
+    t.prog_slot_5 || '5th Choice'
+  ];
+  const reqLabel = t.prog_required || 'Required';
+  const optLabel = t.prog_optional || 'Optional';
+  const phLabel = t.prog_slot_ph || 'Search and click a result above to select';
+
+  for (let i = 0; i < 5; i++) {
+    const content = document.getElementById('progSlotContent' + i);
+    const labelEl = document.querySelector('#progSlot' + i + ' .prog-slot-label');
+    if (!content) continue;
+
+    const badge = i === 0
+      ? `<span class="prog-required-badge">${reqLabel}</span>`
+      : `<span class="prog-optional-badge">${optLabel}</span>`;
+    if (labelEl) labelEl.innerHTML = slotLabels[i] + ' ' + badge;
+
+    const p = progSelected[i];
+    if (!p) {
+      content.className = 'prog-slot-content empty';
+      content.innerHTML = `<span class="prog-slot-placeholder">${phLabel}</span>`;
+    } else {
+      const progName = lang === 'tr' ? (p.tr || p.en) : lang === 'ar' ? (p.ar || p.en) : p.en;
+      const uniName = p.u;
+      const degLabel = {bachelor: t.deg_bachelor||"Bachelor's", associate: t.deg_associate||"Associate", master: t.deg_master||"Master's", phd: t.deg_phd||"PhD"}[p.d] || p.d;
+      content.className = 'prog-slot-content filled';
+      const slotLogo = p.logo ? `<img src="${p.logo}" alt="" style="height:24px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:8px" onerror="this.style.display='none'">` : '';
+      content.innerHTML = `
+        <div class="prog-slot-filled">
+          ${slotLogo}
+          <div class="prog-slot-filled-info">
+            <div class="prog-slot-filled-name">${progName}</div>
+            <div class="prog-slot-filled-meta">${uniName} · ${degLabel} · <strong>${p.fee}</strong></div>
+          </div>
+          <button class="prog-slot-remove" onclick="removeProgram(${i})" title="Remove">✕</button>
+        </div>`;
     }
   }
 }
@@ -2423,10 +2644,11 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('openRegisterModal')?.addEventListener('click', openModal);
   document.getElementById('closeRegisterModal')?.addEventListener('click', closeModal);
-  document.getElementById('registerModal')?.addEventListener('click', e=>{if(e.target===e.currentTarget)closeModal();});
-  document.addEventListener('keydown', e=>{if(e.key==='Escape')closeModal();});
+  document.getElementById('registerModal')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
-
 </script>
 </body>
 </html>
