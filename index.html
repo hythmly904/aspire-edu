@@ -75,7 +75,7 @@
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.8rem, 5vw, 4.4rem);
-      line-height: 1.08; font-weight: 900;
+      line-height: 1.08; font-weight: 700;
       color: var(--dark);
       margin-bottom: 1.5rem;
       letter-spacing: -0.03em;
@@ -106,8 +106,6 @@
       text-decoration: none; letter-spacing: .02em;
       transition: transform .2s, box-shadow .2s;
       box-shadow: 4px 4px 0 var(--dark);
-      border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
     }
     .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
 
@@ -143,9 +141,6 @@
     .hero-img-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to right, var(--cream) 0%, transparent 20%);
-    }
-    [dir="rtl"] .hero-img-overlay {
-      background: linear-gradient(to left, var(--cream) 0%, transparent 20%); transition: none;
     }
     .hero-badge {
       position: absolute; bottom: 3rem; right: 3rem;
@@ -320,106 +315,6 @@
     }
     .footer-logo span { color: var(--red); }
     .footer-copy { font-size: .8rem; }
-    .footer-social { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
-    .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: .85rem; transition: color .2s; }
-    .footer-link:hover { color: var(--gold); }
-
-
-    /* ── PROGRAM SEARCH ── */
-    .prog-search-wrap {
-      position: relative; display: flex; align-items: center;
-      border: 2px solid var(--red); border-radius: 6px;
-      background: var(--white); margin-bottom: .75rem; overflow: visible;
-    }
-    .prog-search-icon { padding: 0 .75rem; font-size: 1rem; color: var(--muted); flex-shrink: 0; }
-    .prog-search-input {
-      flex: 1; border: none; outline: none; padding: .75rem 0;
-      font-family: 'DM Sans', sans-serif; font-size: .95rem; background: transparent;
-      color: var(--dark);
-    }
-    .prog-search-input::placeholder { color: #b0a89a; }
-    .prog-search-clear {
-      border: none; background: none; cursor: pointer; padding: 0 .75rem;
-      font-size: 1rem; color: var(--muted); line-height: 1;
-    }
-    .prog-search-clear:hover { color: var(--red); }
-    .prog-filter-row {
-      display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .75rem;
-    }
-    .prog-chip {
-      padding: .3rem .85rem; border-radius: 20px; border: 1.5px solid #ddd;
-      background: var(--white); font-size: .78rem; font-weight: 500; cursor: pointer;
-      color: var(--muted); transition: all .15s; font-family: 'DM Sans', sans-serif;
-    }
-    .prog-chip.active { background: var(--red); border-color: var(--red); color: white; }
-    .prog-chip:hover:not(.active) { border-color: var(--red); color: var(--red); }
-    .prog-results-wrap {
-      border: 1.5px solid #e2d9cf; border-radius: 6px;
-      max-height: 220px; overflow-y: auto; margin-bottom: .75rem;
-      background: white; box-shadow: 0 4px 16px rgba(0,0,0,.08);
-    }
-    .prog-result-item {
-      padding: .65rem 1rem; cursor: pointer; border-bottom: 1px solid #f0ebe4;
-      transition: background .1s; display: flex; justify-content: space-between; align-items: center; gap: .5rem;
-    }
-    .prog-result-item:last-child { border-bottom: none; }
-    .prog-result-item:hover { background: #fdf5f0; }
-    .prog-result-item.selected { background: #fff0ed; opacity: .6; cursor: default; }
-    .prog-result-add { background: var(--red); color: white; border: none; border-radius: 3px; padding: .2rem .55rem; font-size: .75rem; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
-    .prog-result-add:hover { background: #a00e18; }
-    .prog-result-added { font-size: .72rem; color: #27ae60; font-weight: 600; white-space: nowrap; }
-    .prog-slot-filled { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; }
-    .prog-slot-filled-info { flex: 1; min-width: 0; }
-    .prog-slot-filled-name { font-size: .88rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .prog-slot-filled-meta { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
-    .prog-slot-remove { background: none; border: 1px solid #ddd; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: .8rem; color: var(--muted); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .15s; }
-    .prog-slot-remove:hover { background: var(--red); color: white; border-color: var(--red); }
-    .prog-slot-content.filled { background: #f0f8f0; border-color: #27ae60; padding: .5rem .75rem; }
-    .prog-result-info { flex: 1; min-width: 0; }
-    .prog-result-name { font-size: .9rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .prog-result-meta { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
-    .prog-result-fee { font-size: .82rem; font-weight: 700; color: var(--red); white-space: nowrap; flex-shrink: 0; }
-    .prog-result-add { 
-      background: var(--red); color: white; border: none; border-radius: 4px;
-      padding: .25rem .6rem; font-size: .75rem; cursor: pointer; flex-shrink: 0;
-      font-family: 'DM Sans', sans-serif; font-weight: 600; transition: background .15s;
-    }
-    .prog-result-add:hover { background: #a00e18; }
-    .prog-no-results { padding: 1.2rem; text-align: center; color: var(--muted); font-size: .88rem; }
-    .prog-selected-wrap { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .5rem; }
-    .prog-slot {
-      border-radius: 6px; border: 1.5px dashed #ddd; overflow: hidden;
-    }
-    .prog-slot-required { border-color: var(--red); }
-    .prog-slot-label {
-      display: flex; align-items: center; gap: .4rem;
-      font-size: .75rem; font-weight: 600; padding: .3rem .75rem;
-      background: #f8f4f0; color: var(--muted);
-    }
-    .prog-slot-required .prog-slot-label { background: #fff0ed; color: var(--red); }
-    .prog-required-badge {
-      background: var(--red); color: white; border-radius: 10px;
-      padding: .1rem .4rem; font-size: .65rem; font-weight: 700;
-    }
-    .prog-optional-badge {
-      background: #e0dbd5; color: var(--muted); border-radius: 10px;
-      padding: .1rem .4rem; font-size: .65rem; font-weight: 700;
-    }
-    .prog-slot-content {
-      padding: .5rem .75rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
-    }
-    .prog-slot-content.empty { opacity: .6; }
-    .prog-slot-placeholder { font-size: .8rem; color: #b0a89a; font-style: italic; }
-    .prog-slot-filled-info { flex: 1; min-width: 0; }
-    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); }
-    .prog-slot-filled-meta { font-size: .72rem; color: var(--muted); margin-top: .05rem; }
-    .prog-slot-filled-fee { font-size: .8rem; font-weight: 700; color: var(--red); white-space: nowrap; }
-    .prog-slot-remove {
-      background: none; border: none; cursor: pointer; color: #ccc;
-      font-size: 1rem; padding: 0 .2rem; transition: color .15s; flex-shrink: 0;
-    }
-    .prog-slot-remove:hover { color: var(--red); }
-    .prog-count-hint { font-size: .78rem; color: var(--muted); text-align: right; margin-bottom: .3rem; }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -434,16 +329,57 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
+      nav { padding: 1rem 4vw; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-right { display: none; }
-      .hero-left { padding: 8rem 6vw 4rem; }
-      .why-grid, .form-section { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-left { padding: 7rem 5vw 3rem; }
       .why-section::before { display: none; }
+      h1 { font-size: clamp(2rem, 7vw, 3.2rem); }
+      .why-grid, .form-section { grid-template-columns: 1fr; gap: 2rem; }
+      .steps-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .footer-social { gap: 1.2rem; }
     }
-    @media (max-width: 600px) {
-      .hero-stats { gap: 1.5rem; }
-      .form-row { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
+    @media (max-width: 640px) {
+      nav { padding: .85rem 4vw; gap: .4rem; }
+      .nav-cta { display: none; }
+      .nav-register-btn { padding: .45rem .9rem; font-size: .8rem; }
+      .hero-left { padding: 6rem 5vw 2.5rem; }
+      h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .hero-tagline { font-size: .76rem; margin-bottom: 1rem; }
+      .hero-sub { font-size: .9rem; }
+      .hero-actions { flex-direction: column; gap: .75rem; }
+      .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; justify-content: center; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .stat-num { font-size: 1.6rem; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 1.5rem; }
+      h2 { font-size: clamp(1.4rem, 6vw, 2rem); }
+      .why-section { padding: 3.5rem 5vw; }
+      .form-card { padding: 1.5rem; }
+      .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .form-section { padding: 3.5rem 5vw; }
+      .modal { width: 96vw; max-height: 88vh; overflow-y: auto; padding: 1.25rem; border-radius: 10px; }
+      .modal-step { max-height: 60vh; overflow-y: auto; }
+      .step-indicator { gap: 0; margin-bottom: 1rem; }
+      .step-dot small { font-size: .55rem; }
+      .prog-filter-row { gap: .3rem; }
+      .prog-chip { padding: .22rem .55rem; font-size: .7rem; }
+      .prog-results-wrap { max-height: 160px; }
+      .prog-selected-wrap { max-height: 200px; overflow-y: auto; }
+      .modal-nav-row { flex-wrap: wrap; gap: .5rem; }
+      .modal-submit, .modal-back-btn { width: 100%; text-align: center; }
+      .doc-item { flex-direction: column; align-items: flex-start; gap: .5rem; }
+      .doc-upload-btn { width: 100%; justify-content: center; }
+      .modal-form-row { grid-template-columns: 1fr; }
+      footer { padding: 2rem 5vw; }
+      .footer-social { flex-direction: column; gap: .7rem; }
+    }
+    @media (max-width: 400px) {
+      .hero-left { padding: 5.5rem 4vw 2rem; }
+      h1 { font-size: 1.7rem; }
+      .modal { padding: 1rem; width: 98vw; }
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo-img { height: 50px; width: auto; object-fit: contain;  }
@@ -474,7 +410,7 @@
     /* ── MODAL OVERLAY ── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 999;
-      background: rgba(26,18,9,0.65);
+      background: rgba(26,18,9,0.6);
       backdrop-filter: blur(4px);
       align-items: center; justify-content: center;
       padding: 1rem;
@@ -485,10 +421,10 @@
     .modal {
       background: var(--white); border-radius: 6px;
       padding: 2.5rem 3rem;
-      width: 100%; max-width: 640px;
-      max-height: 92vh; overflow-y: auto;
+      width: 100%; max-width: 560px;
+      max-height: 90vh; overflow-y: auto;
       position: relative;
-      box-shadow: 0 24px 64px rgba(26,18,9,0.22);
+      box-shadow: 0 24px 64px rgba(26,18,9,0.18);
       animation: modalIn .25s ease;
     }
     @keyframes modalIn {
@@ -502,158 +438,57 @@
       transition: color .2s;
     }
     .modal-close:hover { color: var(--red); }
-
-    /* Step indicator */
-    .step-indicator {
-      display: flex; align-items: center; gap: 0;
-      margin-bottom: 2rem;
-    }
-    .step-dot {
-      display: flex; flex-direction: column; align-items: center; gap: .25rem;
-      flex-shrink: 0;
-    }
-    .step-dot span {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: rgba(26,18,9,0.1); color: var(--muted);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .85rem; font-weight: 600;
-      transition: all .3s;
-    }
-    .step-dot small { font-size: .65rem; color: var(--muted); letter-spacing: .04em; white-space: nowrap; }
-    .step-dot.active span { background: var(--red); color: var(--white); }
-    .step-dot.done span { background: var(--dark); color: var(--white); }
-    .step-dot.active small, .step-dot.done small { color: var(--dark); font-weight: 500; }
-    .step-line {
-      flex: 1; height: 2px; background: rgba(26,18,9,0.1);
-      margin: 0 .5rem; margin-bottom: 1.1rem;
-      transition: background .3s;
-    }
-    .step-line.done { background: var(--dark); }
-
     .modal-tag {
-      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--red); font-weight: 500; margin-bottom: .6rem;
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--red); font-weight: 500; margin-bottom: .75rem;
       display: flex; align-items: center; gap: .5rem;
     }
     .modal-tag::before { content:''; display:block; width:24px; height:2px; background:var(--red); }
     .modal h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--dark); margin-bottom: .4rem;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--dark); margin-bottom: .5rem;
       letter-spacing: -0.02em;
     }
-    .modal-sub { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1.6rem; }
-    .modal-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .modal-field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; }
-    .modal-field label { font-size: .75rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .modal-sub { color: var(--muted); font-size: .95rem; line-height: 1.6; margin-bottom: 1.8rem; }
+    .modal-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .modal-field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+    .modal-field label { font-size: .78rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
     .modal-field input,
     .modal-field select {
-      padding: .72rem 1rem; border: 1.5px solid rgba(26,18,9,0.15);
+      padding: .75rem 1rem; border: 1.5px solid rgba(26,18,9,0.15);
       border-radius: 3px; font-family: 'DM Sans', sans-serif;
-      font-size: .92rem; color: var(--dark); background: var(--cream);
-      transition: border-color .2s; outline: none;
-    }
-    .modal-field input:focus, .modal-field select:focus { border-color: var(--red); }
-
-    .program-fee-badge {
-      display: flex; align-items: center; justify-content: space-between;
-      background: #f0f7ff; border: 1.5px solid #c3daf7;
-      border-radius: 4px; padding: .9rem 1.2rem;
-      margin-bottom: 1rem;
-    }
-    .fee-label { font-size: .8rem; color: #2563eb; font-weight: 500; }
-    .fee-amount { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--dark); }
-
-    /* Document upload */
-    .doc-upload-list { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.2rem; }
-    .doc-item {
-      border: 1.5px solid rgba(26,18,9,0.1); border-radius: 4px;
-      padding: .9rem 1rem;
-      display: flex; flex-direction: column; gap: .6rem;
+      font-size: .95rem; color: var(--dark); background: var(--cream);
       transition: border-color .2s;
     }
-    .doc-item:hover { border-color: rgba(26,18,9,0.25); }
-    .doc-label { display: flex; align-items: center; gap: .75rem; }
-    .doc-icon { font-size: 1.3rem; flex-shrink: 0; }
-    .doc-label > div { flex: 1; }
-    .doc-label strong { font-size: .9rem; display: block; }
-    .doc-label small { font-size: .78rem; color: var(--muted); }
-    .doc-badge {
-      font-size: .65rem; font-weight: 600; letter-spacing: .06em;
-      text-transform: uppercase; background: var(--red); color: var(--white);
-      padding: .2rem .5rem; border-radius: 2px; flex-shrink: 0;
-    }
-    .doc-badge-opt { background: rgba(26,18,9,0.12); color: var(--muted); }
-    .doc-upload-btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      cursor: pointer; padding: .5rem .9rem;
-      border: 1.5px dashed rgba(26,18,9,0.2); border-radius: 3px;
-      font-size: .82rem; color: var(--dark);
-      background: var(--cream); transition: border-color .2s, background .2s;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .doc-upload-btn:hover { border-color: var(--red); background: #fff5f5; }
-    .doc-upload-btn.uploaded { border-color: #16a34a; background: #f0fdf4; color: #16a34a; }
-
-    .modal-nav-row { display: flex; gap: .75rem; margin-top: .5rem; }
-    .modal-back-btn {
-      padding: 1rem 1.4rem; background: none;
-      border: 1.5px solid rgba(26,18,9,0.2); border-radius: 3px;
-      font-family: 'DM Sans', sans-serif; font-size: .9rem;
-      cursor: pointer; color: var(--muted);
-      transition: border-color .2s, color .2s;
-    }
-    .modal-back-btn:hover { border-color: var(--dark); color: var(--dark); }
+    .modal-field input:focus,
+    .modal-field select:focus { outline: none; border-color: var(--red); }
     .modal-submit {
-      flex: 1; padding: 1rem;
+      width: 100%; padding: 1rem;
       background: var(--red); color: var(--white);
       border: none; border-radius: 3px; cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       font-size: .95rem; font-weight: 500; letter-spacing: .03em;
       transition: background .2s, transform .2s;
       box-shadow: 3px 3px 0 var(--dark);
-      margin-top: 0;
+      margin-top: .5rem;
     }
     .modal-submit:hover { background: #a00e18; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--dark); }
     .modal-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: .75rem; }
-    .modal-step-error { font-size: .82rem; color: var(--red); margin-bottom: .5rem; min-height: 1.1em; }
-
     .modal-success {
-      display: none; text-align: center; padding: 2.5rem 0;
+      display: none; text-align: center; padding: 2rem 0;
     }
     .modal-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .modal-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: .6rem; }
+    .modal-success h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: .5rem; }
     .modal-success p { color: var(--muted); font-size: .95rem; line-height: 1.6; }
-    .modal-success .summary-box {
-      margin: 1.2rem 0; padding: 1rem 1.4rem;
-      background: var(--cream); border-radius: 4px;
-      text-align: left; font-size: .88rem; line-height: 1.7;
-      color: var(--dark);
-    }
-    .modal-success .summary-box strong { color: var(--red); }
 
-    @media (max-width: 640px) {
-      .modal { padding: 1.8rem 1.4rem; max-width: 100%; }
+    @media (max-width: 600px) {
+      .modal { padding: 2rem 1.5rem; }
       .modal-form-row { grid-template-columns: 1fr; }
-      .step-dot small { display: none; }
     }
   </style>
 </head>
 <body>
-<!-- Hidden Netlify form for application submissions -->
-<form name="application" netlify netlify-honeypot="bot-field" hidden>
-  <input type="hidden" name="form-name" value="application">
-  <input name="bot-field">
-  <input name="first-name">
-  <input name="last-name">
-  <input name="email">
-  <input name="phone">
-  <input name="degree">
-  <input name="university">
-  <input name="program">
-  <input name="message">
-</form>
-
 
 <!-- NAV -->
 <nav>
@@ -667,7 +502,7 @@
       <button class="lang-btn" data-lang="ar">ع</button>
     </div>
     <button class="nav-register-btn" id="openRegisterModal" data-i18n="nav_register">Apply Now</button>
-    <a class="nav-cta" href="#apply" data-i18n="nav_cta" title="Scroll to the consultation form">Get Free Consultation ↓</a>
+    <a class="nav-cta" href="#apply" data-i18n="nav_cta">Get Free Consultation</a>
   </div>
 </nav>
 
@@ -675,8 +510,6 @@
 <div class="modal-overlay" id="registerModal" role="dialog" aria-modal="true" aria-label="Application Form">
   <div class="modal">
     <button class="modal-close" id="closeRegisterModal" aria-label="Close">✕</button>
-
-    <!-- Step Indicator -->
     <div class="step-indicator" id="stepIndicator">
       <div class="step-dot active" id="dot1"><span>1</span><small data-i18n="dot1_label">Program</small></div>
       <div class="step-line" id="line1"></div>
@@ -684,182 +517,77 @@
       <div class="step-line" id="line2"></div>
       <div class="step-dot" id="dot3"><span>3</span><small data-i18n="dot3_label">Documents</small></div>
     </div>
-
-    <!-- STEP 1: University & Program Search -->
+    <!-- STEP 1 -->
     <div class="modal-step" id="step1">
       <p class="modal-tag" data-i18n="modal_step1_tag">Step 1 of 3</p>
       <h2 data-i18n="modal_step1_h2">Choose Your Program</h2>
-      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
-
-      <!-- Search bar -->
+      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program or language.</p>
       <div class="prog-search-wrap">
         <span class="prog-search-icon">🔍</span>
-        <input type="text" id="progSearchInput" class="prog-search-input"
-          placeholder="Search university, degree, program, language…"
-          autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
+        <input type="text" id="progSearchInput" class="prog-search-input" placeholder="Search university, degree, program, language…" autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
         <button class="prog-search-clear" id="progSearchClear" onclick="clearProgSearch()" style="display:none">✕</button>
       </div>
-
-      <!-- Filter chips -->
       <div class="prog-filter-row" id="progFilterRow">
-        <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')" data-i18n-filter="all">All</button>
-        <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')" data-i18n-filter="bachelor">Bachelor's</button>
-        <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')" data-i18n-filter="associate">Associate</button>
-        <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')" data-i18n-filter="master">Master's</button>
-        <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')" data-i18n-filter="phd">PhD</button>
+        <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')">All</button>
+        <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')">Bachelor's</button>
+        <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')">Associate</button>
+        <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')">Master's</button>
+        <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')">PhD</button>
       </div>
-
-      <!-- Results dropdown -->
-      <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
-        <div class="prog-results" id="progResults"></div>
-      </div>
-
-      <!-- Selected programs (up to 5 slots) -->
+      <div class="prog-results-wrap" id="progResultsWrap" style="display:none"><div class="prog-results" id="progResults"></div></div>
       <div class="prog-selected-wrap">
-        <div class="prog-slot prog-slot-required" id="progSlot0">
-          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent0">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot1">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent1">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot2">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent2">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot3">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent3">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot4">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent4">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
+        <div class="prog-slot prog-slot-required" id="progSlot0"><span class="prog-slot-label">1st Choice <span class="prog-required-badge">Required</span></span><div class="prog-slot-content empty" id="progSlotContent0"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
+        <div class="prog-slot prog-slot-optional" id="progSlot1"><span class="prog-slot-label">2nd Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent1"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
+        <div class="prog-slot prog-slot-optional" id="progSlot2"><span class="prog-slot-label">3rd Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent2"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
+        <div class="prog-slot prog-slot-optional" id="progSlot3"><span class="prog-slot-label">4th Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent3"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
+        <div class="prog-slot prog-slot-optional" id="progSlot4"><span class="prog-slot-label">5th Choice <span class="prog-optional-badge">Optional</span></span><div class="prog-slot-content empty" id="progSlotContent4"><span class="prog-slot-placeholder">Search above and click to add</span></div></div>
       </div>
-
       <p class="modal-step-error" id="step1-error"></p>
       <div class="modal-nav-row" style="justify-content:flex-end">
         <button class="modal-submit" onclick="goToStep(2)" data-i18n="modal_continue1">Continue → Your Details</button>
       </div>
     </div>
-
-    <!-- STEP 2: Personal Info -->
+    <!-- STEP 2 -->
     <div class="modal-step" id="step2" style="display:none">
       <p class="modal-tag" data-i18n="modal_step2_tag">Step 2 of 3</p>
       <h2 data-i18n="modal_step2_h2">Your Details</h2>
-      <p class="modal-sub" data-i18n="modal_step2_sub">Tell us a bit about yourself so we can match you with the right program.</p>
+      <p class="modal-sub" data-i18n="modal_step2_sub">Tell us about yourself so we can match you with the right program.</p>
       <div class="modal-form-row">
-        <div class="modal-field">
-          <label for="reg-fname">First Name *</label>
-          <input type="text" id="reg-fname" placeholder="e.g. Ahmed" />
-        </div>
-        <div class="modal-field">
-          <label for="reg-lname">Last Name *</label>
-          <input type="text" id="reg-lname" placeholder="e.g. Al-Farsi" />
-        </div>
+        <div class="modal-field"><label data-i18n="modal_fname">First Name *</label><input type="text" id="reg-fname" placeholder="e.g. Ahmed"/></div>
+        <div class="modal-field"><label data-i18n="modal_lname">Last Name</label><input type="text" id="reg-lname" placeholder="e.g. Al-Farsi"/></div>
       </div>
-      <div class="modal-field">
-        <label for="reg-email">Email Address *</label>
-        <input type="email" id="reg-email" placeholder="you@example.com" />
-      </div>
-      <div class="modal-field">
-        <label for="reg-phone">Phone / WhatsApp</label>
-        <input type="tel" id="reg-phone" placeholder="+1 234 567 8900" />
-      </div>
+      <div class="modal-field"><label data-i18n="modal_email">Email Address *</label><input type="email" id="reg-email" placeholder="you@example.com"/></div>
+      <div class="modal-field"><label data-i18n="modal_phone">Phone / WhatsApp</label><input type="tel" id="reg-phone" placeholder="+1 234 567 8900"/></div>
       <p class="modal-step-error" id="step2-error"></p>
       <div class="modal-nav-row">
         <button class="modal-back-btn" onclick="goToStep(1)" data-i18n="modal_back">← Back</button>
         <button class="modal-submit" onclick="goToStep(3)" data-i18n="modal_continue2">Continue → Documents</button>
       </div>
     </div>
-
-    <!-- STEP 3: Documents -->
+    <!-- STEP 3 -->
     <div class="modal-step" id="step3" style="display:none">
       <p class="modal-tag" data-i18n="modal_step3_tag">Step 3 of 3</p>
       <h2 data-i18n="modal_step3_h2">Upload Your Documents</h2>
-      <p class="modal-sub" data-i18n="modal_step3_sub">Upload what you have — any format accepted. Missing documents? Our advisors will help you gather them.</p>
+      <p class="modal-sub" data-i18n="modal_step3_sub">Upload what you have — any format. Missing docs? Our advisors will help.</p>
       <div class="doc-upload-list">
-        <div class="doc-item">
-          <div class="doc-label">
-            <span class="doc-icon">🎓</span>
-            <div><strong>Academic Transcripts</strong><small>High school or university grades</small></div>
-            <span class="doc-badge">Required</span>
-          </div>
-          <label class="doc-upload-btn" id="btn-transcripts">
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple hidden onchange="handleFileUpload(this,'btn-transcripts')" />
-            📎 Choose file(s)
-          </label>
-        </div>
-        <div class="doc-item">
-          <div class="doc-label">
-            <span class="doc-icon">🪪</span>
-            <div><strong>Passport / ID</strong><small>Copy of valid passport or national ID</small></div>
-            <span class="doc-badge">Required</span>
-          </div>
-          <label class="doc-upload-btn" id="btn-passport">
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-passport')" />
-            📎 Choose file
-          </label>
-        </div>
-        <div class="doc-item">
-          <div class="doc-label">
-            <span class="doc-icon">📜</span>
-            <div><strong>Diploma / Certificate</strong><small>Your most recent diploma</small></div>
-            <span class="doc-badge doc-badge-opt">Optional</span>
-          </div>
-          <label class="doc-upload-btn" id="btn-diploma">
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-diploma')" />
-            📎 Choose file
-          </label>
-        </div>
-        <div class="doc-item">
-          <div class="doc-label">
-            <span class="doc-icon">🌐</span>
-            <div><strong>Language Test Score</strong><small>IELTS, TOEFL, or equivalent (if available)</small></div>
-            <span class="doc-badge doc-badge-opt">Optional</span>
-          </div>
-          <label class="doc-upload-btn" id="btn-language">
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-language')" />
-            📎 Choose file
-          </label>
-        </div>
-        <div class="doc-item">
-          <div class="doc-label">
-            <span class="doc-icon">📋</span>
-            <div><strong>Other Documents</strong><small>CV, motivation letter, recommendations…</small></div>
-            <span class="doc-badge doc-badge-opt">Optional</span>
-          </div>
-          <label class="doc-upload-btn" id="btn-other">
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple hidden onchange="handleFileUpload(this,'btn-other')" />
-            📎 Choose file(s)
-          </label>
-        </div>
+        <div class="doc-item"><div class="doc-label"><span class="doc-icon">🎓</span><div><strong>Academic Transcripts</strong><small>High school or university grades</small></div><span class="doc-badge">Required</span></div><label class="doc-upload-btn" id="btn-transcripts"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple hidden onchange="handleFileUpload(this,'btn-transcripts')"/>📎 Choose file(s)</label></div>
+        <div class="doc-item"><div class="doc-label"><span class="doc-icon">🪪</span><div><strong>Passport / ID</strong><small>Valid passport or national ID</small></div><span class="doc-badge">Required</span></div><label class="doc-upload-btn" id="btn-passport"><input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-passport')"/>📎 Choose file</label></div>
+        <div class="doc-item"><div class="doc-label"><span class="doc-icon">📜</span><div><strong>Diploma / Certificate</strong><small>Most recent diploma</small></div><span class="doc-badge doc-badge-opt">Optional</span></div><label class="doc-upload-btn" id="btn-diploma"><input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-diploma')"/>📎 Choose file</label></div>
+        <div class="doc-item"><div class="doc-label"><span class="doc-icon">🌐</span><div><strong>Language Test Score</strong><small>IELTS, TOEFL, or equivalent</small></div><span class="doc-badge doc-badge-opt">Optional</span></div><label class="doc-upload-btn" id="btn-language"><input type="file" accept=".pdf,.jpg,.jpeg,.png" hidden onchange="handleFileUpload(this,'btn-language')"/>📎 Choose file</label></div>
+        <div class="doc-item"><div class="doc-label"><span class="doc-icon">📋</span><div><strong>Other Documents</strong><small>CV, motivation letter…</small></div><span class="doc-badge doc-badge-opt">Optional</span></div><label class="doc-upload-btn" id="btn-other"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple hidden onchange="handleFileUpload(this,'btn-other')"/>📎 Choose file(s)</label></div>
       </div>
       <p class="modal-step-error" id="step3-error"></p>
       <div class="modal-nav-row">
         <button class="modal-back-btn" onclick="goToStep(2)" data-i18n="modal_back">← Back</button>
-        <button class="modal-submit" onclick="submitApplication()">Submit My Application →</button>
+        <button class="modal-submit" onclick="submitApplication()" data-i18n="modal_submit_btn">Submit My Application →</button>
       </div>
-      <p class="modal-note">No fees. No commitment. We'll contact you within 24 hours.</p>
+      <p class="modal-note" data-i18n="modal_note">No fees. No commitment. We’ll contact you within 24 hours.</p>
     </div>
-
     <!-- Success -->
     <div class="modal-success" id="modalSuccessView" style="display:none">
-      <div class="success-icon">🎓</div>
-      <h3>Application Received!</h3>
-      <div class="summary-box" id="appSummary"></div>
-      <p>One of our advisors will reach out within <strong>24 hours</strong> to guide you through the next steps — completely free.</p>
+      <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+      <h2 id="successTitle">Application Received!</h2>
+      <p id="successMsg">Thank you! An advisor will reach out within <strong>24 hours</strong>.</p>
     </div>
   </div>
 </div>
@@ -868,10 +596,11 @@
 <section class="hero">
   <div class="hero-left">
     
-    <h1><span data-i18n="hero_h1">Your Future Starts</span><em id="hero-em"> in <span class="turkiye-word">Türkiye</span> <span style="font-size:1.2em">🇹🇷</span></em></h1>
+    <h1><span data-i18n="hero_h1">Your Future Starts</span><em id="hero-em"> in <span class="turkiye-word">Türkiye</span> </em></h1>
     <p class="hero-sub" data-i18n="hero_sub">Aspire Education guides international students through every step of the university application process — from choosing the right program to receiving your acceptance letter.</p>
+    <p class="hero-tagline">We aspire to make a difference.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="document.getElementById('openRegisterModal').click()" data-i18n="hero_cta1">Apply Now — It's Free</button>
+      <button class="btn-primary" onclick="openModal()" data-i18n="hero_cta1">Apply Now — It's Free</button>
       <a href="#how" class="btn-ghost" data-i18n="hero_cta2">How it works →</a>
     </div>
     <div class="hero-stats">
@@ -947,7 +676,7 @@
         <div class="feature-icon">🌍</div>
         <div>
           <div class="feature-title" data-i18n="feat2_title">Multilingual Advisors</div>
-          <div class="feature-desc" data-i18n="feat2_desc">Our team speaks Arabic, English, and Turkish — so you're never lost in translation.</div>
+          <div class="feature-desc" data-i18n="feat2_desc">Our team speaks Arabic, English, Turkish, and French — so you're never lost in translation.</div>
         </div>
       </div>
       <div class="feature">
@@ -1012,6 +741,7 @@
       <label data-i18n="label_level">Current Education Level</label>
       <select id="level-select">
         <option value="" data-i18n="level_placeholder">Select level…</option>
+        <option data-i18n="level0">High School (applying for Vocational School)</option>
         <option data-i18n="level1">High School (applying for Bachelor's)</option>
         <option data-i18n="level2">Bachelor's (applying for Master's)</option>
         <option data-i18n="level3">Master's (applying for PhD)</option>
@@ -1029,628 +759,16 @@
   </div>
   <div class="footer-copy" data-i18n="footer_copy">© 2026 Aspire Education. All rights reserved.</div>
   <div class="footer-social">
-      <a href="/cdn-cgi/l/email-protection#dfb6b1b9b09fbeacafb6adbaf1abad" class="footer-link">✉ <span class="__cf_email__" data-cfemail="c5acaba3aa85a4b6b5acb7a0ebb1b7">[email&#160;protected]</span></a>
-      <a href="https://instagram.com/aspire.tr" target="_blank" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:5px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> @aspire.tr</a>
-    </div>
-  
+    <a href="#" class="footer-link" onclick="this.href='mail'+'to:'+'info'+'@'+'aspire.tr';return true;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px;vertical-align:middle"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@aspire.tr
+    </a>
+    <a href="https://instagram.com/aspire.tr" target="_blank" class="footer-link">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px;vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@aspire.tr
+    </a>
+  </div>
+</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const translations = {
-  en: {
-    nav_cta:          "Get Free Consultation",
-    hero_tag:         "University Admissions",
-    hero_h1:          "Your Future Starts",
-    hero_sub:         "Aspire Education guides international students through every step of the university application process — from choosing the right program to receiving your acceptance letter.",
-    hero_cta1:        "Apply Now — It's Free",
-    hero_cta2:        "How it works →",
-    stat1:            "Students Placed",
-    stat2:            "Partner Universities",
-    stat3:            "Acceptance Rate",
-    badge_title:      "Top Türkiye Universities",
-    badge_sub:        "Istanbul, Ankara, Izmir & more",
-    steps_tag:        "The Process",
-    steps_title:      "Four steps to your acceptance letter",
-    steps_sub:        "We handle the complexity so you can focus on what matters — your future.",
-    step1_title:      "Free Consultation",
-    step1_desc:       "We assess your academic background and match you with the best-fit universities and programs in Türkiye.",
-    step2_title:      "Application Prep",
-    step2_desc:       "Our advisors help you prepare every document — transcripts, essays, and language requirements — perfectly.",
-    step3_title:      "Submission & Tracking",
-    step3_desc:       "We submit your applications and keep you informed at every stage, handling follow-ups on your behalf.",
-    step4_title:      "Visa & Arrival",
-    step4_desc:       "Once accepted, we guide you through the student visa process and help you settle in before your first day.",
-    why_tag:          "Why Choose Us",
-    why_title:        "We've walked this path before — for hundreds of students.",
-    why_sub:          "Aspire Education is built by people who understand the challenges of studying in Türkiye. We provide honest advice, real results, and support that doesn't end at enrollment.",
-    feat1_title:      "40+ University Partnerships",
-    feat1_desc:       "Direct relationships with top public and private universities across Istanbul, Ankara, and Izmir.",
-    feat2_title:      "Multilingual Advisors",
-    feat2_desc:       "Our team speaks Arabic, English, and Turkish — so you're never lost in translation.",
-    feat3_title:      "End-to-End Support",
-    feat3_desc:       "From application to visa to accommodation — we stay by your side through every milestone.",
-    feat4_title:      "95% Acceptance Rate",
-    feat4_desc:       "Our track record speaks for itself. We only take on students we're confident we can place.",
-    form_tag:         "Get Started",
-    form_title:       "Ready to study in Türkiye?",
-    form_sub:         "Fill in the form and one of our advisors will reach out within 24 hours for a free, no-obligation consultation.",
-    form_card_title:  "Start Your Application",
-    label_fname:      "First Name",
-    label_lname:      "Last Name",
-    label_email:      "Email Address",
-    label_phone:      "Phone / WhatsApp",
-    label_field:      "Field of Study",
-    field_placeholder:"Select a field…",
-    field1:           "Medicine & Health Sciences",
-    field2:           "Engineering & Technology",
-    field3:           "Business & Economics",
-    field4:           "Architecture & Design",
-    field5:           "Law",
-    field6:           "Arts & Humanities",
-    field7:           "Other",
-    label_level:      "Current Education Level",
-    level_placeholder:"Select level…",
-    level1:           "High School (applying for Bachelor's)",
-    level2:           "Bachelor's (applying for Master's)",
-    level3:           "Master's (applying for PhD)",
-    form_submit:      "Request My Free Consultation →",
-    form_note:        "No fees. No commitment. We'll contact you within 24 hours.",
-    footer_copy:      "© 2026 Aspire Education. All rights reserved.",
-    nav_register:     "Apply Now",
-    modal_tag:        "Register",
-    modal_title:      "Start Your Application",
-    modal_sub:        "Fill in your details and an advisor will contact you within 24 hours to guide you through the next steps — completely free.",
-    modal_fname:      "First Name",
-    modal_fname_ph:   "e.g. Ahmed",
-    modal_lname:      "Last Name",
-    modal_lname_ph:   "e.g. Al-Farsi",
-    modal_email:      "Email Address",
-    modal_email_ph:   "you@example.com",
-    modal_phone:      "Phone / WhatsApp",
-    modal_phone_ph:   "+1 234 567 8900",
-    modal_field:      "Field of Study",
-    modal_field_ph:   "Select a field…",
-    modal_level:      "Education Level",
-    modal_level_ph:   "Select level…",
-    modal_submit:     "Submit My Application →",
-    modal_note:       "No fees. No commitment. We'll contact you within 24 hours.",
-    modal_err:        "⚠ Please fill in Name & Email",
-    modal_success_title: "Application Received!",
-            prog_slot_required: "1st Choice",
-    prog_slot_opt2:     "2nd Choice",
-    prog_slot_opt3:     "3rd Choice",
-    prog_slot_opt4:     "4th Choice",
-    prog_slot_opt5:     "5th Choice",
-    prog_slot_ph:       "Search above to find and add a program",
-    prog_filter_all:    "All",
-    prog_filter_bach:   "Bachelor's",
-    prog_filter_assoc:  "Associate",
-    prog_filter_mast:   "Master's",
-    prog_filter_phd:    "PhD",
-    modal_uni_select:  "— Select a university —",
-    modal_label_degree: "Degree Level *",
-    modal_label_uni:    "University *",
-    modal_label_prog:   "Program *",
-    prog_search_ph:   "Search university, degree, program, language…",
-    deg_all:          "All",
-    prog_search_hint: "Start typing to search…",
-    prog_no_results:  "No programs found. Try a different search.",
-    prog_add:         "Add",
-    prog_added:       "Added ✓",
-    prog_more:        "Showing 100 of {n} — refine your search",
-    prog_slot_1:      "1st Choice",
-    prog_slot_2:      "2nd Choice",
-    prog_slot_3:      "3rd Choice",
-    prog_slot_4:      "4th Choice",
-    prog_slot_5:      "5th Choice",
-    prog_required:    "Required",
-    prog_optional:    "Optional",
-    prog_slot_ph:     "Search above and click to add",
-    deg_bachelor:     "Bachelor's",
-    deg_associate:    "Associate",
-    deg_master:       "Master's",
-    deg_phd:          "PhD",
-    lang_english:     "English",
-    lang_turkish:     "Turkish",
-    prog_err_required: "⚠ Please select at least one program (1st choice is required).",
-    modal_step1_tag:  "Step 1 of 3",
-    modal_step1_h2:   "Choose Your Program",
-    modal_step1_sub:  "University, derece, program veya dil ile arayın. 5 programa kadar seçin (1. tercih zorunludur).",
-    modal_step2_tag:  "Step 2 of 3",
-    modal_step2_h2:   "Your Details",
-    modal_step2_sub:  "Tell us a bit about yourself so we can match you with the right program.",
-    modal_step3_tag:  "Step 3 of 3",
-    modal_step3_h2:   "Upload Your Documents",
-    modal_step3_sub:  "Upload what you have — any format accepted. Missing documents? Our advisors will help you gather them.",
-    modal_degree_ph:  "Select degree level…",
-    modal_degree_assoc: "Associate / Vocational (2 years)",
-    modal_degree_bach:  "Bachelor's (4–6 years)",
-    modal_degree_mast:  "Master's (1.5–2 years)",
-    modal_degree_phd:   "PhD / Doctorate",
-    modal_uni_ph:     "— Select degree level first —",
-    modal_prog_ph:    "— Select university first —",
-    modal_continue1:  "Continue → Your Details",
-    modal_back:       "← Back",
-    modal_continue2:  "Continue → Documents",
-    dot1_label:       "Program",
-    dot2_label:       "Details",
-    dot3_label:       "Documents",
-    modal_success_msg:   "Thank you for registering. One of our advisors will reach out within <strong>24 hours</strong> to schedule your free consultation.",
-  },
-  tr: {
-    nav_cta:          "Ücretsiz Danışmanlık Al",
-    hero_tag:         "Üniversite Başvuruları",
-    hero_h1:          'Geleceğine <span style="color:var(--red)">Türkiye\'de</span> Başla <span style="font-size:1.2em">🇹🇷</span>',
-    hero_sub:         "Aspire Education, uluslararası öğrencilere üniversite başvuru sürecinin her adımında rehberlik eder — doğru programı seçmekten kabul mektubunu almaya kadar.",
-    hero_cta1:        "Hemen Başvur — Ücretsiz",
-    hero_cta2:        "Adımları Gör →",
-    stat1:            "Yerleştirilen Öğrenci",
-    stat2:            "Ortak Üniversite",
-    stat3:            "Kabul Oranı",
-    badge_title:      "Türkiye'nin En İyi Üniversiteleri",
-    badge_sub:        "İstanbul, Ankara, İzmir ve daha fazlası",
-    steps_tag:        "Süreç",
-    steps_title:      "Kabul mektubuna giden 4 adım",
-    steps_sub:        "Karmaşıklığı biz üstleniyoruz, siz sadece geleceğinize odaklanın.",
-    step1_title:      "Ücretsiz Danışmanlık",
-    step1_desc:       "Akademik geçmişinizi değerlendiriyor ve Türkiye'deki en uygun üniversite ve programlarla eşleştiriyoruz.",
-    step2_title:      "Başvuru Hazırlığı",
-    step2_desc:       "Danışmanlarımız transkript, niyet mektubu ve dil gereksinimleri dahil tüm belgelerinizi hazırlamanıza yardımcı olur.",
-    step3_title:      "Başvuru ve Takip",
-    step3_desc:       "Başvurularınızı biz yapıyor ve her aşamada sizi bilgilendiriyoruz.",
-    step4_title:      "Vize ve Varış",
-    step4_desc:       "Kabul aldıktan sonra öğrenci vizesi sürecinde rehberlik ediyor, ilk gününüzden önce yerleşmenize yardımcı oluyoruz.",
-    why_tag:          "Neden Bizi Seçmelisiniz",
-    why_title:        "Bu yolu daha önce yüzlerce öğrencisiyle birlikte yürüdük.",
-    why_sub:          "Aspire Education, Türkiye'de eğitimin zorluklarını bilen kişiler tarafından kurulmuştur. Dürüst tavsiye, gerçek sonuçlar ve kayıt sonrasında da süren destek sunuyoruz.",
-    feat1_title:      "40'tan Fazla Üniversite Ortaklığı",
-    feat1_desc:       "İstanbul, Ankara ve İzmir'deki önde gelen devlet ve özel üniversitelerle doğrudan ilişkilerimiz var.",
-    feat2_title:      "Çok Dilli Danışmanlar",
-    feat2_desc:       "Ekibimiz Arapça, İngilizce ve Türkçe konuşuyor — hiçbir zaman çeviride kaybolmazsınız.",
-    feat3_title:      "Uçtan Uca Destek",
-    feat3_desc:       "Başvurudan vizeye, konaklamaya kadar — her kilometre taşında yanınızdayız.",
-    feat4_title:      "%95 Kabul Oranı",
-    feat4_desc:       "Sicilimiz kendini kanıtlamıştır. Yalnızca yerleştirebileceğimizden emin olduğumuz öğrencilerle çalışıyoruz.",
-    form_tag:         "Başlayın",
-    form_title:       "Türkiye'de okumaya hazır mısınız?",
-    form_sub:         "Formu doldurun, danışmanlarımızdan biri 24 saat içinde ücretsiz görüşme için sizinle iletişime geçsin.",
-    form_card_title:  "Başvurunuzu Başlatın",
-    label_fname:      "Ad",
-    label_lname:      "Soyad",
-    label_email:      "E-posta Adresi",
-    label_phone:      "Telefon / WhatsApp",
-    label_field:      "Çalışma Alanı",
-    field_placeholder:"Bir alan seçin…",
-    field1:           "Tıp ve Sağlık Bilimleri",
-    field2:           "Mühendislik ve Teknoloji",
-    field3:           "İşletme ve Ekonomi",
-    field4:           "Mimarlık ve Tasarım",
-    field5:           "Hukuk",
-    field6:           "Sanat ve Beşeri Bilimler",
-    field7:           "Diğer",
-    label_level:      "Mevcut Eğitim Düzeyi",
-    level_placeholder:"Düzey seçin…",
-    level1:           "Lise (Lisans başvurusu)",
-    level2:           "Lisans (Yüksek Lisans başvurusu)",
-    level3:           "Yüksek Lisans (Doktora başvurusu)",
-    form_submit:      "Ücretsiz Danışmanlık Talep Et →",
-    form_note:        "Ücret yok. Taahhüt yok. 24 saat içinde sizinle iletişime geçeceğiz.",
-    footer_copy:      "© 2026 Aspire Education. Tüm hakları saklıdır.",
-    nav_register:     "Hemen Başvur",
-    modal_tag:        "Kayıt Ol",
-    modal_title:      "Başvurunuzu Başlatın",
-    modal_sub:        "Bilgilerinizi girin; bir danışmanımız 24 saat içinde sizi arayarak sonraki adımlarda ücretsiz rehberlik edecektir.",
-    modal_fname:      "Ad",
-    modal_fname_ph:   "örn. Ahmet",
-    modal_lname:      "Soyad",
-    modal_lname_ph:   "örn. Yılmaz",
-    modal_email:      "E-posta Adresi",
-    modal_email_ph:   "siz@ornek.com",
-    modal_phone:      "Telefon / WhatsApp",
-    modal_phone_ph:   "+90 555 000 0000",
-    modal_field:      "Çalışma Alanı",
-    modal_field_ph:   "Bir alan seçin…",
-    modal_level:      "Eğitim Düzeyi",
-    modal_level_ph:   "Düzey seçin…",
-    modal_submit:     "Başvurumu Gönder →",
-    modal_note:       "Ücret yok. Taahhüt yok. 24 saat içinde sizinle iletişime geçeceğiz.",
-    modal_err:        "⚠ Lütfen Ad ve E-posta alanlarını doldurun",
-    modal_success_title: "Başvurunuz Alındı!",
-            prog_slot_required: "1. Tercih",
-    prog_slot_opt2:     "2. Tercih",
-    prog_slot_opt3:     "3. Tercih",
-    prog_slot_opt4:     "4. Tercih",
-    prog_slot_opt5:     "5. Tercih",
-    prog_slot_ph:       "Program aramak için yukarıda arama yapın",
-    prog_filter_all:    "Tümü",
-    prog_filter_bach:   "Lisans",
-    prog_filter_assoc:  "Ön Lisans",
-    prog_filter_mast:   "Yüksek Lisans",
-    prog_filter_phd:    "Doktora",
-    modal_uni_select:  "— Üniversite seçin —",
-    modal_label_degree: "Derece Seviyesi *",
-    modal_label_uni:    "Üniversite *",
-    modal_label_prog:   "Program *",
-    prog_search_ph:   "Üniversite, derece, program, dil arayın…",
-    deg_all:          "Tümü",
-    prog_search_hint: "Arama yapmak için yazın…",
-    prog_no_results:  "Program bulunamadı. Farklı bir arama deneyin.",
-    prog_add:         "Ekle",
-    prog_added:       "Eklendi ✓",
-    prog_more:        "100 / {n} sonuç gösteriliyor — aramayı daraltın",
-    prog_slot_1:      "1. Tercih",
-    prog_slot_2:      "2. Tercih",
-    prog_slot_3:      "3. Tercih",
-    prog_slot_4:      "4. Tercih",
-    prog_slot_5:      "5. Tercih",
-    prog_required:    "Zorunlu",
-    prog_optional:    "İsteğe Bağlı",
-    prog_slot_ph:     "Yukarıda arayın ve eklemek için tıklayın",
-    deg_bachelor:     "Lisans",
-    deg_associate:    "Ön Lisans",
-    deg_master:       "Yüksek Lisans",
-    deg_phd:          "Doktora",
-    lang_english:     "İngilizce",
-    lang_turkish:     "Türkçe",
-    prog_err_required: "⚠ Lütfen en az bir program seçin (1. tercih zorunludur).",
-    modal_step1_tag:  "Adım 1 / 3",
-    modal_step1_h2:   "Programınızı Seçin",
-    modal_step1_sub:  "2026–2027 akademik yılı için ortak üniversitelerimizden seçim yapın.",
-    modal_step2_tag:  "Adım 2 / 3",
-    modal_step2_h2:   "Bilgileriniz",
-    modal_step2_sub:  "Sizi doğru programla eşleştirebilmemiz için kendiniz hakkında kısaca bilgi verin.",
-    modal_step3_tag:  "Adım 3 / 3",
-    modal_step3_h2:   "Belgelerinizi Yükleyin",
-    modal_step3_sub:  "Elinizdekileri yükleyin — her format kabul edilir. Eksik belgeler? Danışmanlarımız yardımcı olacaktır.",
-    modal_degree_ph:  "Derece seviyesi seçin…",
-    modal_degree_assoc: "Ön Lisans / Meslek (2 yıl)",
-    modal_degree_bach:  "Lisans (4–6 yıl)",
-    modal_degree_mast:  "Yüksek Lisans (1.5–2 yıl)",
-    modal_degree_phd:   "Doktora",
-    modal_uni_ph:     "— Önce derece seviyesi seçin —",
-    modal_prog_ph:    "— Önce üniversite seçin —",
-    modal_continue1:  "Devam → Bilgileriniz",
-    modal_back:       "← Geri",
-    modal_continue2:  "Devam → Belgeler",
-    dot1_label:       "Program",
-    dot2_label:       "Bilgiler",
-    dot3_label:       "Belgeler",
-    modal_success_msg:   "Kaydınız için teşekkürler. Danışmanlarımızdan biri ücretsiz görüşmenizi planlamak için <strong>24 saat</strong> içinde sizinle iletişime geçecektir.",
-  },
-  ar: {
-    nav_cta:          "احصل على استشارة مجانية",
-    hero_tag:         "القبول الجامعي",
-    hero_h1:          'مستقبلك يبدأ من <span style="color:var(--red)">تركيا</span> <span style="font-size:1.2em">🇹🇷</span>',
-    hero_sub:         "تُرشد Aspire Education الطلاب الدوليين في كل خطوة من خطوات التقديم للجامعات — من اختيار البرنامج المناسب إلى استلام رسالة القبول.",
-    hero_cta1:        "قدّم الآن — مجاناً",
-    hero_cta2:        "ماهي خطوات التسجيل؟ →",
-    stat1:            "طالب تم قبوله",
-    stat2:            "جامعة شريكة",
-    stat3:            "نسبة القبول",
-    badge_title:      "أفضل جامعات تركيا",
-    badge_sub:        "إسطنبول، أنقرة، إزمير والمزيد",
-    steps_tag:        "المراحل",
-    steps_title:      "أربع خطوات نحو رسالة القبول",
-    steps_sub:        "نتولى التعقيدات حتى تتفرغ لما يهمك — مستقبلك.",
-    step1_title:      "استشارة مجانية",
-    step1_desc:       "نقيّم خلفيتك الأكاديمية ونرشّحك للجامعات والبرامج الأنسب لك في تركيا.",
-    step2_title:      "تحضير الطلب",
-    step2_desc:       "يساعدك مستشارونا في تحضير جميع الوثائق — السجلات الدراسية والمقالات ومتطلبات اللغة — بشكل مثالي.",
-    step3_title:      "التقديم والمتابعة",
-    step3_desc:       "نتولى تقديم طلباتك ونبقيك على اطلاع في كل مرحلة مع المتابعة المستمرة.",
-    step4_title:      "التأشيرة والوصول",
-    step4_desc:       "بعد القبول، نرشدك في إجراءات تأشيرة الطالب ونساعدك على الاستقرار قبل يومك الأول.",
-    why_tag:          "لماذا تختارنا",
-    why_title:        "سلكنا هذا الطريق من قبل — مع مئات الطلاب.",
-    why_sub:          "أُسِّست Aspire Education على يد أشخاص يفهمون تحديات الدراسة في تركيا. نقدم نصائح صادقة، ونتائج حقيقية، ودعماً لا ينتهي عند التسجيل.",
-    feat1_title:      "أكثر من 40 شراكة جامعية",
-    feat1_desc:       "علاقات مباشرة مع أفضل الجامعات الحكومية والخاصة في إسطنبول وأنقرة وإزمير.",
-    feat2_title:      "مستشارون متعددو اللغات",
-    feat2_desc:       "فريقنا يتحدث العربية والإنجليزية والتركية — لن تضيع في الترجمة أبداً.",
-    feat3_title:      "دعم شامل من البداية للنهاية",
-    feat3_desc:       "من التقديم إلى التأشيرة والسكن — نبقى إلى جانبك في كل محطة.",
-    feat4_title:      "نسبة قبول 95%",
-    feat4_desc:       "سجلنا يتحدث عن نفسه. نقبل فقط الطلاب الذين نثق بقدرتنا على تحقيق قبولهم.",
-    form_tag:         "ابدأ الآن",
-    form_title:       "هل أنت مستعد للدراسة في تركيا؟",
-    form_sub:         "املأ النموذج وسيتواصل معك أحد مستشارينا خلال 24 ساعة لاستشارة مجانية.",
-    form_card_title:  "ابدأ طلبك",
-    label_fname:      "الاسم الأول",
-    label_lname:      "اسم العائلة",
-    label_email:      "البريد الإلكتروني",
-    label_phone:      "الهاتف / واتساب",
-    label_field:      "مجال الدراسة",
-    field_placeholder:"اختر مجالاً…",
-    field1:           "الطب والعلوم الصحية",
-    field2:           "الهندسة والتكنولوجيا",
-    field3:           "إدارة الأعمال والاقتصاد",
-    field4:           "العمارة والتصميم",
-    field5:           "القانون",
-    field6:           "الفنون والعلوم الإنسانية",
-    field7:           "أخرى",
-    label_level:      "المستوى التعليمي الحالي",
-    level_placeholder:"اختر المستوى…",
-    level1:           "الثانوية (للتقديم على البكالوريوس)",
-    level2:           "البكالوريوس (للتقديم على الماجستير)",
-    level3:           "الماجستير (للتقديم على الدكتوراه)",
-    form_submit:      "اطلب استشارتي المجانية →",
-    form_note:        "بدون رسوم. بدون التزام. سنتواصل معك خلال 24 ساعة.",
-    footer_copy:      "© 2026 Aspire Education. جميع الحقوق محفوظة.",
-    nav_register:     "قدّم الآن",
-    modal_tag:        "التسجيل",
-    modal_title:      "ابدأ طلبك",
-    modal_sub:        "أدخل بياناتك وسيتواصل معك أحد مستشارينا خلال 24 ساعة لإرشادك في الخطوات التالية — مجاناً تماماً.",
-    modal_fname:      "الاسم الأول",
-    modal_fname_ph:   "مثال: أحمد",
-    modal_lname:      "اسم العائلة",
-    modal_lname_ph:   "مثال: الفارسي",
-    modal_email:      "البريد الإلكتروني",
-    modal_email_ph:   "you@example.com",
-    modal_phone:      "الهاتف / واتساب",
-    modal_phone_ph:   "+966 5xx xxx xxxx",
-    modal_field:      "مجال الدراسة",
-    modal_field_ph:   "اختر مجالاً…",
-    modal_level:      "المستوى التعليمي",
-    modal_level_ph:   "اختر المستوى…",
-    modal_submit:     "أرسل طلبي →",
-    modal_note:       "بدون رسوم. بدون التزام. سنتواصل معك خلال 24 ساعة.",
-    modal_err:        "⚠ يرجى إدخال الاسم والبريد الإلكتروني",
-    modal_success_title: "تم استلام طلبك!",
-            prog_slot_required: "الخيار الأول",
-    prog_slot_opt2:     "الخيار الثاني",
-    prog_slot_opt3:     "الخيار الثالث",
-    prog_slot_opt4:     "الخيار الرابع",
-    prog_slot_opt5:     "الخيار الخامس",
-    prog_slot_ph:       "ابحث أعلاه لإضافة برنامج",
-    prog_filter_all:    "الكل",
-    prog_filter_bach:   "بكالوريوس",
-    prog_filter_assoc:  "دبلوم مهني",
-    prog_filter_mast:   "ماجستير",
-    prog_filter_phd:    "دكتوراه",
-    modal_uni_select:  "— اختر الجامعة —",
-    modal_label_degree: "المستوى الدراسي *",
-    modal_label_uni:    "الجامعة *",
-    modal_label_prog:   "البرنامج *",
-    prog_search_ph:   "ابحث عن جامعة، درجة، برنامج، لغة…",
-    deg_all:          "الكل",
-    prog_search_hint: "اكتب للبحث عن برامج…",
-    prog_no_results:  "لم يتم العثور على برامج. جرّب بحثًا مختلفًا.",
-    prog_add:         "إضافة",
-    prog_added:       "تمت الإضافة ✓",
-    prog_more:        "عرض 100 من {n} — دقّق البحث",
-    prog_slot_1:      "الخيار الأول",
-    prog_slot_2:      "الخيار الثاني",
-    prog_slot_3:      "الخيار الثالث",
-    prog_slot_4:      "الخيار الرابع",
-    prog_slot_5:      "الخيار الخامس",
-    prog_required:    "إلزامي",
-    prog_optional:    "اختياري",
-    prog_slot_ph:     "ابحث في الأعلى وانقر للإضافة",
-    deg_bachelor:     "بكالوريوس",
-    deg_associate:    "دبلوم مهني",
-    deg_master:       "ماجستير",
-    deg_phd:          "دكتوراه",
-    lang_english:     "إنجليزي",
-    lang_turkish:     "تركي",
-    prog_err_required: "⚠ يرجى اختيار برنامج واحد على الأقل (الخيار الأول إلزامي).",
-    modal_step1_tag:  "الخطوة 1 من 3",
-    modal_step1_h2:   "اختر برنامجك",
-    modal_step1_sub:  "اختر من جامعاتنا الشريكة للعام الأكاديمي 2026–2027.",
-    modal_step2_tag:  "الخطوة 2 من 3",
-    modal_step2_h2:   "بياناتك الشخصية",
-    modal_step2_sub:  "أخبرنا قليلاً عن نفسك حتى نتمكن من تحديد البرنامج الأنسب لك.",
-    modal_step3_tag:  "الخطوة 3 من 3",
-    modal_step3_h2:   "ارفع وثائقك",
-    modal_step3_sub:  "ارفع ما لديك — جميع الصيغ مقبولة. وثائق ناقصة؟ مستشارونا سيساعدونك.",
-    modal_degree_ph:  "اختر المستوى الدراسي…",
-    modal_degree_assoc: "دبلوم / مهني (سنتان)",
-    modal_degree_bach:  "بكالوريوس (4–6 سنوات)",
-    modal_degree_mast:  "ماجستير (1.5–2 سنة)",
-    modal_degree_phd:   "دكتوراه",
-    modal_uni_ph:     "— اختر المستوى الدراسي أولاً —",
-    modal_prog_ph:    "— اختر الجامعة أولاً —",
-    modal_continue1:  "التالي ← بياناتك",
-    modal_back:       "رجوع →",
-    modal_continue2:  "التالي ← الوثائق",
-    dot1_label:       "البرنامج",
-    dot2_label:       "البيانات",
-    dot3_label:       "الوثائق",
-    modal_success_msg:   "شكراً لتسجيلك. سيتواصل معك أحد مستشارينا خلال <strong>24 ساعة</strong> لتحديد موعد استشارتك المجانية.",
-  }
-};
-
-const rtlLangs = ['ar'];
-
-// Set default language on load
-document.documentElement.dataset.lang = 'en';
-
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const lang = btn.dataset.lang;
-
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const t = translations[lang];
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (t[key] !== undefined) {
-        if (el.tagName === 'OPTION') {
-          el.textContent = t[key];
-        } else {
-          el.innerHTML = t[key];
-        }
-      }
-    });
-    // Re-render program slots and results in new language
-    renderProgSlots();
-    if (progSearchQuery || progDegreeFilter !== 'all') renderProgResults();
-    // Update filter chips
-    const chipLabels = {all: t.deg_all||'All', bachelor: t.deg_bachelor||"Bachelor's", associate: t.deg_associate||'Associate', master: t.deg_master||"Master's", phd: t.deg_phd||'PhD'};
-    document.querySelectorAll('.prog-chip').forEach(chip => {
-      const f = chip.dataset.filter;
-      if (chipLabels[f]) chip.textContent = chipLabels[f];
-    });
-    // Update search placeholder
-    const si = document.getElementById('progSearchInput');
-    if (si) si.placeholder = t.prog_search_ph || 'Search university, degree, program, language…';
-
-    // Translate filter chips
-    document.querySelectorAll('.prog-chip').forEach(btn => {
-      const f = btn.dataset.filter;
-      const map = {all:'prog_filter_all',bachelor:'prog_filter_bach',associate:'prog_filter_assoc',master:'prog_filter_mast',phd:'prog_filter_phd'};
-      if (map[f] && t[map[f]]) btn.textContent = t[map[f]];
-    });
-    // Re-render slots with new language
-    renderProgSlots();
-    // Translate input placeholders
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.dataset.i18nPlaceholder;
-      if (t[key] !== undefined) el.placeholder = t[key];
-    });
-
-    // Store current lang for modal error message
-    document.documentElement.dataset.lang = lang;
-
-    // RTL support
-    document.documentElement.setAttribute('dir', rtlLangs.includes(lang) ? 'rtl' : 'ltr');
-
-    // Hide "in Türkiye" em for Arabic and Turkish (already included in hero_h1)
-    document.getElementById('hero-em').style.display = ['ar', 'tr'].includes(lang) ? 'none' : 'block';
-  });
-});
-
-
-// ── UNIVERSITY PROGRAM DATABASE ──
-// Format: {name, logo, programs: {bachelor/associate/master/phd: [{name, fee}]}}
-// ── MODAL CONTROL ──
-let currentStep = 1;
-
-function openModal() {
-  currentStep = 1;
-  progSelected = [null,null,null,null,null];
-  progSearchQuery = '';
-  progDegreeFilter = 'all';
-  const si = document.getElementById('progSearchInput');
-  if (si) si.value = '';
-  const rw = document.getElementById('progResultsWrap');
-  if (rw) rw.style.display = 'none';
-  document.querySelectorAll('.prog-chip').forEach(b => { b.classList.remove('active'); if (b.dataset.filter==='all') b.classList.add('active'); });
-  renderProgSlots();
-  ['reg-fname','reg-lname','reg-email','reg-phone'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = '';
-  });
-  const sv = document.getElementById('modalSuccessView');
-  if (sv) sv.style.display = 'none';
-  const si2 = document.getElementById('stepIndicator');
-  if (si2) si2.style.display = 'flex';
-  ['btn-transcripts','btn-passport','btn-diploma','btn-language','btn-other'].forEach(id => {
-    const btn = document.getElementById(id);
-    if (!btn) return;
-    btn.classList.remove('uploaded');
-    const last = btn.childNodes[btn.childNodes.length - 1];
-    if (last && last.nodeType === 3)
-      last.textContent = (id==='btn-transcripts'||id==='btn-other') ? ' Choose file(s)' : ' Choose file';
-  });
-  ['step1-error','step2-error','step3-error'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.textContent = '';
-  });
-  showStep(1);
-  document.getElementById('registerModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('registerModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function showStep(n) {
-  [1,2,3].forEach(i => {
-    const el = document.getElementById('step'+i);
-    if (el) el.style.display = (i===n) ? 'block' : 'none';
-    const dot = document.getElementById('dot'+i);
-    if (dot) { dot.classList.remove('active','done'); if (i<n) dot.classList.add('done'); if (i===n) dot.classList.add('active'); }
-  });
-  [1,2].forEach(i => { const line = document.getElementById('line'+i); if (line) line.classList.toggle('done', i<n); });
-  currentStep = n;
-}
-
-function goToStep(n) {
-  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
-  const t = translations[lang] || translations.en;
-  if (n > currentStep) {
-    if (currentStep === 1) {
-      if (!progSelected[0]) {
-        document.getElementById('step1-error').textContent = t.prog_err_required || '\u26a0 Please select at least one program.';
-        return;
-      }
-      document.getElementById('step1-error').textContent = '';
-    }
-    if (currentStep === 2) {
-      const fname = document.getElementById('reg-fname').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      if (!fname || !email) {
-        document.getElementById('step2-error').textContent = t.modal_err || '\u26a0 Please fill in Name & Email';
-        return;
-      }
-      document.getElementById('step2-error').textContent = '';
-    }
-  }
-  showStep(n);
-}
-
-function handleFileUpload(input, btnId) {
-  const btn = document.getElementById(btnId);
-  if (!btn || !input.files || !input.files.length) return;
-  btn.classList.add('uploaded');
-  const names = Array.from(input.files).map(f => f.name);
-  const last = btn.childNodes[btn.childNodes.length - 1];
-  if (last && last.nodeType === 3)
-    last.textContent = input.files.length > 1
-      ? ' \u2713 ' + input.files.length + ' files'
-      : ' \u2713 ' + (names[0].length > 24 ? names[0].substring(0,24)+'\u2026' : names[0]);
-}
-
-function submitApplication() {
-  const transcripts = document.getElementById('btn-transcripts');
-  const passport = document.getElementById('btn-passport');
-  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
-  const t = translations[lang] || translations.en;
-  if (!transcripts || !transcripts.classList.contains('uploaded') ||
-      !passport || !passport.classList.contains('uploaded')) {
-    document.getElementById('step3-error').textContent = '\u26a0 Please upload Transcripts & Passport (required).';
-    return;
-  }
-  document.getElementById('step3-error').textContent = '';
-  const formData = new FormData();
-  formData.append('form-name', 'application');
-  formData.append('first-name', document.getElementById('reg-fname')?.value || '');
-  formData.append('last-name',  document.getElementById('reg-lname')?.value || '');
-  formData.append('email',      document.getElementById('reg-email')?.value || '');
-  formData.append('phone',      document.getElementById('reg-phone')?.value || '');
-  const selections = getProgSelectionForSubmit();
-  selections.forEach((s,i) => {
-    formData.append('program-'+(i+1), s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')');
-  });
-  formData.append('programs', JSON.stringify(selections));
-  fetch('/', { method:'POST', body:formData }).catch(()=>{});
-  showSuccessView(selections[0]?.program||'', selections[0]?.degree||'');
-}
-
-function showSuccessView(progName, degree) {
-  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
-  const t = translations[lang] || translations.en;
-  const title = document.getElementById('successTitle');
-  const msg   = document.getElementById('successMsg');
-  if (title) title.textContent = t.modal_success_title || 'Application Received!';
-  if (msg)   msg.innerHTML     = t.modal_success_msg   || 'Thank you! An advisor will reach out within <strong>24 hours</strong>.';
-  [1,2,3].forEach(i => { const el=document.getElementById('step'+i); if(el) el.style.display='none'; });
-  const si = document.getElementById('stepIndicator'); if(si) si.style.display='none';
-  const sv = document.getElementById('modalSuccessView'); if(sv) sv.style.display='block';
-  setTimeout(closeModal, 6000);
-}
-
-// ── PROGRAM DATABASE (877 programs, 16 universities) ──
+<script>
 const PROG_DB = [
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (English)", "tr": "Tıp (İngilizce)", "ar": "الطب (إنجليزي)", "fee": "$25,000/yr", "lang": "English", "s": "istanbul atlas university bachelor medicine (english) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (Turkish)", "tr": "Tıp (Türkçe)", "ar": "الطب (تركي)", "fee": "$20,000/yr", "lang": "Turkish", "s": "istanbul atlas university bachelor medicine (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
@@ -2746,178 +1864,569 @@ const PROG_DB = [
 {"u": "Üsküdar University", "d": "phd", "en": "Speech and Language Therapy (Turkish)", "tr": "Dil ve Konuşma Terapisi (Türkçe)", "ar": "علاج النطق واللغة (تركي)", "fee": "$9,000/yr/yr", "lang": "Turkish", "s": "üsküdar university phd speech and language therapy (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/e/e5/%C3%9Csk%C3%BCdar_%C3%9Cniversitesi_logo.png/200px-%C3%9Csk%C3%BCdar_%C3%9Cniversitesi_logo.png"}
 ];
 
-// ── PROGRAM SEARCH STATE ──
+</script>
+<script>
+const translations = {
+  en: {
+
+    prog_search_ph:"Search university, degree, program, language…",
+    prog_search_hint:"Start typing to search…",
+    prog_no_results:"No programs found.",
+    prog_add:"Add",prog_added:"Added ✓",
+    prog_slot_1:"1st Choice",prog_slot_2:"2nd Choice",prog_slot_3:"3rd Choice",
+    prog_slot_4:"4th Choice",prog_slot_5:"5th Choice",
+    prog_required:"Required",prog_optional:"Optional",
+    prog_slot_ph:"Search above and click to add",
+    prog_err_required:"⚠ Please select at least one program.",
+    deg_all:"All",deg_bachelor:"Bachelor's",deg_associate:"Associate",
+    deg_master:"Master's",deg_phd:"PhD",
+    lang_english:"English",lang_turkish:"Turkish",
+    modal_step1_tag:"Step 1 of 3",modal_step1_h2:"Choose Your Program",
+    modal_step1_sub:"Search by university, degree, program or language.",
+    modal_step2_tag:"Step 2 of 3",modal_step2_h2:"Your Details",
+    modal_step2_sub:"Tell us about yourself.",
+    modal_step3_tag:"Step 3 of 3",modal_step3_h2:"Upload Your Documents",
+    modal_step3_sub:"Upload what you have — any format.",
+    modal_fname:"First Name *",modal_lname:"Last Name",
+    modal_email:"Email Address *",modal_phone:"Phone / WhatsApp",
+    modal_continue1:"Continue → Your Details",
+    modal_continue2:"Continue → Documents",
+    modal_back:"← Back",
+    modal_note:"No fees. No commitment. We'll contact you within 24 hours.",
+    modal_err:"⚠ Please fill in Name & Email",
+    modal_submit_btn:"Submit My Application →",
+    dot1_label:"Program",dot2_label:"Details",dot3_label:"Documents",
+    level0:"High School (applying for Vocational School)",
+    nav_cta:          "Get Free Consultation",
+    hero_tag:         "University Admissions",
+    hero_h1:          "Your Future Starts",
+    hero_sub:         "Aspire Education guides international students through every step of the university application process — from choosing the right program to receiving your acceptance letter.",
+    hero_cta1:        "Apply Now — It's Free",
+    hero_cta2:        "How it works →",
+    stat1:            "Students Placed",
+    stat2:            "Partner Universities",
+    stat3:            "Acceptance Rate",
+    badge_title:      "Top Türkiye Universities",
+    badge_sub:        "Istanbul, Ankara, Izmir & more",
+    steps_tag:        "The Process",
+    steps_title:      "Four steps to your acceptance letter",
+    steps_sub:        "We handle the complexity so you can focus on what matters — your future.",
+    step1_title:      "Free Consultation",
+    step1_desc:       "We assess your academic background and match you with the best-fit universities and programs in Türkiye.",
+    step2_title:      "Application Prep",
+    step2_desc:       "Our advisors help you prepare every document — transcripts, essays, and language requirements — perfectly.",
+    step3_title:      "Submission & Tracking",
+    step3_desc:       "We submit your applications and keep you informed at every stage, handling follow-ups on your behalf.",
+    step4_title:      "Visa & Arrival",
+    step4_desc:       "Once accepted, we guide you through the student visa process and help you settle in before your first day.",
+    why_tag:          "Why Choose Us",
+    why_title:        "We've walked this path before — for hundreds of students.",
+    why_sub:          "Aspire Education is built by people who understand the challenges of studying in Türkiye. We provide honest advice, real results, and support that doesn't end at enrollment.",
+    feat1_title:      "40+ University Partnerships",
+    feat1_desc:       "Direct relationships with top public and private universities across Istanbul, Ankara, and Izmir.",
+    feat2_title:      "Multilingual Advisors",
+    feat2_desc:       "Our team speaks Arabic, English, Turkish, and French — so you're never lost in translation.",
+    feat3_title:      "End-to-End Support",
+    feat3_desc:       "From application to visa to accommodation — we stay by your side through every milestone.",
+    feat4_title:      "95% Acceptance Rate",
+    feat4_desc:       "Our track record speaks for itself. We only take on students we're confident we can place.",
+    form_tag:         "Get Started",
+    form_title:       "Ready to study in Türkiye?",
+    form_sub:         "Fill in the form and one of our advisors will reach out within 24 hours for a free, no-obligation consultation.",
+    form_card_title:  "Start Your Application",
+    label_fname:      "First Name",
+    label_lname:      "Last Name",
+    label_email:      "Email Address",
+    label_phone:      "Phone / WhatsApp",
+    label_field:      "Field of Study",
+    field_placeholder:"Select a field…",
+    field1:           "Medicine & Health Sciences",
+    field2:           "Engineering & Technology",
+    field3:           "Business & Economics",
+    field4:           "Architecture & Design",
+    field5:           "Law",
+    field6:           "Arts & Humanities",
+    field7:           "Other",
+    label_level:      "Current Education Level",
+    level_placeholder:"Select level…",
+    level1:           "High School (applying for Bachelor's)",
+    level2:           "Bachelor's (applying for Master's)",
+    level3:           "Master's (applying for PhD)",
+    form_submit:      "Request My Free Consultation →",
+    form_note:        "No fees. No commitment. We'll contact you within 24 hours.",
+    footer_copy:      "© 2026 Aspire Education. All rights reserved.",
+    nav_register:     "Apply Now",
+    modal_tag:        "Register",
+    modal_title:      "Start Your Application",
+    modal_sub:        "Fill in your details and an advisor will contact you within 24 hours to guide you through the next steps — completely free.",
+    modal_fname:      "First Name",
+    modal_fname_ph:   "e.g. Ahmed",
+    modal_lname:      "Last Name",
+    modal_lname_ph:   "e.g. Al-Farsi",
+    modal_email:      "Email Address",
+    modal_email_ph:   "you@example.com",
+    modal_phone:      "Phone / WhatsApp",
+    modal_phone_ph:   "+1 234 567 8900",
+    modal_field:      "Field of Study",
+    modal_field_ph:   "Select a field…",
+    modal_level:      "Education Level",
+    modal_level_ph:   "Select level…",
+    modal_submit:     "Submit My Application →",
+    modal_note:       "No fees. No commitment. We'll contact you within 24 hours.",
+    modal_err:        "⚠ Please fill in Name & Email",
+    modal_success_title: "Application Received!",
+    modal_success_msg:   "Thank you for registering. One of our advisors will reach out within <strong>24 hours</strong> to schedule your free consultation.",
+  },
+  tr: {
+
+    prog_search_ph:"Üniversite, derece, program veya dil arayın…",
+    prog_search_hint:"Program aramak için yazın…",
+    prog_no_results:"Program bulunamadı.",
+    prog_add:"Ekle",prog_added:"Eklendi ✓",
+    prog_slot_1:"1. Tercih",prog_slot_2:"2. Tercih",prog_slot_3:"3. Tercih",
+    prog_slot_4:"4. Tercih",prog_slot_5:"5. Tercih",
+    prog_required:"Zorunlu",prog_optional:"İsteğe Bağlı",
+    prog_slot_ph:"Yukarıda arayın ve eklemek için tıklayın",
+    prog_err_required:"⚠ En az bir program seçin.",
+    deg_all:"Tümü",deg_bachelor:"Lisans",deg_associate:"Ön Lisans",
+    deg_master:"Yüksek Lisans",deg_phd:"Doktora",
+    lang_english:"İngilizce",lang_turkish:"Türkçe",
+    modal_step1_tag:"Adım 1 / 3",modal_step1_h2:"Programınızı Seçin",
+    modal_step1_sub:"Üniversite, derece, program veya dile göre arayın.",
+    modal_step2_tag:"Adım 2 / 3",modal_step2_h2:"Bilgileriniz",
+    modal_step2_sub:"Sizi en doğru programla eşleştirelim.",
+    modal_step3_tag:"Adım 3 / 3",modal_step3_h2:"Belgelerinizi Yükleyin",
+    modal_step3_sub:"Elinizden geleni yükleyin.",
+    modal_fname:"Ad *",modal_lname:"Soyad",
+    modal_email:"E-posta Adresi *",modal_phone:"Telefon / WhatsApp",
+    modal_continue1:"Devam Et → Bilgileriniz",
+    modal_continue2:"Devam Et → Belgeler",
+    modal_back:"← Geri",
+    modal_note:"Ücret yok. Taahhüt yok. 24 saat içinde sizi arayacağız.",
+    modal_err:"⚠ Ad ve E-posta alanlarını doldurun",
+    modal_submit_btn:"Başvurumu Gönder →",
+    dot1_label:"Program",dot2_label:"Bilgiler",dot3_label:"Belgeler",
+    level0:"Lise (Meslek Yüksekokulu başvurusu)",
+    nav_cta:          "Ücretsiz Danışmanlık Al",
+    hero_tag:         "Üniversite Başvuruları",
+    hero_h1:          'Geleceğine <span style="color:var(--red)">Türkiye\'de</span> Başla ',
+    hero_sub:         "Aspire Education, uluslararası öğrencilere üniversite başvuru sürecinin her adımında rehberlik eder — doğru programı seçmekten kabul mektubunu almaya kadar.",
+    hero_cta1:        "Hemen Başvur — Ücretsiz",
+    hero_cta2:        "Nasıl çalışır →",
+    stat1:            "Yerleştirilen Öğrenci",
+    stat2:            "Ortak Üniversite",
+    stat3:            "Kabul Oranı",
+    badge_title:      "Türkiye'nin En İyi Üniversiteleri",
+    badge_sub:        "İstanbul, Ankara, İzmir ve daha fazlası",
+    steps_tag:        "Süreç",
+    steps_title:      "Kabul mektubuna giden 4 adım",
+    steps_sub:        "Karmaşıklığı biz üstleniyoruz, siz sadece geleceğinize odaklanın.",
+    step1_title:      "Ücretsiz Danışmanlık",
+    step1_desc:       "Akademik geçmişinizi değerlendiriyor ve Türkiye'deki en uygun üniversite ve programlarla eşleştiriyoruz.",
+    step2_title:      "Başvuru Hazırlığı",
+    step2_desc:       "Danışmanlarımız transkript, niyet mektubu ve dil gereksinimleri dahil tüm belgelerinizi hazırlamanıza yardımcı olur.",
+    step3_title:      "Başvuru ve Takip",
+    step3_desc:       "Başvurularınızı biz yapıyor ve her aşamada sizi bilgilendiriyoruz.",
+    step4_title:      "Vize ve Varış",
+    step4_desc:       "Kabul aldıktan sonra öğrenci vizesi sürecinde rehberlik ediyor, ilk gününüzden önce yerleşmenize yardımcı oluyoruz.",
+    why_tag:          "Neden Bizi Seçmelisiniz",
+    why_title:        "Bu yolu daha önce yüzlerce öğrencisiyle birlikte yürüdük.",
+    why_sub:          "Aspire Education, Türkiye'de eğitimin zorluklarını bilen kişiler tarafından kurulmuştur. Dürüst tavsiye, gerçek sonuçlar ve kayıt sonrasında da süren destek sunuyoruz.",
+    feat1_title:      "40'tan Fazla Üniversite Ortaklığı",
+    feat1_desc:       "İstanbul, Ankara ve İzmir'deki önde gelen devlet ve özel üniversitelerle doğrudan ilişkilerimiz var.",
+    feat2_title:      "Çok Dilli Danışmanlar",
+    feat2_desc:       "Ekibimiz Arapça, İngilizce, Türkçe ve Fransızca konuşuyor — hiçbir zaman çeviride kaybolmazsınız.",
+    feat3_title:      "Uçtan Uca Destek",
+    feat3_desc:       "Başvurudan vizeye, konaklamaya kadar — her kilometre taşında yanınızdayız.",
+    feat4_title:      "%95 Kabul Oranı",
+    feat4_desc:       "Sicilimiz kendini kanıtlamıştır. Yalnızca yerleştirebileceğimizden emin olduğumuz öğrencilerle çalışıyoruz.",
+    form_tag:         "Başlayın",
+    form_title:       "Türkiye'de okumaya hazır mısınız?",
+    form_sub:         "Formu doldurun, danışmanlarımızdan biri 24 saat içinde ücretsiz görüşme için sizinle iletişime geçsin.",
+    form_card_title:  "Başvurunuzu Başlatın",
+    label_fname:      "Ad",
+    label_lname:      "Soyad",
+    label_email:      "E-posta Adresi",
+    label_phone:      "Telefon / WhatsApp",
+    label_field:      "Çalışma Alanı",
+    field_placeholder:"Bir alan seçin…",
+    field1:           "Tıp ve Sağlık Bilimleri",
+    field2:           "Mühendislik ve Teknoloji",
+    field3:           "İşletme ve Ekonomi",
+    field4:           "Mimarlık ve Tasarım",
+    field5:           "Hukuk",
+    field6:           "Sanat ve Beşeri Bilimler",
+    field7:           "Diğer",
+    label_level:      "Mevcut Eğitim Düzeyi",
+    level_placeholder:"Düzey seçin…",
+    level1:           "Lise (Lisans başvurusu)",
+    level2:           "Lisans (Yüksek Lisans başvurusu)",
+    level3:           "Yüksek Lisans (Doktora başvurusu)",
+    form_submit:      "Ücretsiz Danışmanlık Talep Et →",
+    form_note:        "Ücret yok. Taahhüt yok. 24 saat içinde sizinle iletişime geçeceğiz.",
+    footer_copy:      "© 2026 Aspire Education. Tüm hakları saklıdır.",
+    nav_register:     "Hemen Başvur",
+    modal_tag:        "Kayıt Ol",
+    modal_title:      "Başvurunuzu Başlatın",
+    modal_sub:        "Bilgilerinizi girin; bir danışmanımız 24 saat içinde sizi arayarak sonraki adımlarda ücretsiz rehberlik edecektir.",
+    modal_fname:      "Ad",
+    modal_fname_ph:   "örn. Ahmet",
+    modal_lname:      "Soyad",
+    modal_lname_ph:   "örn. Yılmaz",
+    modal_email:      "E-posta Adresi",
+    modal_email_ph:   "siz@ornek.com",
+    modal_phone:      "Telefon / WhatsApp",
+    modal_phone_ph:   "+90 555 000 0000",
+    modal_field:      "Çalışma Alanı",
+    modal_field_ph:   "Bir alan seçin…",
+    modal_level:      "Eğitim Düzeyi",
+    modal_level_ph:   "Düzey seçin…",
+    modal_submit:     "Başvurumu Gönder →",
+    modal_note:       "Ücret yok. Taahhüt yok. 24 saat içinde sizinle iletişime geçeceğiz.",
+    modal_err:        "⚠ Lütfen Ad ve E-posta alanlarını doldurun",
+    modal_success_title: "Başvurunuz Alındı!",
+    modal_success_msg:   "Kaydınız için teşekkürler. Danışmanlarımızdan biri ücretsiz görüşmenizi planlamak için <strong>24 saat</strong> içinde sizinle iletişime geçecektir.",
+  },
+  ar: {
+
+    prog_search_ph:"ابحث عن جامعة، درجة، برنامج، لغة…",
+    prog_search_hint:"اكتب للبحث عن برامج…",
+    prog_no_results:"لم يتم العثور على برامج.",
+    prog_add:"إضافة",prog_added:"تمت الإضافة ✓",
+    prog_slot_1:"الخيار الأول",prog_slot_2:"الخيار الثاني",
+    prog_slot_3:"الخيار الثالث",prog_slot_4:"الخيار الرابع",
+    prog_slot_5:"الخيار الخامس",
+    prog_required:"إلزامي",prog_optional:"اختياري",
+    prog_slot_ph:"ابحث أعلى وانقر للإضافة",
+    prog_err_required:"⚠ يرجى اختيار برنامج واحد.",
+    deg_all:"الكل",deg_bachelor:"بكالوريوس",
+    deg_associate:"دبلوم مهني",deg_master:"ماجستير",deg_phd:"دكتوراه",
+    lang_english:"إنجليزي",lang_turkish:"تركي",
+    modal_step1_tag:"الخطوة 1 من 3",modal_step1_h2:"اختر برنامجك",
+    modal_step1_sub:"ابحث حسب الجامعة أو الدرجة أو اللغة.",
+    modal_step2_tag:"الخطوة 2 من 3",modal_step2_h2:"بياناتك",
+    modal_step2_sub:"أخبرنا عن نفسك.",
+    modal_step3_tag:"الخطوة 3 من 3",modal_step3_h2:"رفع مستنداتك",
+    modal_step3_sub:"ارفع ما لديك.",
+    modal_fname:"الاسم الأول *",modal_lname:"اسم العائلة",
+    modal_email:"عنوان البريد الإلكتروني *",
+    modal_phone:"هاتف / واتسآب",
+    modal_continue1:"المتابعة → بياناتك",
+    modal_continue2:"المتابعة → المستندات",
+    modal_back:"← رجوع",
+    modal_note:"لا رسوم. لا التزام. سنتواصل معك خلال 24 ساعة.",
+    modal_err:"⚠ يرجى ملء الاسم والبريد",
+    modal_submit_btn:"إرسال طلبي →",
+    dot1_label:"البرنامج",dot2_label:"البيانات",dot3_label:"المستندات",
+    level0:"الثانوية (للتقديم على المدرسة المهنية)",
+    nav_cta:          "احصل على استشارة مجانية",
+    hero_tag:         "القبول الجامعي",
+    hero_h1:          'مستقبلك يبدأ من <span style="color:var(--red)">تركيا</span> ',
+    hero_sub:         "تُرشد Aspire Education الطلاب الدوليين في كل خطوة من خطوات التقديم للجامعات — من اختيار البرنامج المناسب إلى استلام رسالة القبول.",
+    hero_cta1:        "قدّم الآن — مجاناً",
+    hero_cta2:        "كيف يعمل →",
+    stat1:            "طالب تم قبوله",
+    stat2:            "جامعة شريكة",
+    stat3:            "نسبة القبول",
+    badge_title:      "أفضل جامعات تركيا",
+    badge_sub:        "إسطنبول، أنقرة، إزمير والمزيد",
+    steps_tag:        "المراحل",
+    steps_title:      "أربع خطوات نحو رسالة القبول",
+    steps_sub:        "نتولى التعقيدات حتى تتفرغ لما يهمك — مستقبلك.",
+    step1_title:      "استشارة مجانية",
+    step1_desc:       "نقيّم خلفيتك الأكاديمية ونرشّحك للجامعات والبرامج الأنسب لك في تركيا.",
+    step2_title:      "تحضير الطلب",
+    step2_desc:       "يساعدك مستشارونا في تحضير جميع الوثائق — السجلات الدراسية والمقالات ومتطلبات اللغة — بشكل مثالي.",
+    step3_title:      "التقديم والمتابعة",
+    step3_desc:       "نتولى تقديم طلباتك ونبقيك على اطلاع في كل مرحلة مع المتابعة المستمرة.",
+    step4_title:      "التأشيرة والوصول",
+    step4_desc:       "بعد القبول، نرشدك في إجراءات تأشيرة الطالب ونساعدك على الاستقرار قبل يومك الأول.",
+    why_tag:          "لماذا تختارنا",
+    why_title:        "سلكنا هذا الطريق من قبل — مع مئات الطلاب.",
+    why_sub:          "أُسِّست Aspire Education على يد أشخاص يفهمون تحديات الدراسة في تركيا. نقدم نصائح صادقة، ونتائج حقيقية، ودعماً لا ينتهي عند التسجيل.",
+    feat1_title:      "أكثر من 40 شراكة جامعية",
+    feat1_desc:       "علاقات مباشرة مع أفضل الجامعات الحكومية والخاصة في إسطنبول وأنقرة وإزمير.",
+    feat2_title:      "مستشارون متعددو اللغات",
+    feat2_desc:       "فريقنا يتحدث العربية والإنجليزية والتركية والفرنسية — لن تضيع في الترجمة أبداً.",
+    feat3_title:      "دعم شامل من البداية للنهاية",
+    feat3_desc:       "من التقديم إلى التأشيرة والسكن — نبقى إلى جانبك في كل محطة.",
+    feat4_title:      "نسبة قبول 95%",
+    feat4_desc:       "سجلنا يتحدث عن نفسه. نقبل فقط الطلاب الذين نثق بقدرتنا على تحقيق قبولهم.",
+    form_tag:         "ابدأ الآن",
+    form_title:       "هل أنت مستعد للدراسة في تركيا؟",
+    form_sub:         "املأ النموذج وسيتواصل معك أحد مستشارينا خلال 24 ساعة لاستشارة مجانية.",
+    form_card_title:  "ابدأ طلبك",
+    label_fname:      "الاسم الأول",
+    label_lname:      "اسم العائلة",
+    label_email:      "البريد الإلكتروني",
+    label_phone:      "الهاتف / واتساب",
+    label_field:      "مجال الدراسة",
+    field_placeholder:"اختر مجالاً…",
+    field1:           "الطب والعلوم الصحية",
+    field2:           "الهندسة والتكنولوجيا",
+    field3:           "إدارة الأعمال والاقتصاد",
+    field4:           "العمارة والتصميم",
+    field5:           "القانون",
+    field6:           "الفنون والعلوم الإنسانية",
+    field7:           "أخرى",
+    label_level:      "المستوى التعليمي الحالي",
+    level_placeholder:"اختر المستوى…",
+    level1:           "الثانوية (للتقديم على البكالوريوس)",
+    level2:           "البكالوريوس (للتقديم على الماجستير)",
+    level3:           "الماجستير (للتقديم على الدكتوراه)",
+    form_submit:      "اطلب استشارتي المجانية →",
+    form_note:        "بدون رسوم. بدون التزام. سنتواصل معك خلال 24 ساعة.",
+    footer_copy:      "© 2026 Aspire Education. جميع الحقوق محفوظة.",
+    nav_register:     "قدّم الآن",
+    modal_tag:        "التسجيل",
+    modal_title:      "ابدأ طلبك",
+    modal_sub:        "أدخل بياناتك وسيتواصل معك أحد مستشارينا خلال 24 ساعة لإرشادك في الخطوات التالية — مجاناً تماماً.",
+    modal_fname:      "الاسم الأول",
+    modal_fname_ph:   "مثال: أحمد",
+    modal_lname:      "اسم العائلة",
+    modal_lname_ph:   "مثال: الفارسي",
+    modal_email:      "البريد الإلكتروني",
+    modal_email_ph:   "you@example.com",
+    modal_phone:      "الهاتف / واتساب",
+    modal_phone_ph:   "+966 5xx xxx xxxx",
+    modal_field:      "مجال الدراسة",
+    modal_field_ph:   "اختر مجالاً…",
+    modal_level:      "المستوى التعليمي",
+    modal_level_ph:   "اختر المستوى…",
+    modal_submit:     "أرسل طلبي →",
+    modal_note:       "بدون رسوم. بدون التزام. سنتواصل معك خلال 24 ساعة.",
+    modal_err:        "⚠ يرجى إدخال الاسم والبريد الإلكتروني",
+    modal_success_title: "تم استلام طلبك!",
+    modal_success_msg:   "شكراً لتسجيلك. سيتواصل معك أحد مستشارينا خلال <strong>24 ساعة</strong> لتحديد موعد استشارتك المجانية.",
+  }
+};
+
+const rtlLangs = ['ar'];
+
+// Set default language on load
+document.documentElement.dataset.lang = 'en';
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.lang;
+
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Translate input placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+
+    // Store current lang for modal error message
+    document.documentElement.dataset.lang = lang;
+
+    // RTL support
+    document.documentElement.setAttribute('dir', rtlLangs.includes(lang) ? 'rtl' : 'ltr');
+
+    // Hide "in Türkiye" em for Arabic and Turkish (already included in hero_h1)
+    document.getElementById('hero-em').style.display = ['ar', 'tr'].includes(lang) ? 'none' : 'block';
+  });
+});
+
+// ── MODAL & PROGRAM SEARCH JS ──
+let currentStep = 1;
 let progSelected = [null,null,null,null,null];
 let progDegreeFilter = 'all';
 let progSearchQuery = '';
 
-function onProgSearch(q) {
-  progSearchQuery = q.trim().toLowerCase();
-  document.getElementById('progSearchClear').style.display = q ? 'block' : 'none';
-  renderProgResults();
-  document.getElementById('progResultsWrap').style.display = 'block';
-}
-
-function clearProgSearch() {
-  document.getElementById('progSearchInput').value = '';
-  progSearchQuery = '';
-  document.getElementById('progSearchClear').style.display = 'none';
-  document.getElementById('progResultsWrap').style.display = 'none';
-}
-
-function setDegreeFilter(btn, filter) {
-  progDegreeFilter = filter;
-  document.querySelectorAll('.prog-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (progSearchQuery || filter !== 'all') {
-    renderProgResults();
-    document.getElementById('progResultsWrap').style.display = 'block';
-  }
-}
-
-function renderProgResults() {
-  const resultsEl = document.getElementById('progResults');
-  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
-  const t = translations[lang] || translations.en;
-
-  let filtered = PROG_DB.filter(p => {
-    const matchDeg = progDegreeFilter === 'all' || p.d === progDegreeFilter;
-    if (!matchDeg) return false;
-    if (!progSearchQuery) return false;
-    // Search across university, degree, EN/TR/AR name, language
-    const arSearch = p.ar ? p.ar.toLowerCase() : '';
-    const trSearch = p.tr ? p.tr.toLowerCase() : '';
-    return p.s.includes(progSearchQuery) || trSearch.includes(progSearchQuery) || arSearch.includes(progSearchQuery);
+function openModal() {
+  currentStep = 1;
+  progSelected = [null,null,null,null,null];
+  progSearchQuery = ''; progDegreeFilter = 'all';
+  const si = document.getElementById('progSearchInput');
+  if (si) si.value = '';
+  const rw = document.getElementById('progResultsWrap');
+  if (rw) rw.style.display = 'none';
+  document.querySelectorAll('.prog-chip').forEach(b => { b.classList.remove('active'); if(b.dataset.filter==='all') b.classList.add('active'); });
+  renderProgSlots();
+  ['reg-fname','reg-lname','reg-email','reg-phone'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  ['step1-error','step2-error','step3-error'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=''; });
+  ['btn-transcripts','btn-passport','btn-diploma','btn-language','btn-other'].forEach(id => {
+    const btn=document.getElementById(id); if(!btn) return;
+    btn.classList.remove('uploaded');
+    const last=btn.childNodes[btn.childNodes.length-1];
+    if(last&&last.nodeType===3) last.textContent=(id==='btn-transcripts'||id==='btn-other')?' Choose file(s)':' Choose file';
   });
-
-  if (!progSearchQuery && progDegreeFilter === 'all') {
-    resultsEl.innerHTML = '<div class="prog-no-results">' + (t.prog_search_hint || 'Start typing to search programs…') + '</div>';
-    return;
+  const sv=document.getElementById('modalSuccessView'); if(sv) sv.style.display='none';
+  const si2=document.getElementById('stepIndicator'); if(si2) si2.style.display='flex';
+  showStep(1);
+  document.getElementById('registerModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal() { document.getElementById('registerModal').classList.remove('open'); document.body.style.overflow=''; }
+function showStep(n) {
+  [1,2,3].forEach(i => {
+    const el=document.getElementById('step'+i); if(el) el.style.display=(i===n)?'block':'none';
+    const dot=document.getElementById('dot'+i);
+    if(dot){ dot.classList.remove('active','done'); if(i<n)dot.classList.add('done'); if(i===n)dot.classList.add('active'); }
+  });
+  [1,2].forEach(i=>{ const l=document.getElementById('line'+i); if(l)l.classList.toggle('done',i<n); });
+  currentStep=n;
+}
+function goToStep(n) {
+  const lang=document.querySelector('.lang-btn.active')?.dataset.lang||'en';
+  const t=translations[lang]||translations.en;
+  if(n>currentStep){
+    if(currentStep===1){
+      if(!progSelected[0]){ document.getElementById('step1-error').textContent=t.prog_err_required||'⚠ Please select at least one program.'; return; }
+      document.getElementById('step1-error').textContent='';
+    }
+    if(currentStep===2){
+      const fn=document.getElementById('reg-fname').value.trim();
+      const em=document.getElementById('reg-email').value.trim();
+      if(!fn||!em){ document.getElementById('step2-error').textContent=t.modal_err||'⚠ Please fill in Name & Email'; return; }
+      document.getElementById('step2-error').textContent='';
+    }
   }
-  if (filtered.length === 0) {
-    resultsEl.innerHTML = '<div class="prog-no-results">' + (t.prog_no_results || 'No programs found. Try a different search.') + '</div>';
-    return;
+  showStep(n);
+}
+function handleFileUpload(input,btnId){
+  const btn=document.getElementById(btnId); if(!btn||!input.files||!input.files.length) return;
+  btn.classList.add('uploaded');
+  const names=Array.from(input.files).map(f=>f.name);
+  const last=btn.childNodes[btn.childNodes.length-1];
+  if(last&&last.nodeType===3) last.textContent=input.files.length>1?' ✓ '+input.files.length+' files':' ✓ '+(names[0].length>22?names[0].substring(0,22)+'…':names[0]);
+}
+function submitApplication(){
+  const t2=document.getElementById('btn-transcripts'); const p2=document.getElementById('btn-passport');
+  if(!t2?.classList.contains('uploaded')||!p2?.classList.contains('uploaded')){
+    document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
   }
-
-  const shown = filtered.slice(0, 100);
-  const selectedKeys = progSelected.filter(Boolean).map(p => p.u + '|' + p.en);
-  const degLabels = {
-    bachelor: t.deg_bachelor || "Bachelor's",
-    associate: t.deg_associate || "Associate",
-    master: t.deg_master || "Master's",
-    phd: t.deg_phd || "PhD"
-  };
-
-  resultsEl.innerHTML = shown.map(p => {
-    const isSelected = selectedKeys.includes(p.u + '|' + p.en);
-    const progName = lang === 'tr' ? (p.tr || p.en) : lang === 'ar' ? (p.ar || p.en) : p.en;
-    const degLabel = degLabels[p.d] || p.d;
-    const langLabel = p.lang === 'English' ? (t.lang_english || 'English') : p.lang === 'Turkish' ? (t.lang_turkish || 'Turkish') : p.lang;
-    const uniShort = p.u.replace('Istanbul ','').replace(' University','').replace('University','').replace('Bahçeşehir ','BAU ').trim();
-    const logoHtml = p.logo ? `<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px" onerror="this.style.display='none'">` : '';
-    return `<div class="prog-result-item${isSelected ? ' selected' : ''}" ${!isSelected ? `onclick="addProgram(this)"` : ''} data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)} data-tr=${JSON.stringify(p.tr)} data-ar=${JSON.stringify(p.ar)} data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
-      <div class="prog-result-info" style="display:flex;align-items:center">
-        ${logoHtml}
-        <div>
-          <div class="prog-result-name">${progName}</div>
-          <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0">
+  document.getElementById('step3-error').textContent='';
+  const fd=new FormData(); fd.append('form-name','application');
+  fd.append('first-name',document.getElementById('reg-fname')?.value||'');
+  fd.append('last-name',document.getElementById('reg-lname')?.value||'');
+  fd.append('email',document.getElementById('reg-email')?.value||'');
+  fd.append('phone',document.getElementById('reg-phone')?.value||'');
+  const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
+  sel.forEach((s,i)=>fd.append('program-'+(i+1),s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')'));
+  fd.append('programs',JSON.stringify(sel));
+  fetch('/',{method:'POST',body:fd}).catch(()=>{});
+  [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
+  const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
+  const sv=document.getElementById('modalSuccessView');if(sv)sv.style.display='block';
+  setTimeout(closeModal,6000);
+}
+function onProgSearch(q){
+  progSearchQuery=q.trim().toLowerCase();
+  document.getElementById('progSearchClear').style.display=q?'block':'none';
+  renderProgResults(); document.getElementById('progResultsWrap').style.display='block';
+}
+function clearProgSearch(){
+  document.getElementById('progSearchInput').value=''; progSearchQuery='';
+  document.getElementById('progSearchClear').style.display='none';
+  document.getElementById('progResultsWrap').style.display='none';
+}
+function setDegreeFilter(btn,filter){
+  progDegreeFilter=filter;
+  document.querySelectorAll('.prog-chip').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+  if(progSearchQuery||filter!=='all'){ renderProgResults(); document.getElementById('progResultsWrap').style.display='block'; }
+}
+function renderProgResults(){
+  const el=document.getElementById('progResults');
+  const lang=document.querySelector('.lang-btn.active')?.dataset.lang||'en';
+  const t=translations[lang]||translations.en;
+  const dL={bachelor:t.deg_bachelor||"Bachelor's",associate:t.deg_associate||"Associate",master:t.deg_master||"Master's",phd:t.deg_phd||"PhD"};
+  let filtered=PROG_DB.filter(p=>{
+    if(progDegreeFilter!=='all'&&p.d!==progDegreeFilter) return false;
+    if(!progSearchQuery) return false;
+    const ar=p.ar?p.ar.toLowerCase():''; const tr=p.tr?p.tr.toLowerCase():'';
+    return p.s.includes(progSearchQuery)||tr.includes(progSearchQuery)||ar.includes(progSearchQuery);
+  });
+  if(!progSearchQuery&&progDegreeFilter==='all'){ el.innerHTML='<div class="prog-no-results">'+(t.prog_search_hint||'Start typing to search…')+'</div>'; return; }
+  if(filtered.length===0){ el.innerHTML='<div class="prog-no-results">'+(t.prog_no_results||'No programs found.')+'</div>'; return; }
+  const shown=filtered.slice(0,100);
+  const selKeys=progSelected.filter(Boolean).map(p=>p.u+'|'+p.en);
+  el.innerHTML=shown.map(p=>{
+    const isSel=selKeys.includes(p.u+'|'+p.en);
+    const name=lang==='tr'?(p.tr||p.en):lang==='ar'?(p.ar||p.en):p.en;
+    const uSh=p.u.replace('Istanbul ','').replace(' University','').replace('Bahçeşehir ','BAU ').trim();
+    const lL=p.lang==='English'?(t.lang_english||'English'):p.lang==='Turkish'?(t.lang_turkish||'Turkish'):p.lang;
+    const logo=p.logo?`<img src="${p.logo}" alt="" style="height:18px;width:auto;object-fit:contain;flex-shrink:0;margin-right:5px;border-radius:2px" onerror="this.style.display='none'">`:'';
+    return `<div class="prog-result-item${isSel?' selected':''}" ${!isSel?'onclick="addProgram(this)"':''}
+      data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)}
+      data-tr=${JSON.stringify(p.tr||'')} data-ar=${JSON.stringify(p.ar||'')}
+      data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
+      <div style="display:flex;align-items:center;flex:1;min-width:0">${logo}<div style="min-width:0"><div class="prog-result-name">${name}</div><div class="prog-result-meta">${uSh} · ${dL[p.d]||p.d} · ${lL}</div></div></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:2px">
         <span class="prog-result-fee">${p.fee}</span>
-        ${isSelected ? '<span class="prog-result-added">' + (t.prog_added || 'Added ✓') + '</span>' : '<span class="prog-result-add">+ ' + (t.prog_add || 'Add') + '</span>'}
-      </div>
-    </div>`;
+        ${isSel?'<span class="prog-result-added">'+(t.prog_added||'Added ✓')+'</span>':'<span class="prog-result-add">+ '+(t.prog_add||'Add')+'</span>'}
+      </div></div>`;
   }).join('');
-
-  if (filtered.length > 100) {
-    resultsEl.innerHTML += `<div class="prog-no-results" style="font-size:.75rem;color:var(--muted)">${t.prog_more ? t.prog_more.replace('{n}', filtered.length) : 'Showing 100 of ' + filtered.length + ' results — refine your search'}</div>`;
-  }
+  if(filtered.length>100) el.innerHTML+=`<div class="prog-no-results" style="font-size:.73rem">Showing 100 of ${filtered.length} — refine your search</div>`;
 }
-
-function addProgram(el) {
-  const p = {
-    u: el.dataset.u, d: el.dataset.d,
-    en: el.dataset.en, tr: el.dataset.tr, ar: el.dataset.ar,
-    fee: el.dataset.fee, lang: el.dataset.lang, logo: el.dataset.logo||''
-  };
-  const emptySlot = progSelected.indexOf(null);
-  if (emptySlot === -1) return; // all 5 full
-  progSelected[emptySlot] = p;
-  renderProgSlots();
-  renderProgResults();
+function addProgram(el){
+  const p={u:el.dataset.u,d:el.dataset.d,en:el.dataset.en,tr:el.dataset.tr,ar:el.dataset.ar,fee:el.dataset.fee,lang:el.dataset.lang,logo:el.dataset.logo||''};
+  const slot=progSelected.indexOf(null); if(slot===-1) return;
+  progSelected[slot]=p; renderProgSlots(); renderProgResults();
 }
-
-function removeProgram(slot) {
-  progSelected[slot] = null;
-  const compact = progSelected.filter(Boolean);
-  for (let i = 0; i < 5; i++) progSelected[i] = compact[i] || null;
-  renderProgSlots();
-  renderProgResults();
+function removeProgram(slot){
+  progSelected[slot]=null;
+  const compact=progSelected.filter(Boolean);
+  for(let i=0;i<5;i++) progSelected[i]=compact[i]||null;
+  renderProgSlots(); renderProgResults();
 }
-
-function renderProgSlots() {
-  const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
-  const t = translations[lang] || translations.en;
-  const slotLabels = [
-    t.prog_slot_1 || '1st Choice',
-    t.prog_slot_2 || '2nd Choice',
-    t.prog_slot_3 || '3rd Choice',
-    t.prog_slot_4 || '4th Choice',
-    t.prog_slot_5 || '5th Choice'
-  ];
-  const reqLabel = t.prog_required || 'Required';
-  const optLabel = t.prog_optional || 'Optional';
-  const phLabel = t.prog_slot_ph || 'Search and click a result above to select';
-
-  for (let i = 0; i < 5; i++) {
-    const content = document.getElementById('progSlotContent' + i);
-    const labelEl = document.querySelector('#progSlot' + i + ' .prog-slot-label');
-    if (!content) continue;
-
-    const badge = i === 0
-      ? `<span class="prog-required-badge">${reqLabel}</span>`
-      : `<span class="prog-optional-badge">${optLabel}</span>`;
-    if (labelEl) labelEl.innerHTML = slotLabels[i] + ' ' + badge;
-
-    const p = progSelected[i];
-    if (!p) {
-      content.className = 'prog-slot-content empty';
-      content.innerHTML = `<span class="prog-slot-placeholder">${phLabel}</span>`;
-    } else {
-      const progName = lang === 'tr' ? (p.tr || p.en) : lang === 'ar' ? (p.ar || p.en) : p.en;
-      const uniName = p.u;
-      const degLabel = {bachelor: t.deg_bachelor||"Bachelor's", associate: t.deg_associate||"Associate", master: t.deg_master||"Master's", phd: t.deg_phd||"PhD"}[p.d] || p.d;
-      content.className = 'prog-slot-content filled';
-      const slotLogo = p.logo ? `<img src="${p.logo}" alt="" style="height:24px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:8px" onerror="this.style.display='none'">` : '';
-      content.innerHTML = `
-        <div class="prog-slot-filled">
-          ${slotLogo}
-          <div class="prog-slot-filled-info">
-            <div class="prog-slot-filled-name">${progName}</div>
-            <div class="prog-slot-filled-meta">${uniName} · ${degLabel} · <strong>${p.fee}</strong></div>
-          </div>
-          <button class="prog-slot-remove" onclick="removeProgram(${i})" title="Remove">✕</button>
-        </div>`;
+function renderProgSlots(){
+  const lang=document.querySelector('.lang-btn.active')?.dataset.lang||'en';
+  const t=translations[lang]||translations.en;
+  const labs=[t.prog_slot_1||'1st Choice',t.prog_slot_2||'2nd Choice',t.prog_slot_3||'3rd Choice',t.prog_slot_4||'4th Choice',t.prog_slot_5||'5th Choice'];
+  const req=t.prog_required||'Required', opt=t.prog_optional||'Optional', ph=t.prog_slot_ph||'Search above and click to add';
+  const dL={bachelor:t.deg_bachelor||"Bachelor's",associate:t.deg_associate||'Associate',master:t.deg_master||"Master's",phd:t.deg_phd||'PhD'};
+  for(let i=0;i<5;i++){
+    const content=document.getElementById('progSlotContent'+i);
+    const labelEl=document.querySelector('#progSlot'+i+' .prog-slot-label');
+    if(!content) continue;
+    const badge=i===0?`<span class="prog-required-badge">${req}</span>`:`<span class="prog-optional-badge">${opt}</span>`;
+    if(labelEl) labelEl.innerHTML=labs[i]+' '+badge;
+    const p=progSelected[i];
+    if(!p){ content.className='prog-slot-content empty'; content.innerHTML=`<span class="prog-slot-placeholder">${ph}</span>`; }
+    else {
+      const name=lang==='tr'?(p.tr||p.en):lang==='ar'?(p.ar||p.en):p.en;
+      const logo=p.logo?`<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px" onerror="this.style.display='none'">`:'';
+      content.className='prog-slot-content filled';
+      content.innerHTML=`<div class="prog-slot-filled">${logo}<div class="prog-slot-filled-info"><div class="prog-slot-filled-name">${name}</div><div class="prog-slot-filled-meta">${p.u} · ${dL[p.d]||p.d} · <strong>${p.fee}</strong></div></div><button class="prog-slot-remove" onclick="removeProgram(${i})" title="Remove">✕</button></div>`;
     }
   }
 }
-
-function getProgSelectionForSubmit() {
-  return progSelected.filter(Boolean).map((p,i) => ({slot: i+1, university: p.u, degree: p.d, program: p.en, fee: p.fee, lang: p.lang}));
-}
-
-
-// ── WIRE UP ALL EVENTS — single DOMContentLoaded ──
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('openRegisterModal').addEventListener('click', openModal);
-  document.getElementById('closeRegisterModal').addEventListener('click', closeModal);
-  document.getElementById('registerModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+// ── LANG SWITCHER ──
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang=btn.dataset.lang;
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+    const t=translations[lang]||translations.en;
+    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.dataset.i18n; if(t[k]!==undefined) el.tagName==='OPTION'?(el.textContent=t[k]):(el.innerHTML=t[k]);
+    });
+    const heroEm=document.getElementById('hero-em'); if(heroEm&&t.hero_em) heroEm.innerHTML=t.hero_em;
+    renderProgSlots();
+    if(progSearchQuery||progDegreeFilter!=='all') renderProgResults();
+    const chips={all:t.deg_all||'All',bachelor:t.deg_bachelor||"Bachelor's",associate:t.deg_associate||'Associate',master:t.deg_master||"Master's",phd:t.deg_phd||'PhD'};
+    document.querySelectorAll('.prog-chip').forEach(chip=>{const f=chip.dataset.filter;if(chips[f])chip.textContent=chips[f];});
+    const si=document.getElementById('progSearchInput'); if(si) si.placeholder=t.prog_search_ph||'Search…';
   });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-  // Program search uses PROG_DB + click handlers — no select listeners needed
 });
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('openRegisterModal')?.addEventListener('click', openModal);
+  document.getElementById('closeRegisterModal')?.addEventListener('click', closeModal);
+  document.getElementById('registerModal')?.addEventListener('click', e=>{if(e.target===e.currentTarget)closeModal();});
+  document.addEventListener('keydown', e=>{if(e.key==='Escape')closeModal();});
+});
+
 </script>
 </body>
 </html>
