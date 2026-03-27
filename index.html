@@ -35,6 +35,7 @@
       background: rgba(250,247,242,0.88);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(193,18,31,0.1);
+      box-sizing: border-box; width: 100%;
     }
     
     .nav-cta {
@@ -352,7 +353,7 @@
       background: var(--gold);
       opacity: .8;
     }
-    [dir="rtl"] .hero-tagline { flex-direction: row-reverse; }
+    [dir="rtl"] .hero-tagline { flex-direction: row-reverse; justify-content: flex-end; text-align: right; }
 
     @media (max-width: 900px) {
       nav { padding: 1rem 4vw; }
@@ -368,7 +369,7 @@
       .footer-social { gap: 1.2rem; }
     }
     @media (max-width: 640px) {
-      nav { padding: .85rem 4vw; gap: .4rem; }
+      nav { padding: .85rem 4vw; gap: .4rem; overflow: hidden; }
       .nav-cta { display: none; }
       .nav-register-btn { padding: .45rem .9rem; font-size: .8rem; }
       .hero-left { padding: 6rem 5vw 2.5rem; }
@@ -446,7 +447,7 @@
     .modal {
       background: var(--white); border-radius: 6px;
       padding: 2.5rem 3rem;
-      width: 100%; max-width: 560px;
+      width: 100%; max-width: 780px;
       max-height: 90vh; overflow-y: auto;
       position: relative;
       box-shadow: 0 24px 64px rgba(26,18,9,0.18);
@@ -621,6 +622,9 @@
     }
     .footer-link:hover { color: #fff; opacity: 1; }
     [dir="rtl"] .footer-link { flex-direction: row-reverse; }
+    [dir="rtl"] nav { direction: rtl; }
+    [dir="rtl"] .nav-right { flex-direction: row-reverse; flex-shrink: 0; min-width: 0; }
+    [dir="rtl"] .lang-switcher { flex-direction: row-reverse; }
     
     .hero-mobile-cta {
       display: none;
@@ -800,8 +804,12 @@
         <span class="stat-label" data-i18n="stat1">Students Placed</span>
       </div>
       <div class="stat-item">
+        <span class="stat-num">1,275+</span>
+        <span class="stat-label" data-i18n="stat2">Programs</span>
+      </div>
+      <div class="stat-item">
         <span class="stat-num">40+</span>
-        <span class="stat-label" data-i18n="stat2">Partner Universities</span>
+        <span class="stat-label" data-i18n="stat4">Partner Universities</span>
       </div>
       <div class="stat-item">
         <span class="stat-num">95%</span>
@@ -2190,7 +2198,50 @@ const PROG_DB = [
 {"u": "Beykoz University", "d": "master", "en": "Marketing and Brand Management (Non-Thesis) (Turkish)", "tr": "Pazarlama ve Marka Yönetimi — Tezsiz (Türkçe)", "ar": "التسويق وإدارة العلامة التجارية — بدون أطروحة (تركي)", "fee": "$5,200 total", "lang": "Turkish", "s": "beykoz university master marketing and brand management (non-thesis) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png"},
 {"u": "Beykoz University", "d": "master", "en": "Marketing and Brand Management (Non-Thesis) (English)", "tr": "Pazarlama ve Marka Yönetimi — Tezsiz (İngilizce)", "ar": "التسويق وإدارة العلامة التجارية — بدون أطروحة (إنجليزي)", "fee": "$6,000 total", "lang": "English", "s": "beykoz university master marketing and brand management (non-thesis) (english) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png"},
 {"u": "Beykoz University", "d": "master", "en": "MBA (Non-Thesis / Distance Education) (English)", "tr": "MBA — Tezsiz / Uzaktan (İngilizce)", "ar": "ماجستير إدارة الأعمال — بدون أطروحة / عن بُعد (إنجليزي)", "fee": "$4,200 total", "lang": "English", "s": "beykoz university master mba (non-thesis / distance education) (english) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png"},
-{"u": "Beykoz University", "d": "master", "en": "MBA (Non-Thesis / Distance Education) (Turkish)", "tr": "MBA — Tezsiz / Uzaktan (Türkçe)", "ar": "ماجستير إدارة الأعمال — بدون أطروحة / عن بُعد (تركي)", "fee": "$4,200 total", "lang": "Turkish", "s": "beykoz university master mba (non-thesis / distance education) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png"}
+{"u": "Beykoz University", "d": "master", "en": "MBA (Non-Thesis / Distance Education) (Turkish)", "tr": "MBA — Tezsiz / Uzaktan (Türkçe)", "ar": "ماجستير إدارة الأعمال — بدون أطروحة / عن بُعد (تركي)", "fee": "$4,200 total", "lang": "Turkish", "s": "beykoz university master mba (non-thesis / distance education) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png"},
+{"u": "Istinye University", "d": "bachelor", "en": "Philosophy (Turkish)", "tr": "Felsefe (Türkçe)", "ar": "الفلسفة (تركي)", "fee": "$8,000/yr", "lang": "Turkish", "s": "istinye university bachelor philosophy (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Oral and Dental Health (EP) (Turkish)", "tr": "Ağız ve Diş Sağlığı — Akşam Prog. (Türkçe)", "ar": "صحة الفم والأسنان — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate oral and dental health (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Operation Room Services (EP) (Turkish)", "tr": "Ameliyathane Hizmetleri — Akşam Prog. (Türkçe)", "ar": "خدمات غرفة العمليات — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate operation room services (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "First Aid and Emergency (EP) (Turkish)", "tr": "İlk ve Acil Yardım — Akşam Prog. (Türkçe)", "ar": "الإسعافات الأولية — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate first aid and emergency (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Medical Imaging Techniques (EP) (Turkish)", "tr": "Tıbbi Görüntüleme Teknikleri — Akşam Prog. (Türkçe)", "ar": "تقنيات التصوير الطبي — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate medical imaging techniques (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Anesthesia (EP) (Turkish)", "tr": "Anestezi — Akşam Prog. (Türkçe)", "ar": "التخدير — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate anesthesia (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Physiotherapy (EP) (Turkish)", "tr": "Fizyoterapi — Akşam Prog. (Türkçe)", "ar": "العلاج الطبيعي — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate physiotherapy (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Culinary Arts (EP) (Turkish)", "tr": "Aşçılık — Akşam Prog. (Türkçe)", "ar": "فنون الطهي — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate culinary arts (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Civil Aviation Cabin Services (EP) (Turkish)", "tr": "Sivil Havacılık Kabin Hizmetleri — Akşam Prog. (Türkçe)", "ar": "خدمات كابينة الطيران — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate civil aviation cabin services (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "associate", "en": "Computer Programming (EP) (Turkish)", "tr": "Bilgisayar Programcılığı — Akşam Prog. (Türkçe)", "ar": "برمجة الحاسوب — مساء (تركي)", "fee": "$5,000/yr", "lang": "Turkish", "s": "istinye university associate computer programming (ep) (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Cancer Biology and Pharmacology (Turkish) (Thesis)", "tr": "Kanser Biyolojisi ve Farmakoloji — Tezli", "ar": "بيولوجيا السرطان — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master cancer biology and pharmacology (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Medical Biology and Genetics (Turkish) (Thesis)", "tr": "Tıbbi Biyoloji ve Genetik — Tezli", "ar": "علم الأحياء الطبي والوراثة — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master medical biology and genetics (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Architectural Design (Turkish) (Thesis)", "tr": "Mimari Tasarım — Tezli (Türkçe)", "ar": "التصميم المعماري — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master architectural design (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Architectural Design (English) (Thesis)", "tr": "Mimari Tasarım — Tezli (İngilizce)", "ar": "التصميم المعماري — مع أطروحة (إنجليزي)", "fee": "$8,500 total", "lang": "English", "s": "istinye university master architectural design (english) (thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Political Science and International Relations (Turkish) (Thesis)", "tr": "Siyaset Bilimi ve Uluslararası İlişkiler — Tezli", "ar": "العلوم السياسية — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master political science and international relations (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Cinema and Television (English) (Thesis)", "tr": "Sinema ve Televizyon — Tezli (İngilizce)", "ar": "السينما والتلفزيون — مع أطروحة", "fee": "$8,500 total", "lang": "English", "s": "istinye university master cinema and television (english) (thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Data Science (English) (Thesis)", "tr": "Veri Bilimi — Tezli (İngilizce)", "ar": "علم البيانات — مع أطروحة (إنجليزي)", "fee": "$8,500 total", "lang": "English", "s": "istinye university master data science (english) (thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Data Science (Turkish) (Non-Thesis)", "tr": "Veri Bilimi — Tezsiz (Türkçe)", "ar": "علم البيانات — بدون أطروحة", "fee": "$8,000 total", "lang": "Turkish", "s": "istinye university master data science (turkish) (non-thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Data Science (Turkish) (Thesis)", "tr": "Veri Bilimi — Tezli (Türkçe)", "ar": "علم البيانات — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master data science (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Cyber Security (English) (Non-Thesis)", "tr": "Siber Güvenlik — Tezsiz (İngilizce)", "ar": "الأمن السيبراني — بدون أطروحة", "fee": "$8,000 total", "lang": "English", "s": "istinye university master cyber security (english) (non-thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Electrical-Electronics Engineering (Turkish) (Thesis)", "tr": "Elektrik-Elektronik Müh. — Tezli (Türkçe)", "ar": "الهندسة الكهربائية — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master electrical-electronics engineering (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Engineering Management (English) (Thesis)", "tr": "Mühendislik Yönetimi — Tezli (İngilizce)", "ar": "إدارة الهندسة — مع أطروحة (إنجليزي)", "fee": "$8,500 total", "lang": "English", "s": "istinye university master engineering management (english) (thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Molecular Biology and Genetics (English) (Thesis)", "tr": "Moleküler Biyoloji ve Genetik — Tezli (İngilizce)", "ar": "الأحياء الجزيئية والوراثة — مع أطروحة", "fee": "$8,500 total", "lang": "English", "s": "istinye university master molecular biology and genetics (english) (thesis) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "master", "en": "Midwifery (Turkish) (Thesis)", "tr": "Ebelik — Tezli (Türkçe)", "ar": "القبالة — مع أطروحة", "fee": "$8,500 total", "lang": "Turkish", "s": "istinye university master midwifery (turkish) (thesis) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Medical Biology and Genetics (Turkish) (PhD)", "tr": "Tıbbi Biyoloji ve Genetik — Doktora", "ar": "علم الأحياء الطبي — دكتوراه", "fee": "$12,500 total", "lang": "Turkish", "s": "istinye university phd medical biology and genetics (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Histology and Embryology (Turkish) (PhD)", "tr": "Histoloji ve Embriyoloji — Doktora", "ar": "علم الأنسجة — دكتوراه", "fee": "$12,500 total", "lang": "Turkish", "s": "istinye university phd histology and embryology (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Clinical Anatomy (Turkish) (PhD)", "tr": "Klinik Anatomi — Doktora", "ar": "علم التشريح الإكلينيكي — دكتوراه", "fee": "$12,500 total", "lang": "Turkish", "s": "istinye university phd clinical anatomy (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Histology and Embryology (Joint) (Turkish) (PhD)", "tr": "Histoloji — Ortak Doktora", "ar": "علم الأنسجة — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd histology and embryology (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Chemistry (Joint) (English) (PhD)", "tr": "Kimya — Ortak Doktora (İngilizce)", "ar": "الكيمياء — دكتوراه مشترك", "fee": "$15,000 total", "lang": "English", "s": "istinye university phd chemistry (joint) (english) (phd) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Communication Sciences (Joint) (Turkish) (PhD)", "tr": "İletişim Bilimleri — Ortak Doktora", "ar": "علوم الاتصال — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd communication sciences (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Neuroscience (Joint) (Turkish) (PhD)", "tr": "Nörobilim — Ortak Doktora", "ar": "علم الأعصاب — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd neuroscience (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Midwifery (Joint) (Turkish) (PhD)", "tr": "Ebelik — Ortak Doktora", "ar": "القبالة — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd midwifery (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Stem Cell and Tissue Engineering (Joint) (Turkish) (PhD)", "tr": "Kök Hücre — Ortak Doktora", "ar": "هندسة الخلايا الجذعية — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd stem cell and tissue engineering (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Nutrition and Dietetics (Joint) (Turkish) (PhD)", "tr": "Beslenme — Ortak Doktora", "ar": "التغذية — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd nutrition and dietetics (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Pharmaceutical Chemistry (Joint) (Turkish) (PhD)", "tr": "Farmasötik Kimya — Ortak Doktora", "ar": "الكيمياء الصيدلانية — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd pharmaceutical chemistry (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Molecular Oncology (Joint) (Turkish) (PhD)", "tr": "Moleküler Onkoloji — Ortak Doktora", "ar": "الأورام الجزيئية — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd molecular oncology (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Business Administration (Joint) (Turkish) (PhD)", "tr": "İşletme Yönetimi — Ortak Doktora", "ar": "إدارة الأعمال — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd business administration (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Speech and Language Therapy (Joint) (Turkish) (PhD)", "tr": "Dil ve Konuşma Terapisi — Ortak Doktora", "ar": "علاج النطق — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd speech and language therapy (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Health Management (Joint) (Turkish) (PhD)", "tr": "Sağlık Yönetimi — Ortak Doktora", "ar": "إدارة الصحة — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd health management (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Obstetrics and Gynaecologic Nursing (Joint) (Turkish) (PhD)", "tr": "Kadın Sağlığı Hemşireliği — Ortak Doktora", "ar": "تمريض التوليد — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd obstetrics and gynaecologic nursing (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Physics (Joint) (English) (PhD)", "tr": "Fizik — Ortak Doktora (İngilizce)", "ar": "الفيزياء — دكتوراه مشترك", "fee": "$15,000 total", "lang": "English", "s": "istinye university phd physics (joint) (english) (phd) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Physiotherapy and Rehabilitation (Joint) (Turkish) (PhD)", "tr": "Fizyoterapi — Ortak Doktora", "ar": "العلاج الطبيعي — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd physiotherapy and rehabilitation (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"},
+{"u": "Istinye University", "d": "phd", "en": "Medical Biology and Genetics (Joint) (Turkish) (PhD)", "tr": "Tıbbi Biyoloji — Ortak Doktora", "ar": "علم الأحياء الطبي — دكتوراه مشترك", "fee": "$15,000 total", "lang": "Turkish", "s": "istinye university phd medical biology and genetics (joint) (turkish) (phd) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png"}
 ];
 
 </script>
@@ -2233,7 +2284,8 @@ const translations = {
     hero_cta1:        "Apply Now — It's Free",
     hero_cta2:        "How it works →",
     stat1:            "Students Placed",
-    stat2:            "Partner Universities",
+    stat2:            "Programs",
+    stat4:            "Partner Universities",
     stat3:            "Acceptance Rate",
     badge_title:      "Top Türkiye Universities",
     badge_sub:        "Istanbul, Ankara, Izmir & more",
@@ -2343,7 +2395,8 @@ const translations = {
     hero_cta1:        "Hemen Başvur — Ücretsiz",
     hero_cta2:        "Adımları Gör →",
     stat1:            "Yerleştirilen Öğrenci",
-    stat2:            "Ortak Üniversite",
+    stat2:            "Program",
+    stat4:            "Ortak Üniversite",
     stat3:            "Kabul Oranı",
     badge_title:      "Türkiye'nin En İyi Üniversiteleri",
     badge_sub:        "İstanbul, Ankara, İzmir ve daha fazlası",
@@ -2455,7 +2508,8 @@ const translations = {
     hero_cta1:        "قدّم الآن — مجاناً",
     hero_cta2:        "ماهي الخطوات؟ →",
     stat1:            "طالب تم قبوله",
-    stat2:            "جامعة شريكة",
+    stat2:            "برنامج",
+    stat4:            "جامعة شريكة",
     stat3:            "نسبة القبول",
     badge_title:      "أفضل جامعات تركيا",
     badge_sub:        "إسطنبول، أنقرة، إزمير والمزيد",
