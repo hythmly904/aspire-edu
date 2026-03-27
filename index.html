@@ -140,9 +140,12 @@
         linear-gradient(160deg, rgba(193,18,31,0.15) 0%, transparent 50%),
         url('https://images.unsplash.com/photo-1527838832700-5059252407fa?w=900&q=80') center/cover no-repeat;
     }
-    .hero-img-overlay {
+    ..hero-img-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to right, var(--cream) 0%, transparent 20%);
+    }
+    [dir="rtl"] .hero-img-overlay {
+      background: linear-gradient(to left, var(--cream) 0%, transparent 20%);
     }
     .hero-badge {
       position: absolute; bottom: 3rem; right: 3rem;
@@ -351,16 +354,24 @@
       h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
       .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 700;
+      font-size: 1.1rem; font-weight: 700;
       font-style: italic;
-      color: var(--red);
-      letter-spacing: .02em;
-      margin-top: .85rem; margin-bottom: 1.75rem;
-      line-height: 1.3;
+      color: var(--gold);
+      letter-spacing: .05em;
+      margin-top: 1.1rem; margin-bottom: 1.6rem;
+      display: flex; align-items: center; gap: .75rem;
     }
-    .hero-tagline::after { content: '.'; }
-    [dir="rtl"] .hero-tagline::after { content: ''; }
-    [dir="rtl"] .hero-tagline::before { content: '.'; }
+    .hero-tagline::before {
+      content: '';
+      display: block;
+      width: 2px; height: 1.1em;
+      background: var(--gold);
+      flex-shrink: 0;
+      opacity: .7;
+    }
+    [dir="rtl"] .hero-tagline {
+      flex-direction: row-reverse;
+    }
       .hero-sub { font-size: .9rem; }
       .hero-actions { flex-direction: column; gap: .75rem; }
       .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; justify-content: center; }
@@ -930,7 +941,7 @@
   <div class="footer-copy" data-i18n="footer_copy">© 2026 Aspire Education. All rights reserved.</div>
   <div class="footer-social">
     <a id="footer-email" href="#" class="footer-link" onclick="var e='info'+'@'+'aspire.tr';this.href='mailto:'+e;return true;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:middle"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><!--email_off-->info@aspire.tr<!--/email_off-->
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:middle"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="__cf_email__" data-cfemail="c1a8afa7ae81a0b2b1a8b3a4efb5b3">[email&#160;protected]</span>
     </a>
     <a href="https://instagram.com/aspire.tr" target="_blank" class="footer-link">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px;vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@aspire.tr
@@ -938,7 +949,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const PROG_DB = [
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (English)", "tr": "Tıp (İngilizce)", "ar": "الطب (إنجليزي)", "fee": "$25,000/yr", "lang": "English", "s": "istanbul atlas university bachelor medicine (english) english", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
 {"u": "Istanbul Atlas University", "d": "bachelor", "en": "Medicine (Turkish)", "tr": "Tıp (Türkçe)", "ar": "الطب (تركي)", "fee": "$20,000/yr", "lang": "Turkish", "s": "istanbul atlas university bachelor medicine (turkish) turkish", "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png/200px-Istanbul_Atlas_%C3%9Cniversitesi_logosu.png"},
@@ -2476,15 +2487,15 @@ function submitApplication(){
     document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
   }
   document.getElementById('step3-error').textContent='';
-  const fd=new FormData(); fd.append('form-name','application');
-  fd.append('first-name',document.getElementById('reg-fname')?.value||'');
-  fd.append('last-name',document.getElementById('reg-lname')?.value||'');
-  fd.append('email',document.getElementById('reg-email')?.value||'');
-  fd.append('phone',document.getElementById('reg-phone')?.value||'');
+  const fname=document.getElementById('reg-fname')?.value||'';
+  const lname=document.getElementById('reg-lname')?.value||'';
+  const email=document.getElementById('reg-email')?.value||'';
+  const phone=document.getElementById('reg-phone')?.value||'';
   const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
-  sel.forEach((s,i)=>fd.append('program-'+(i+1),s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')'));
-  fd.append('programs',JSON.stringify(sel));
-  fetch('/',{method:'POST',body:fd}).catch(()=>{});
+  const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('%0A');
+  const body='Name: '+fname+' '+lname+'%0AEmail: '+email+'%0APhone: '+(phone||'—')+'%0A%0APrograms:%0A'+progLines;
+  const mailto='mailto:info@aspire.tr?subject=New Application — '+encodeURIComponent(fname+' '+lname)+'&body='+body;
+  window.location.href=mailto;
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
   const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
   const sv=document.getElementById('modalSuccessView');if(sv)sv.style.display='block';
