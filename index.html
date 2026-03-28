@@ -371,7 +371,14 @@
     @media (max-width: 640px) {
       nav { padding: .85rem 4vw; gap: .4rem; overflow: hidden; }
       .nav-cta { display: none; }
-      .nav-register-btn { padding: .45rem .9rem; font-size: .8rem; }
+      .nav-agent-link {
+      font-size: .8rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: .02em;
+      transition: color .2s; white-space: nowrap;
+    }
+    .nav-agent-link:hover { color: var(--red); }
+    @media (max-width: 900px) { .nav-agent-link { display: none; } }
+    .nav-register-btn { padding: .45rem .9rem; font-size: .8rem; }
       .hero-left { padding: 6rem 5vw 2.5rem; }
       h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
             .hero-sub { font-size: .9rem; }
@@ -423,6 +430,13 @@
     .lang-btn.active { background: var(--red); border-color: var(--red); color: var(--white); }
 
     /* ── REGISTER BUTTON ── */
+    .nav-agent-link {
+      font-size: .8rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: .02em;
+      transition: color .2s; white-space: nowrap;
+    }
+    .nav-agent-link:hover { color: var(--red); }
+    @media (max-width: 900px) { .nav-agent-link { display: none; } }
     .nav-register-btn {
       background: var(--dark); color: var(--white);
       padding: .6rem 1.4rem; border-radius: 2px;
@@ -608,6 +622,33 @@
   if (el) el.href = 'mailto:' + email;
   if (txt) txt.textContent = email;
 })();
+// ── AGENT FORM SUBMISSION ──
+function submitAgent() {
+  const name    = document.getElementById('agent-name')?.value.trim();
+  const email   = document.getElementById('agent-email')?.value.trim();
+  const phone   = document.getElementById('agent-phone')?.value.trim();
+  const country = document.getElementById('agent-country')?.value.trim();
+  if (!name || !email || !phone || !country) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  const company = document.getElementById('agent-company')?.value.trim() || '—';
+  const msg     = document.getElementById('agent-msg')?.value.trim() || '—';
+  const body = 'Agent Application%0A%0A'
+    + 'Name: ' + encodeURIComponent(name) + '%0A'
+    + 'Email: ' + encodeURIComponent(email) + '%0A'
+    + 'Phone: ' + encodeURIComponent(phone) + '%0A'
+    + 'Country: ' + encodeURIComponent(country) + '%0A'
+    + 'Company: ' + encodeURIComponent(company) + '%0A%0A'
+    + 'Message:%0A' + encodeURIComponent(msg);
+  var a = 'info', b = 'aspire', d = 'tr';
+  window.location.href = 'mailto:' + a + '@' + b + '.' + d
+    + '?subject=' + encodeURIComponent('Agent Application — ' + name)
+    + '&body=' + body;
+  const s = document.getElementById('agent-success');
+  if (s) { s.style.display = 'block'; }
+}
+
 </script>
 </body>
         .footer-social {
@@ -641,6 +682,166 @@
         letter-spacing: .01em;
       }
     }
+  
+    /* ── AGENT SECTION ── */
+    .agent-section {
+      background: var(--cream);
+      padding: 6rem 8vw;
+      border-top: 1px solid rgba(193,18,31,0.1);
+    }
+    .agent-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem; align-items: start;
+    }
+    .agent-badge {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(193,18,31,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .agent-desc {
+      font-size: .95rem; line-height: 1.75;
+      color: var(--muted); margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+    .agent-benefits {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: .65rem;
+    }
+    .agent-benefits li {
+      font-size: .88rem; color: var(--dark);
+      padding-left: .2rem; line-height: 1.5;
+    }
+    .agent-form {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 2.25rem 2.5rem;
+      box-shadow: 0 8px 32px rgba(26,18,9,0.08);
+      border-top: 3px solid var(--red);
+    }
+    .agent-form-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .agent-form .form-group {
+      display: flex; flex-direction: column; gap: .4rem;
+    }
+    .agent-form label {
+      font-size: .8rem; font-weight: 600;
+      color: var(--dark); letter-spacing: .02em;
+    }
+    .agent-form input,
+    .agent-form textarea {
+      border: 1.5px solid #e2d9cf; border-radius: 4px;
+      padding: .65rem .85rem;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      color: var(--dark); outline: none;
+      transition: border .15s; width: 100%; box-sizing: border-box;
+      background: #faf7f2;
+    }
+    .agent-form input:focus,
+    .agent-form textarea:focus { border-color: var(--red); background: white; }
+    .agent-form textarea { resize: vertical; min-height: 80px; }
+    .agent-submit {
+      margin-top: 1.25rem;
+      background: var(--red); color: white;
+      border: none; border-radius: 2px; cursor: pointer;
+      padding: .85rem 2rem; font-size: .9rem; font-weight: 500;
+      font-family: 'DM Sans', sans-serif; letter-spacing: .02em;
+      box-shadow: 4px 4px 0 var(--dark);
+      transition: transform .2s, box-shadow .2s;
+      width: 100%;
+    }
+    .agent-submit:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+    .agent-note {
+      text-align: center; margin-top: .75rem;
+      font-size: .85rem; color: #27ae60; font-weight: 500;
+    }
+    @media (max-width: 900px) {
+      .agent-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .agent-desc { max-width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .agent-section { padding: 4rem 5vw; }
+      .agent-form { padding: 1.5rem; }
+      .agent-form-grid { grid-template-columns: 1fr; }
+    }
+  
+    /* ── UNIVERSITIES SECTION ── */
+    .unis-section {
+      padding: 6rem 8vw;
+      background: var(--white);
+      border-top: 1px solid rgba(193,18,31,.08);
+    }
+    .unis-header {
+      text-align: center; max-width: 680px; margin: 0 auto 4rem;
+    }
+    .unis-intro {
+      font-size: .98rem; color: var(--muted); line-height: 1.7;
+      margin-top: .75rem;
+    }
+    .unis-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1300px; margin: 0 auto;
+    }
+    .uni-card {
+      border: 1.5px solid #e8e2da; border-radius: 6px;
+      padding: 1.4rem 1.5rem 1.25rem;
+      background: #faf8f5;
+      display: flex; flex-direction: column; gap: .75rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .uni-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 20px rgba(193,18,31,.08);
+    }
+    .uni-card-top {
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .uni-logo {
+      height: 36px; width: auto; object-fit: contain;
+      flex-shrink: 0; border-radius: 3px;
+    }
+    .uni-name {
+      font-size: .9rem; font-weight: 700; color: var(--dark);
+      line-height: 1.3;
+    }
+    .uni-est {
+      font-size: .72rem; color: var(--muted); margin-top: .15rem;
+    }
+    .uni-desc {
+      font-size: .8rem; line-height: 1.65; color: var(--muted);
+      flex: 1;
+    }
+    .uni-tags {
+      display: flex; flex-wrap: wrap; gap: .3rem;
+    }
+    .uni-tags span {
+      font-size: .68rem; font-weight: 500; letter-spacing: .03em;
+      background: rgba(193,18,31,.07); color: var(--red);
+      padding: .18rem .5rem; border-radius: 20px;
+    }
+    .uni-link {
+      font-size: .78rem; font-weight: 600; color: var(--dark);
+      text-decoration: none; letter-spacing: .02em;
+      border-bottom: 1.5px solid #ddd; padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+      align-self: flex-start; margin-top: auto;
+    }
+    .uni-link:hover { color: var(--red); border-color: var(--red); }
+    @media (max-width: 1200px) {
+      .unis-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .unis-section { padding: 4rem 5vw; }
+      .unis-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    }
+    @media (max-width: 560px) {
+      .unis-grid { grid-template-columns: 1fr; }
+      .uni-card { padding: 1.2rem; }
+    }
     </style>
 </head>
 <body>
@@ -657,6 +858,8 @@
       <button class="lang-btn" data-lang="ar">ع</button>
     </div>
     <button class="nav-register-btn" id="openRegisterModal" data-i18n="nav_register">Apply Now</button>
+    <a class="nav-link" href="#universities" data-i18n="nav_unis" style="font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.02em;transition:color .2s;white-space:nowrap;">Universities</a>
+    <a class="nav-agent-link" href="#agents" data-i18n="nav_agent">Become an Agent</a>
     <a class="nav-cta" href="#apply" data-i18n="nav_cta">Get Free Consultation</a>
   </div>
 </nav>
@@ -855,6 +1058,243 @@
   </div>
 </section>
 
+
+<!-- UNIVERSITIES -->
+<section class="unis-section" id="universities">
+  <div class="unis-header">
+    <span class="section-tag" data-i18n="unis_tag">Our Partner Universities</span>
+    <h2 class="section-title" data-i18n="unis_title">40+ Universities Across Istanbul</h2>
+    <p class="unis-intro" data-i18n="unis_intro">From health sciences to engineering, law to fine arts — our partner universities cover every field, taught in English and Turkish.</p>
+  </div>
+  <div class="unis-grid">
+
+    <!-- Istinye -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png" alt="Istinye University" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istinye University</div>
+          <div class="uni-est">Est. 2015 · Topkapı, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Backed by MLP Care Group — Liv Hospital, Medical Park &amp; VM Medical Park — ISU offers students direct clinical training in 2 university hospitals. Ranked #1 in Turkey for International Outlook (THE 2026) and 1001–1200 globally.</p>
+      <div class="uni-tags"><span>Medicine</span><span>Health Sciences</span><span>Engineering</span><span>165 Programs</span></div>
+      <a href="https://www.istinye.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- BAU -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/0/08/Bah%C3%A7e%C5%9Fehir_%C3%9Cniversitesi_logo.png" alt="BAU" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Bahçeşehir University (BAU)</div>
+          <div class="uni-est">Est. 1998 · Beşiktaş, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">A true global institution on the shores of the Bosphorus. Part of BAU Global with campuses in Berlin, Toronto, Washington DC &amp; more. Ranked 801–1000 globally (THE 2026), with a unique shuttle boat between campuses and 8,000+ international students from 127 countries.</p>
+      <div class="uni-tags"><span>Business</span><span>Engineering</span><span>Medicine</span><span>Architecture</span></div>
+      <a href="https://www.bau.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Medipol -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/d/d0/Istanbul_Medipol_%C3%9Cniversitesi_logo.png" alt="Medipol" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Medipol University</div>
+          <div class="uni-est">Est. 2009 · Kavacık &amp; Haliç, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">One of Turkey's fastest-rising research universities — 9th nationally, 801–1000 globally (THE 2026). Home to 40,000+ students from 130 countries, 9 affiliated hospitals including a JCI-accredited mega hospital, and SABITA — among Europe's most advanced research centres.</p>
+      <div class="uni-tags"><span>Medicine</span><span>Dentistry</span><span>Pharmacy</span><span>Engineering</span></div>
+      <a href="https://www.medipol.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Bilgi -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/2/2a/Istanbul_Bilgi_%C3%9Cniversitesi.png" alt="Bilgi" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Bilgi University</div>
+          <div class="uni-est">Est. 1996 · Santral &amp; Dolapdere, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">One of Turkey's most prestigious private universities, ranked 801–1000 globally (THE 2026). Known for Law, Communications, Engineering and Social Sciences — all primarily taught in English — with a modern campus in a beautifully restored historical powerhouse complex.</p>
+      <div class="uni-tags"><span>Law</span><span>Communications</span><span>Engineering</span><span>Social Sciences</span></div>
+      <a href="https://www.bilgi.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Biruni -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/6/6f/Biruni_%C3%9Cniversitesi_logo.png" alt="Biruni" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Biruni University</div>
+          <div class="uni-est">Est. 2014 · Topkapı, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">A medical-focused university with its own fully equipped teaching hospital. Internationally recognised across the Arab world (Iraq, Egypt, Yemen, Libya) and Europe. Offers Medicine, Dentistry, and Health Sciences in English and Turkish with state-of-the-art laboratories.</p>
+      <div class="uni-tags"><span>Medicine</span><span>Dentistry</span><span>Physiotherapy</span><span>Pharmacy</span></div>
+      <a href="https://www.biruni.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Aydın -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/9/90/Istanbul_Ay%C4%B1n_%C3%9Cniversitesi_logo.png" alt="Istanbul Aydın" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Aydın University</div>
+          <div class="uni-est">Est. 2007 · Küçükçekmece, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Known especially for Medicine and Health Sciences, with advanced training hospitals and international accreditation recognised in Iraq, Jordan, Egypt, Libya and Sudan. Offers 100+ programs across 13 faculties with a strong focus on English-medium instruction.</p>
+      <div class="uni-tags"><span>Medicine</span><span>Engineering</span><span>Architecture</span><span>Business</span></div>
+      <a href="https://www.aydin.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Gelişim -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/6/6e/Istanbul_Gelisim_Universitesi_logo.png" alt="Gelişim" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Gelişim University</div>
+          <div class="uni-est">Est. 2008 · Avcılar, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Turkey's most internationally accredited private university — 65 programs accredited by AQAS (Germany), ABET (USA), and UK bodies. Ranked 7th in Turkey by Round University Rankings, with 30,000+ students, 100+ laboratories and partnerships with 130+ global universities.</p>
+      <div class="uni-tags"><span>Engineering</span><span>Dentistry</span><span>Business</span><span>Aviation</span></div>
+      <a href="https://www.gelisim.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Beykent -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/1/10/Istanbul_Beykent_University_Logo.png" alt="Beykent" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Beykent University</div>
+          <div class="uni-est">Est. 1997 · Beylikdüzü, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">A comprehensive university offering 100+ programs across engineering, business, health sciences, fine arts and aviation. Known for its flexibility — programs available in both English and Turkish — and a welcoming environment for international students.</p>
+      <div class="uni-tags"><span>Engineering</span><span>Business</span><span>Fine Arts</span><span>Aviation</span></div>
+      <a href="https://www.beykent.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Nişantaşı -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/f/f4/Nisantasi_Universitesi_Logo.png" alt="Nişantaşı" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Nişantaşı University</div>
+          <div class="uni-est">Est. 2009 · Şişli, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Located in the heart of Istanbul's fashion and cultural district, Nişantaşı offers over 100 programs — including some of Turkey's best design, fashion, and arts programs — at highly competitive fees. A popular choice for creative and business-oriented students alike.</p>
+      <div class="uni-tags"><span>Design &amp; Fashion</span><span>Business</span><span>Engineering</span><span>Health</span></div>
+      <a href="https://www.nisantasi.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Okan -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/e/e3/Okan_Universitesi_logo.png" alt="Okan" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Okan University</div>
+          <div class="uni-est">Est. 1999 · Tuzla, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Renowned for Aviation and Engineering, with ABET accreditation for engineering programs globally recognised by employers. Located on the Asian side of Istanbul near Sabiha Gökçen Airport, with programs in Medicine, Law, and Business. A leader in applied sciences.</p>
+      <div class="uni-tags"><span>Aviation</span><span>Engineering</span><span>Medicine</span><span>Law</span></div>
+      <a href="https://www.okan.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Atlas -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png" alt="Atlas" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Atlas University</div>
+          <div class="uni-est">Est. 2018 · Kağıthane, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">One of Istanbul's newest universities, built around the concept of the "butterfly effect" — small actions, transformative outcomes. Features a 110,000m² Valley Campus with 38 advanced labs and Atlas Creative Labs at the intersection of engineering, arts and AI. Ranked 15th among Turkish foundation universities for green campus sustainability.</p>
+      <div class="uni-tags"><span>Medicine</span><span>Engineering</span><span>AI &amp; Technology</span><span>Psychology</span></div>
+      <a href="https://www.atlas.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Arel -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/e/ec/Arel_Universitesi_logo.png" alt="Arel" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Arel University</div>
+          <div class="uni-est">Est. 2007 · Büyükçekmece, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Located on Istanbul's peaceful European coastline, Arel offers a broad range of undergraduate, graduate and doctoral programs across Business, Law, Health Sciences and Engineering. Known for its student-friendly environment and affordable fees for international students.</p>
+      <div class="uni-tags"><span>Business</span><span>Law</span><span>Health Sciences</span><span>Engineering</span></div>
+      <a href="https://www.arel.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Kent -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/b/b8/Istanbul_Kent_Universitesi_logo.png" alt="Kent" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Istanbul Kent University</div>
+          <div class="uni-est">Est. 2016 · Fatih, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">One of Istanbul's newer universities, rapidly growing with a focus on student support and career development. Offers programs in Business Administration, Psychology, Law, Engineering and Health Sciences at highly competitive fees — among the most affordable in Istanbul.</p>
+      <div class="uni-tags"><span>Business</span><span>Psychology</span><span>Law</span><span>Engineering</span></div>
+      <a href="https://www.kent.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Işık -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/4/4b/Isik_Universitesi_logo.png" alt="Işık" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Işık University</div>
+          <div class="uni-est">Est. 1996 · Şile, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Nestled in the green forests of Şile on the Black Sea coast, Işık is celebrated for Engineering excellence — most programs MÜDEK-accredited to international standards. A boutique institution offering a close-knit campus community, strong industry connections and a serene campus setting just an hour from central Istanbul.</p>
+      <div class="uni-tags"><span>Engineering</span><span>Architecture</span><span>Business</span><span>Fine Arts</span></div>
+      <a href="https://www.isikun.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Beykoz -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png" alt="Beykoz" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Beykoz University</div>
+          <div class="uni-est">Est. 2016 · Beykoz, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Turkey's specialist Logistics and Supply Chain university, the only higher education institution in Turkey dedicated to this field. Set in the historic Beykoz district on the Asian shores of the Bosphorus, it offers focused programs in Logistics, Business and Technology — ideal for students targeting global trade careers.</p>
+      <div class="uni-tags"><span>Logistics</span><span>Business</span><span>Aviation</span><span>Technology</span></div>
+      <a href="https://www.beykoz.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+    <!-- Üsküdar -->
+    <div class="uni-card">
+      <div class="uni-card-top">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/e/e5/%C3%9Csk%C3%BCdar_%C3%9Cniversitesi_logo.png" alt="Üsküdar" class="uni-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="uni-name">Üsküdar University</div>
+          <div class="uni-est">Est. 2011 · Üsküdar, Istanbul</div>
+        </div>
+      </div>
+      <p class="uni-desc">Turkey's premier university for Neuroscience, Psychology and Health Sciences — with dedicated research centres in Neuroscience, Addiction Rehabilitation, Forensic Science and AI. Located on the serene Asian shore of the Bosphorus, it runs one of Turkey's most active graduate schools in Health and Behavioural Sciences.</p>
+      <div class="uni-tags"><span>Neuroscience</span><span>Psychology</span><span>Nursing</span><span>Engineering</span></div>
+      <a href="https://www.uskudar.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+    </div>
+
+  </div>
+</section>
+
 <!-- WHY ASPIRE -->
 <section class="why-section">
   <div class="why-grid">
@@ -893,6 +1333,57 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- BECOME AN AGENT -->
+<section class="agent-section" id="agents">
+  <div class="agent-inner">
+    <div class="agent-badge">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="agent-text">
+      <div class="section-tag" data-i18n="agent_tag">Partner With Us</div>
+      <h2 class="section-title" data-i18n="agent_title">Become an Aspire Agent</h2>
+      <p class="agent-desc" data-i18n="agent_desc">Are you an education consultant, student advisor, or institution looking to help students study in Turkey? Join our growing network of trusted agents and earn competitive commissions for every successful placement.</p>
+      <ul class="agent-benefits">
+        <li data-i18n="agent_b1">✦ Competitive commission on every successful enrollment</li>
+        <li data-i18n="agent_b2">✦ Access to our full database of 1,275+ programs across 40+ universities</li>
+        <li data-i18n="agent_b3">✦ Dedicated support from our Istanbul-based team</li>
+        <li data-i18n="agent_b4">✦ Marketing materials and student guides in EN, TR & AR</li>
+      </ul>
+    </div>
+    <form class="agent-form" id="agentForm">
+      <div class="agent-form-grid">
+        <div class="form-group">
+          <label data-i18n="agent_fname">Full Name *</label>
+          <input type="text" id="agent-name" data-i18n-placeholder="agent_fname_ph" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="agent_email">Email Address *</label>
+          <input type="email" id="agent-email" data-i18n-placeholder="agent_email_ph" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="agent_phone">Phone / WhatsApp *</label>
+          <input type="tel" id="agent-phone" data-i18n-placeholder="agent_phone_ph" placeholder="+1 234 567 8900" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="agent_country">Country / Region *</label>
+          <input type="text" id="agent-country" data-i18n-placeholder="agent_country_ph" placeholder="e.g. Saudi Arabia" required />
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:.75rem">
+        <label data-i18n="agent_company">Company / Organisation (if any)</label>
+        <input type="text" id="agent-company" data-i18n-placeholder="agent_company_ph" placeholder="e.g. ABC Education Consulting" />
+      </div>
+      <div class="form-group" style="margin-top:.75rem">
+        <label data-i18n="agent_msg">Tell us about yourself</label>
+        <textarea id="agent-msg" rows="3" data-i18n-placeholder="agent_msg_ph" placeholder="How many students do you work with? What countries are you based in?"></textarea>
+      </div>
+      <button type="button" class="agent-submit" onclick="submitAgent()" data-i18n="agent_submit">Submit Agent Application →</button>
+      <p class="agent-note" id="agent-success" style="display:none" data-i18n="agent_success">✅ Thank you! We'll be in touch within 48 hours.</p>
+    </form>
   </div>
 </section>
 
@@ -2277,6 +2768,33 @@ const translations = {
     modal_submit_btn:"Submit My Application →",
     dot1_label:"Program",dot2_label:"Details",dot3_label:"Documents",
     level0:"High School (applying for Vocational School)",
+
+    agent_tag:        "Partner With Us",
+    agent_title:      "Become an Aspire Agent",
+    agent_desc:       "Are you an education consultant, student advisor, or institution looking to help students study in Turkey? Join our growing network of trusted agents and earn competitive commissions for every successful placement.",
+    agent_b1:         "✦ Competitive commission on every successful enrollment",
+    agent_b2:         "✦ Access to 1,275+ programs across 40+ universities",
+    agent_b3:         "✦ Dedicated support from our Istanbul-based team",
+    agent_b4:         "✦ Marketing materials in English, Turkish & Arabic",
+    agent_fname:      "Full Name *",
+    agent_email:      "Email Address *",
+    agent_phone:      "Phone / WhatsApp *",
+    agent_country:    "Country / Region *",
+    agent_company:    "Company / Organisation (if any)",
+    agent_msg:        "Tell us about yourself",
+    agent_fname_ph:   "Your full name",
+    agent_email_ph:   "you@example.com",
+    agent_phone_ph:   "+1 234 567 8900",
+    agent_country_ph: "e.g. Saudi Arabia",
+    agent_company_ph: "e.g. ABC Education Consulting",
+    agent_msg_ph:     "How many students do you work with? What countries are you based in?",
+    agent_submit:     "Submit Agent Application →",
+    agent_success:    "✅ Thank you! We'll be in touch within 48 hours.",
+    nav_unis:          "Universities",
+    nav_agent:        "Become an Agent",
+    unis_tag:         "Our Partner Universities",
+    unis_title:       "40+ Universities Across Istanbul",
+    unis_intro:       "From health sciences to engineering, law to fine arts — our partner universities cover every field, taught in English and Turkish.",
     nav_cta:          "Get Free Consultation",
     hero_tag:         "University Admissions",
     hero_h1:          "Your Future Starts",
@@ -2388,6 +2906,33 @@ const translations = {
     modal_submit_btn:"Başvurumu Gönder →",
     dot1_label:"Program",dot2_label:"Bilgiler",dot3_label:"Belgeler",
     level0:"Lise (Meslek Yüksekokulu başvurusu)",
+
+    agent_tag:        "Bizimle Ortak Olun",
+    agent_title:      "Aspire Acentesi Olun",
+    agent_desc:       "Türkiye'de eğitim almak isteyen öğrencilere yardımcı olmak isteyen bir eğitim danışmanı, öğrenci danışmanı veya kurum musunuz? Güvenilir acenteler ağımıza katılın ve her başarılı yerleştirme için rekabetçi komisyon kazanın.",
+    agent_b1:         "✦ Her başarılı kayıt için rekabetçi komisyon",
+    agent_b2:         "✦ 40+ üniversitede 1.275+ programa erişim",
+    agent_b3:         "✦ İstanbul merkezli ekibimizden özel destek",
+    agent_b4:         "✦ İngilizce, Türkçe ve Arapça pazarlama materyalleri",
+    agent_fname:      "Ad Soyad *",
+    agent_email:      "E-posta Adresi *",
+    agent_phone:      "Telefon / WhatsApp *",
+    agent_country:    "Ülke / Bölge *",
+    agent_company:    "Şirket / Kurum (varsa)",
+    agent_msg:        "Kendinizden bahsedin",
+    agent_fname_ph:   "Adınız ve soyadınız",
+    agent_email_ph:   "siz@ornek.com",
+    agent_phone_ph:   "+90 5xx xxx xx xx",
+    agent_country_ph: "örn. Suudi Arabistan",
+    agent_company_ph: "örn. ABC Eğitim Danışmanlık",
+    agent_msg_ph:     "Kaç öğrenciyle çalışıyorsunuz? Hangi ülkelerde bulunuyorsunuz?",
+    agent_submit:     "Acente Başvurusu Gönder →",
+    agent_success:    "✅ Teşekkürler! 48 saat içinde sizinle iletişime geçeceğiz.",
+    nav_unis:          "Üniversiteler",
+    nav_agent:        "Acente Ol",
+    unis_tag:         "Ortak Üniversitelerimiz",
+    unis_title:       "İstanbul'da 40+ Üniversite",
+    unis_intro:       "Sağlık bilimlerinden mühendisliğe, hukuktan güzel sanatlara — ortak üniversitelerimiz her alanda program sunmaktadır.",
     nav_cta:          "Ücretsiz Danışmanlık Al",
     hero_tag:         "Üniversite Başvuruları",
     hero_h1:          'Geleceğine <span style="color:var(--red)">Türkiye\'de</span> Başla ',
@@ -2501,6 +3046,33 @@ const translations = {
     modal_submit_btn:"إرسال طلبي →",
     dot1_label:"البرنامج",dot2_label:"البيانات",dot3_label:"المستندات",
     level0:"الثانوية (للتقديم على المدرسة المهنية)",
+
+    agent_tag:        "شراكة معنا",
+    agent_title:      "كن وكيلاً لـ Aspire",
+    agent_desc:       "هل أنت مستشار تعليمي أو مرشد طلابي أو مؤسسة تتطلع إلى مساعدة الطلاب في الدراسة بتركيا؟ انضم إلى شبكتنا المتنامية من الوكلاء الموثوقين واكسب عمولات تنافسية عن كل قبول ناجح.",
+    agent_b1:         "✦ عمولة تنافسية عن كل تسجيل ناجح",
+    agent_b2:         "✦ الوصول إلى أكثر من 1,275 برنامج في أكثر من 40 جامعة",
+    agent_b3:         "✦ دعم مخصص من فريقنا في إسطنبول",
+    agent_b4:         "✦ مواد تسويقية باللغتين العربية والإنجليزية والتركية",
+    agent_fname:      "الاسم الكامل *",
+    agent_email:      "البريد الإلكتروني *",
+    agent_phone:      "الهاتف / واتساب *",
+    agent_country:    "الدولة / المنطقة *",
+    agent_company:    "الشركة / المؤسسة (إن وجدت)",
+    agent_msg:        "أخبرنا عن نفسك",
+    agent_fname_ph:   "اسمك الكامل",
+    agent_email_ph:   "you@example.com",
+    agent_phone_ph:   "+966 5xx xxx xxxx",
+    agent_country_ph: "مثال: المملكة العربية السعودية",
+    agent_company_ph: "مثال: ABC للاستشارات التعليمية",
+    agent_msg_ph:     "كم عدد الطلاب الذين تعمل معهم؟ في أي دول تعمل؟",
+    agent_submit:     "إرسال طلب الوكالة →",
+    agent_success:    "✅ شكراً لك! سنتواصل معك خلال 48 ساعة.",
+    nav_unis:          "الجامعات",
+    nav_agent:        "كن وكيلاً",
+    unis_tag:         "جامعاتنا الشريكة",
+    unis_title:       "40+ جامعة في إسطنبول",
+    unis_intro:       "من العلوم الصحية إلى الهندسة، ومن القانون إلى الفنون الجميلة — جامعاتنا الشريكة تغطي كل التخصصات باللغتين الإنجليزية والتركية.",
     nav_cta:          "احصل على استشارة مجانية",
     hero_tag:         "القبول الجامعي",
     hero_h1:          'مستقبلك يبدأ من <span style="color:var(--red)">تركيا</span> ',
@@ -2876,6 +3448,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (el) el.href = 'mailto:' + email;
   if (txt) txt.textContent = email;
 })();
+// ── AGENT FORM SUBMISSION ──
+function submitAgent() {
+  const name    = document.getElementById('agent-name')?.value.trim();
+  const email   = document.getElementById('agent-email')?.value.trim();
+  const phone   = document.getElementById('agent-phone')?.value.trim();
+  const country = document.getElementById('agent-country')?.value.trim();
+  if (!name || !email || !phone || !country) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  const company = document.getElementById('agent-company')?.value.trim() || '—';
+  const msg     = document.getElementById('agent-msg')?.value.trim() || '—';
+  const body = 'Agent Application%0A%0A'
+    + 'Name: ' + encodeURIComponent(name) + '%0A'
+    + 'Email: ' + encodeURIComponent(email) + '%0A'
+    + 'Phone: ' + encodeURIComponent(phone) + '%0A'
+    + 'Country: ' + encodeURIComponent(country) + '%0A'
+    + 'Company: ' + encodeURIComponent(company) + '%0A%0A'
+    + 'Message:%0A' + encodeURIComponent(msg);
+  var a = 'info', b = 'aspire', d = 'tr';
+  window.location.href = 'mailto:' + a + '@' + b + '.' + d
+    + '?subject=' + encodeURIComponent('Agent Application — ' + name)
+    + '&body=' + body;
+  const s = document.getElementById('agent-success');
+  if (s) { s.style.display = 'block'; }
+}
+
 </script>
 </body>
 </html>
