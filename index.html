@@ -622,6 +622,262 @@
   if (el) el.href = 'mailto:' + email;
   if (txt) txt.textContent = email;
 })();
+// ── UNIVERSITY DATA ──
+const UNI_DATA = {
+  istinye: {
+    name: "Istinye University",
+    est: "2015", location: "Topkapı, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png",
+    website: "https://www.istinye.edu.tr/en",
+    badges: ["Medicine", "Health Sciences", "Engineering"],
+    stats: [{n:"19,000+",l:"Students"},{n:"#1",l:"Intl. Outlook in TR"},{n:"1001–1200",l:"THE World Rank"},{n:"800+",l:"Academic Staff"}],
+    about: "Founded in 2015 by the 21st Century Anatolian Foundation and backed by MLP Care Group — the parent company of Liv Hospital, Medical Park and VM Medical Park — Istinye University uniquely positions students for direct clinical training across 2 fully affiliated university hospitals. Within just a decade, ISU has become the #1 Turkish foundation university for International Outlook (THE 2026), ranked 1001–1200 globally, with 19 research centres and over 800 academic staff.",
+    highlights: ["#1 in Turkey for International Outlook (THE 2026)","Clinical training in Liv Hospital & Medical Park","19 research centres across campus","CERN ATLAS Experiment member"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Physiotherapy","Computer Engineering","Business Administration","Psychology","Architecture","Biomedical Engineering","Artificial Intelligence"],
+    facts: ["Students from 100+ countries","Two modern campuses in Istanbul","Founded on MLP Care Group's 29-year hospital expertise","ESSSR (European Sustainability) member"]
+  },
+  bau: {
+    name: "Bahçeşehir University (BAU)",
+    est: "1998", location: "Beşiktaş, Istanbul (Bosphorus)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/0/08/Bah%C3%A7e%C5%9Fehir_%C3%9Cniversitesi_logo.png",
+    website: "https://www.bau.edu.tr/en",
+    badges: ["Business","Engineering","Medicine","Architecture"],
+    stats: [{n:"20,500+",l:"Students"},{n:"127",l:"Countries"},{n:"801–1000",l:"THE World Rank"},{n:"200+",l:"Global Partners"}],
+    about: "Founded in 1998 by the Bahçeşehir-Uğur Educational Foundation, BAU truly lives up to its motto 'A World University in the Heart of Istanbul'. Its main campus sits on the shores of the Bosphorus in Beşiktaş, with 6 campuses across Istanbul connected by a unique private shuttle-boat service (BAUPORT). BAU Global extends to Berlin, Toronto, Washington DC, Batumi, Cyprus, Hanoi and more — allowing students to study a semester abroad with no extra tuition fees.",
+    highlights: ["Free shuttle boat between Bosphorus campuses (BAUPORT)","Study abroad at BAU Global campuses in DC, Berlin, Toronto & more","8,000+ international students from 127 countries","190 Erasmus+ agreements with European universities"],
+    programs: ["Medicine","Dentistry","Computer Engineering","Business Administration","Architecture","Psychology","Law","Communication Design","Artificial Intelligence","International Relations","Fine Arts"],
+    facts: ["Founded 1998 — one of Turkey's 5th oldest private universities","Part of BAU Global — one of the largest education networks in Europe","250,000+ publication library","Superbrands of Turkey 2007 award winner"]
+  },
+  medipol: {
+    name: "Istanbul Medipol University",
+    est: "2009", location: "Kavacık & Haliç, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/d/d0/Istanbul_Medipol_%C3%9Cniversitesi_logo.png",
+    website: "https://www.medipol.edu.tr/en",
+    badges: ["Medicine","Dentistry","Pharmacy","Engineering"],
+    stats: [{n:"40,000+",l:"Students"},{n:"801–1000",l:"THE World Rank"},{n:"9th",l:"In Turkey"},{n:"9",l:"Affiliated Hospitals"}],
+    about: "Established in 2009, Istanbul Medipol University is one of Turkey's fastest-rising research universities — ranked 801–1000 globally and 9th nationally (THE 2026). With 40,000+ students from 130 countries across campuses on both sides of the Bosphorus, it is home to SABITA — described as one of Europe's most advanced research centres — and the Medipol Mega University Hospital, Turkey's first JCI-accredited private academic hospital with 810 beds and robotic surgery facilities.",
+    highlights: ["JCI-accredited Mega University Hospital (810 beds)","SABITA — one of Europe's most advanced research centres","Ranked 5th in Turkey for Business & Economics (THE)","Ranked 801–1000 globally (THE 2026)"],
+    programs: ["Medicine (English)","Dentistry","Pharmacy","Nursing","Physiotherapy","Computer Engineering","Artificial Intelligence Engineering","Architecture","Law","Psychology","Business Administration"],
+    facts: ["Students from 130 countries","12 faculties, 5 institutes, 4 vocational schools","85 student clubs","17 research centres"]
+  },
+  bilgi: {
+    name: "Istanbul Bilgi University",
+    est: "1996", location: "Santral & Dolapdere, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/2/2a/Istanbul_Bilgi_%C3%9Cniversitesi.png",
+    website: "https://www.bilgi.edu.tr/en",
+    badges: ["Law","Communications","Engineering","Social Sciences"],
+    stats: [{n:"801–1000",l:"THE World Rank"},{n:"1996",l:"Founded"},{n:"English",l:"Primary Language"},{n:"100+",l:"Intl. Partners"}],
+    about: "One of Turkey's most prestigious private universities, Istanbul Bilgi University was founded in 1996 and has maintained a global ranking of 801–1000 (THE). Known for its primarily English-medium instruction across Law, Communications, Engineering and Social Sciences, Bilgi is housed in a beautifully restored historical powerhouse complex (Santral Istanbul) — a former 1911 power station transformed into a living museum and cultural centre alongside the campus. A first choice for students who value a liberal arts environment in the heart of Istanbul.",
+    highlights: ["Primarily English-medium instruction","Campus in a restored 1911 powerhouse (Santral Istanbul)","Ranked 801–1000 globally (THE 2026)","Strong focus on human rights, law, and social sciences"],
+    programs: ["Law","Communications","Computer Engineering","Psychology","Architecture","International Relations","Business Administration","New Media","Economics","Fine Arts","Clinical Psychology"],
+    facts: ["Founded 1996 — one of Turkey's oldest private universities","Santral campus is also a museum and cultural centre","Strong European and US university partnerships","Member of European Law Faculties Association"]
+  },
+  biruni: {
+    name: "Biruni University",
+    est: "2014", location: "Topkapı, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/6/6f/Biruni_%C3%9Cniversitesi_logo.png",
+    website: "https://www.biruni.edu.tr/en",
+    badges: ["Medicine","Dentistry","Pharmacy","Health Sciences"],
+    stats: [{n:"2014",l:"Founded"},{n:"Own Hospital",l:"Teaching facility"},{n:"English",l:"Medicine track"},{n:"Intl.",l:"Accreditations"}],
+    about: "Biruni University is one of Istanbul's premier medical universities, named after the 11th-century polymath Abu Rayhan Biruni. Founded in 2014, it stands out for its fully equipped teaching hospital and international recognition across the Arab world (Iraq, Egypt, Yemen, Libya) and Europe. Medicine, Dentistry, Pharmacy, Physiotherapy and Nursing are available in both English and Turkish, supported by state-of-the-art simulation labs and a modern campus in Topkapı.",
+    highlights: ["Own fully-equipped teaching hospital","Medicine available in English and Turkish","Internationally recognised in Iraq, Egypt, Yemen & Libya","Cutting-edge simulation laboratories"],
+    programs: ["Medicine","Dentistry","Pharmacy","Physiotherapy & Rehabilitation","Nursing","Computer Engineering","Biomedical Engineering","Molecular Biology & Genetics","Psychology","Business Administration"],
+    facts: ["Named after 11th-century scholar Abu Rayhan Biruni","Strong Arab-world recognition for medical degrees","Modern simulation-based medical education","Central Topkapı location — easy transport links"]
+  },
+  aydin: {
+    name: "Istanbul Aydın University",
+    est: "2007", location: "Küçükçekmece, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/9/90/Istanbul_Ay%C4%B1n_%C3%9Cniversitesi_logo.png",
+    website: "https://www.aydin.edu.tr/en",
+    badges: ["Medicine","Engineering","Architecture","Business"],
+    stats: [{n:"100+",l:"Programs"},{n:"13",l:"Faculties"},{n:"Intl.",l:"Accredited"},{n:"EQAR",l:"Recognised"}],
+    about: "Istanbul Aydın University (IAU) was founded in 2007 and is known especially for Medicine, Dentistry and Health Sciences, with advanced training hospitals and EQAR (European Quality Assurance Register) recognition, making IAU degrees valid across the European Higher Education Area. Particularly popular among students from Iraq, Jordan, Egypt, Libya and Sudan where IAU medical degrees carry formal recognition. Offers 100+ programs across 13 faculties with a strong English-medium offering.",
+    highlights: ["EQAR recognised — degrees valid in European Higher Education Area","Medical degrees recognised in Iraq, Jordan, Egypt, Libya & Sudan","Advanced training hospitals","100+ programs across 13 faculties"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Architecture","Computer Engineering","Business Administration","International Relations","Law","Psychology","Gastronomy"],
+    facts: ["Founded 2007 by Aydın Doğan Foundation","European Higher Education Area membership","Strong presence among Arab-world students","Large European side campus"]
+  },
+  gelisim: {
+    name: "Istanbul Gelişim University",
+    est: "2008", location: "Avcılar, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/6/6e/Istanbul_Gelisim_Universitesi_logo.png",
+    website: "https://www.gelisim.edu.tr/en",
+    badges: ["Engineering","Dentistry","Business","Aviation"],
+    stats: [{n:"30,000+",l:"Students"},{n:"65",l:"Accredited Programs"},{n:"7th",l:"In Turkey (RUR)"},{n:"130+",l:"Global Partners"}],
+    about: "Istanbul Gelişim University is Turkey's most internationally accredited private university — 65 programs accredited by AQAS (Germany), ABET (USA) and UK bodies, including the only Turkish university with ABET accreditation for engineering. Founded in 2008 and now ranked 7th in Turkey by Round University Rankings with 30,000+ students, 100+ laboratories, and 130+ global university partnerships. Its campus in Avcılar on the European side is one of Istanbul's largest private university research complexes.",
+    highlights: ["Only Turkish university with ABET engineering accreditation","65 programs internationally accredited (AQAS, ABET, UK bodies)","Ranked 7th in Turkey (Round University Rankings)","100+ laboratories on campus"],
+    programs: ["Dentistry","Computer Engineering","Software Engineering","Aeronautical Engineering","Architecture","Business Administration","Nursing","Physiotherapy","Psychology","Aviation Management","International Relations"],
+    facts: ["Founded 2008 — rapidly risen to top 10 Turkish universities","18 research centres, 78 student clubs","Most internationally accredited private university in Turkey","Evening (EP) programs available for many fields"]
+  },
+  beykent: {
+    name: "Istanbul Beykent University",
+    est: "1997", location: "Beylikdüzü, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/1/10/Istanbul_Beykent_University_Logo.png",
+    website: "https://www.beykent.edu.tr/en",
+    badges: ["Engineering","Business","Fine Arts","Aviation"],
+    stats: [{n:"1997",l:"Founded"},{n:"100+",l:"Programs"},{n:"EN & TR",l:"Medium of Instruction"},{n:"Intl.",l:"Students Welcome"}],
+    about: "Istanbul Beykent University has been welcoming students since 1997 and offers one of Istanbul's broadest program portfolios — over 100 programs spanning Engineering, Business, Health Sciences, Fine Arts, Architecture and Aviation, taught in both English and Turkish. Known for its welcoming attitude toward international students, competitive tuition fees, and flexible schedule options. Located on the European side of Istanbul in Beylikdüzü with modern facilities and strong industry links.",
+    highlights: ["100+ programs in English and Turkish","Strong aviation and engineering faculties","Welcoming environment for international students","Competitive tuition fees among Istanbul universities"],
+    programs: ["Computer Engineering","Electrical Engineering","Business Administration","Architecture","Graphic Design","Nursing","Civil Aviation","Gastronomy","Psychology","International Trade","New Media"],
+    facts: ["Founded 1997 — over 25 years of experience","Multiple campuses across Istanbul","Active student clubs and social life","Strong industry partnerships for internships"]
+  },
+  nisantasi: {
+    name: "Nişantaşı University",
+    est: "2009", location: "Şişli, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/f/f4/Nisantasi_Universitesi_Logo.png",
+    website: "https://www.nisantasi.edu.tr/en",
+    badges: ["Design & Fashion","Business","Engineering","Health"],
+    stats: [{n:"2009",l:"Founded"},{n:"100+",l:"Programs"},{n:"Şişli",l:"Fashion District"},{n:"Affordable",l:"Competitive Fees"}],
+    about: "Located in Şişli — Istanbul's vibrant fashion, arts and culture district — Nişantaşı University was founded in 2009 and has grown rapidly to offer over 100 programs. Its prime location puts students at the centre of Istanbul's creative industries, making it a natural choice for Fashion Design, Graphic Design, Architecture and Business students. Nişantaşı consistently offers some of the most competitive tuition fees in Istanbul while maintaining a quality academic environment.",
+    highlights: ["Located in Istanbul's fashion & arts district","One of Istanbul's most affordable quality universities","Strong fashion, design and creative programs","Growing engineering and health sciences faculties"],
+    programs: ["Fashion Design","Graphic Design","Architecture","Interior Architecture","Business Administration","Computer Engineering","Nursing","Psychology","Gastronomy","New Media","International Trade"],
+    facts: ["Founded 2009 in the heart of Istanbul's Şişli district","5 faculties and a graduate studies institute","Active in student exchange programs","Known for design and creative arts excellence"]
+  },
+  okan: {
+    name: "Istanbul Okan University",
+    est: "1999", location: "Tuzla, Istanbul (Asian side)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/e3/Okan_Universitesi_logo.png",
+    website: "https://www.okan.edu.tr/en",
+    badges: ["Aviation","Engineering","Medicine","Law"],
+    stats: [{n:"ABET",l:"Engineering Accreditation"},{n:"1999",l:"Founded"},{n:"Asian Side",l:"Near Sabiha Gökçen"},{n:"Medicine",l:"English track"}],
+    about: "Istanbul Okan University has been a pioneer in Aviation education in Turkey since its founding in 1999 — located near Sabiha Gökçen International Airport on Istanbul's Asian side, making it the ideal base for aviation studies. Its Engineering programs carry ABET accreditation (the gold standard recognised by engineering employers globally), and the university also offers Medicine, Law, Business and Health Sciences. A popular choice for students targeting careers in aviation, engineering, or applied sciences.",
+    highlights: ["ABET-accredited engineering programs (globally recognised)","Located adjacent to Sabiha Gökçen Airport","Medicine program available in English","Pioneer in Turkish aviation higher education"],
+    programs: ["Aviation Management","Pilot Training","Computer Engineering","Architecture","Medicine","Law","Business Administration","Nursing","Clinical Psychology","Logistics","Gastronomy"],
+    facts: ["Founded 1999 on Istanbul's Asian shore","Adjacent to Turkey's 2nd-busiest airport","One of few Turkish universities with ABET engineering accreditation","Strong industry connections in aviation & logistics sectors"]
+  },
+  atlas: {
+    name: "Istanbul Atlas University",
+    est: "2018", location: "Kağıthane (Valley Campus), Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png",
+    website: "https://www.atlas.edu.tr/en",
+    badges: ["Medicine","Engineering","AI & Technology","Psychology"],
+    stats: [{n:"2018",l:"Founded"},{n:"110,000m²",l:"Valley Campus"},{n:"38",l:"Advanced Labs"},{n:"743rd",l:"Green Campus (Global)"}],
+    about: "Istanbul Atlas University is one of Istanbul's newest and most forward-thinking institutions, founded in 2018 around the concept of the 'butterfly effect' — the idea that small, focused actions create transformative outcomes. Its striking 110,000m² Valley Campus in Kağıthane features 38 advanced laboratories and Atlas Creative Labs — an innovation hub at the intersection of engineering, arts and artificial intelligence. Despite its young age, Atlas has already achieved international recognition, ranking 743rd globally for green campus sustainability.",
+    highlights: ["110,000m² modern Valley Campus in Kağıthane","Atlas Creative Labs — engineering × arts × AI hub","38 advanced laboratories","Ranked 743rd globally for sustainability (GreenMetric)"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Computer Engineering","Artificial Intelligence","Architecture","Psychology","Business Administration","Interior Architecture","Molecular Biology"],
+    facts: ["Founded 2018 — built from the ground up with modern learning in mind","Interdisciplinary research philosophy","Rapidly rising in Turkish university rankings","One of Istanbul's most modern campus environments"]
+  },
+  arel: {
+    name: "Istanbul Arel University",
+    est: "2007", location: "Büyükçekmece, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/ec/Arel_Universitesi_logo.png",
+    website: "https://www.arel.edu.tr/en",
+    badges: ["Business","Law","Health Sciences","Engineering"],
+    stats: [{n:"2007",l:"Founded"},{n:"Coastal",l:"European Istanbul"},{n:"EN & TR",l:"Programs"},{n:"Affordable",l:"Fees"}],
+    about: "Istanbul Arel University sits on Istanbul's peaceful European coastline in Büyükçekmece, offering a campus environment away from the city's intensity while remaining well-connected by transport. Founded in 2007, Arel provides undergraduate, graduate and doctoral programs across Business, Law, Health Sciences, Psychology and Engineering. Known for student-friendly policies, affordable international fees, and a supportive academic community. A solid choice for students seeking a quality degree without the highest price tag.",
+    highlights: ["Peaceful coastal campus on European Istanbul","Affordable fees for international students","Bachelor's, Master's and PhD programs","Supportive international student services"],
+    programs: ["Business Administration","Law","Psychology","Nursing","Computer Engineering","Graphic Design","Architecture","International Trade","New Media","Health Management"],
+    facts: ["Founded 2007","Coastal setting with good transport links to city centre","Student-focused with strong advising services","Competitive fee structure for international students"]
+  },
+  kent: {
+    name: "Istanbul Kent University",
+    est: "2016", location: "Fatih, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/b/b8/Istanbul_Kent_Universitesi_logo.png",
+    website: "https://www.kent.edu.tr/en",
+    badges: ["Business","Psychology","Law","Engineering"],
+    stats: [{n:"2016",l:"Founded"},{n:"Fatih",l:"Central Istanbul"},{n:"Affordable",l:"Fees from $2,250/yr"},{n:"Growing",l:"Student Community"}],
+    about: "Istanbul Kent University was founded in 2016 and is one of Istanbul's younger, fast-growing universities. Located in Fatih — a central, historic district — it focuses on delivering quality education with a strong emphasis on student support and career development. Kent offers programs in Business Administration, Psychology, Law, Engineering and Health Sciences at some of the most competitive tuition rates in Istanbul, making it an accessible option for budget-conscious international students who still want a central Istanbul experience.",
+    highlights: ["Central Fatih location — excellent transport access","Fees among the most competitive in Istanbul (from ~$2,250/yr)","Strong student support and mentoring programs","Career development focus"],
+    programs: ["Business Administration","Psychology","Law","Computer Engineering","Architecture","International Trade","Health Management","Nursing","New Media","Economics","Political Science"],
+    facts: ["Founded 2016 — modern curriculum design","Located in historic Fatih district","Strong focus on personalised student experience","Growing research and graduate programs"]
+  },
+  isik: {
+    name: "Işık University",
+    est: "1996", location: "Şile, Istanbul (Black Sea coast)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/4/4b/Isik_Universitesi_logo.png",
+    website: "https://www.isikun.edu.tr/en",
+    badges: ["Engineering","Architecture","Business","Fine Arts"],
+    stats: [{n:"1996",l:"Founded"},{n:"MÜDEK",l:"Accredited Engineering"},{n:"Şile Forest",l:"Campus Setting"},{n:"Boutique",l:"Close-knit Community"}],
+    about: "Işık University was founded in 1996 in the forested hills of Şile on Istanbul's Black Sea coast — a serene, green campus setting about an hour from the city centre. Most of Işık's engineering programs carry MÜDEK accreditation (Turkey's engineering quality standard, aligned with international EUR-ACE requirements), making its graduates competitive globally. As a smaller, boutique institution, Işık offers an intimate student-faculty dynamic that larger universities can rarely match, with strong industry connections especially in engineering and architecture.",
+    highlights: ["Most engineering programs MÜDEK-accredited (EUR-ACE aligned)","Intimate campus community in Black Sea forest setting","Strong industry partnerships in engineering","One of Turkey's oldest private universities"],
+    programs: ["Computer Engineering","Industrial Engineering","Electrical Engineering","Mechanical Engineering","Architecture","Business Administration","Fine Arts","Interior Architecture","Economics","International Relations"],
+    facts: ["Founded 1996 — nearly 30 years of engineering excellence","Şile campus surrounded by protected Black Sea forest","Small class sizes — personalised education","MÜDEK accreditation recognised across Europe"]
+  },
+  beykoz: {
+    name: "Beykoz University",
+    est: "2016", location: "Beykoz, Istanbul (Bosphorus Asian shore)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png",
+    website: "https://www.beykoz.edu.tr/en",
+    badges: ["Logistics","Business","Aviation","Technology"],
+    stats: [{n:"2016",l:"Founded"},{n:"Turkey's #1",l:"Logistics University"},{n:"Bosphorus",l:"Asian Shore"},{n:"50",l:"Programs"}],
+    about: "Beykoz University holds a unique position in Turkish higher education as the country's only institution dedicated to Logistics and Supply Chain management — born from the Beykoz Logistics Vocational School, which has trained Turkey's logistics professionals for decades. Set on the scenic Asian shores of the Bosphorus in historic Beykoz, the university now offers Bachelor's, Master's and PhD programs across Logistics, Business Administration, Technology and Aviation. Its deep industry ties give students direct pathways into Turkey's and the region's logistics sector.",
+    highlights: ["Turkey's only logistics-specialist university","Direct industry connections to major logistics companies","Scenic Asian Bosphorus campus in historic Beykoz","Bachelor's, Master's & PhD programs in logistics"],
+    programs: ["Logistics Management","International Trade & Finance","Business Administration","Computer Engineering","Aviation Management","Psychology","Architecture","Software Engineering","Civil Aviation Cabin Services"],
+    facts: ["Born from decades of logistics vocational education","Located in one of Istanbul's most scenic historic districts","Strong MBA and postgraduate logistics programs","Deep ties with Turkish and regional logistics industry"]
+  },
+  uskudar: {
+    name: "Üsküdar University",
+    est: "2011", location: "Üsküdar, Istanbul (Asian shore)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/e5/%C3%9Csk%C3%BCdar_%C3%9Cniversitesi_logo.png",
+    website: "https://www.uskudar.edu.tr/en",
+    badges: ["Neuroscience","Psychology","Nursing","Engineering"],
+    stats: [{n:"2011",l:"Founded"},{n:"Turkey's #1",l:"For Neuroscience"},{n:"Bosphorus",l:"Asian Shore"},{n:"29",l:"Research Centres"}],
+    about: "Üsküdar University was founded in 2011 on the serene Asian shore of the Bosphorus and has rapidly established itself as Turkey's leading institution for Neuroscience, Psychology and Behavioural Health Sciences. It runs dedicated research centres in Neuroscience, Addiction Rehabilitation, Forensic Science, Molecular Biology and AI — among the most active graduate schools in Turkey for Health and Behavioural Sciences. The university also offers strong Engineering, Nursing and Allied Health programs, all set against the backdrop of one of Istanbul's most beautiful districts.",
+    highlights: ["Turkey's premier Neuroscience & Psychology university","29 research centres including Forensic Science & AI","Located on scenic Bosphorus Asian shore in historic Üsküdar","Strong graduate programs in Health & Behavioural Sciences"],
+    programs: ["Neuroscience","Clinical Psychology","Applied Psychology","Nursing","Physiotherapy","Computer Engineering","Cyber Security","Electrical Engineering","Bioengineering","Speech & Language Therapy","Health Management"],
+    facts: ["Founded 2011 by the Üsküdar Educational Foundation","Strong focus on mental health and neuroscience research","Beautiful campus in one of Istanbul's oldest districts","Active research in addiction, forensics and molecular biology"]
+  }
+};
+
+function openUniModal(btn) {
+  // Find which card was clicked
+  const card = btn.closest('.uni-card');
+  const uniName = card.querySelector('.uni-name').textContent.trim();
+  // Find matching key
+  const key = Object.keys(UNI_DATA).find(k => UNI_DATA[k].name === uniName || uniName.includes(UNI_DATA[k].name.split(' ')[0]));
+  const uni = UNI_DATA[key];
+  if (!uni) return;
+
+  const body = document.getElementById('uniModalBody');
+  body.innerHTML = `
+    <div class="uni-modal-hero">
+      <img src="${uni.logo}" alt="${uni.name}" class="uni-modal-logo" onerror="this.style.display='none'">
+      <div class="uni-modal-titleblock">
+        <div class="uni-modal-name">${uni.name}</div>
+        <div class="uni-modal-location">📍 ${uni.location} &nbsp;·&nbsp; Est. ${uni.est}</div>
+        <div class="uni-modal-badges">
+          ${uni.badges.map(b => `<span class="uni-modal-badge">${b}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="uni-modal-content">
+      <p class="uni-modal-about">${uni.about}</p>
+      <div class="uni-modal-stats">
+        ${uni.stats.map(s => `<div class="uni-modal-stat"><div class="uni-modal-stat-num">${s.n}</div><div class="uni-modal-stat-label">${s.l}</div></div>`).join('')}
+      </div>
+      <div class="uni-modal-grid">
+        <div>
+          <div class="uni-modal-section-title">Key Highlights</div>
+          <ul class="uni-modal-list">
+            ${uni.highlights.map(h => `<li>${h}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <div class="uni-modal-section-title">Key Facts</div>
+          <ul class="uni-modal-list">
+            ${uni.facts.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="uni-modal-section-title">Available Programs</div>
+      <div class="uni-modal-programs">
+        ${uni.programs.map(p => `<span class="uni-modal-program-tag">${p}</span>`).join('')}
+      </div>
+      <div class="uni-modal-footer">
+        <button class="uni-modal-apply-btn" onclick="closeUniModal();openModal();">Apply for This University →</button>
+        <a href="${uni.website}" target="_blank" rel="noopener" class="uni-modal-visit">Official Website ↗</a>
+      </div>
+    </div>`;
+
+  document.getElementById('uniModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeUniModal() {
+  document.getElementById('uniModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUniModal(); });
+
 // ── AGENT FORM SUBMISSION ──
 function submitAgent() {
   const name    = document.getElementById('agent-name')?.value.trim();
@@ -650,6 +906,14 @@ function submitAgent() {
 }
 
 </script>
+<!-- UNIVERSITY DETAIL MODAL -->
+<div class="uni-modal-overlay" id="uniModal" onclick="if(event.target===this)closeUniModal()">
+  <div class="uni-modal">
+    <button class="uni-modal-close" onclick="closeUniModal()" aria-label="Close">✕</button>
+    <div class="uni-modal-body" id="uniModalBody"></div>
+  </div>
+</div>
+
 </body>
         .footer-social {
       display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
@@ -823,14 +1087,14 @@ function submitAgent() {
       background: rgba(193,18,31,.07); color: var(--red);
       padding: .18rem .5rem; border-radius: 20px;
     }
-    .uni-link {
-      font-size: .78rem; font-weight: 600; color: var(--dark);
-      text-decoration: none; letter-spacing: .02em;
-      border-bottom: 1.5px solid #ddd; padding-bottom: 1px;
-      transition: color .2s, border-color .2s;
+    .uni-more-btn {
+      background: none; border: 1.5px solid var(--red); color: var(--red);
+      border-radius: 3px; padding: .4rem 1rem; font-size: .78rem; font-weight: 600;
+      cursor: pointer; letter-spacing: .02em; font-family: 'DM Sans', sans-serif;
       align-self: flex-start; margin-top: auto;
+      transition: background .15s, color .15s;
     }
-    .uni-link:hover { color: var(--red); border-color: var(--red); }
+    .uni-more-btn:hover { background: var(--red); color: white; }
     @media (max-width: 1200px) {
       .unis-grid { grid-template-columns: repeat(3, 1fr); }
     }
@@ -841,6 +1105,135 @@ function submitAgent() {
     @media (max-width: 560px) {
       .unis-grid { grid-template-columns: 1fr; }
       .uni-card { padding: 1.2rem; }
+    }
+  
+    /* ── UNIVERSITY DETAIL MODAL ── */
+    .uni-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 998;
+      background: rgba(26,18,9,0.6); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .uni-modal-overlay.open { display: flex; }
+    .uni-modal {
+      background: var(--white); border-radius: 8px;
+      width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto;
+      position: relative; box-shadow: 0 24px 64px rgba(26,18,9,0.2);
+      animation: modalIn .25s ease;
+    }
+    .uni-modal-close {
+      position: sticky; top: 1rem; float: right; margin: 1rem 1rem 0 0;
+      background: rgba(26,18,9,.06); border: none; border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark); z-index: 2; transition: background .15s;
+    }
+    .uni-modal-close:hover { background: rgba(193,18,31,.12); color: var(--red); }
+    .uni-modal-hero {
+      padding: 2.5rem 2.5rem 0;
+      display: flex; align-items: flex-start; gap: 1.5rem;
+    }
+    .uni-modal-logo {
+      width: 80px; height: 80px; object-fit: contain;
+      border: 1.5px solid #e8e2da; border-radius: 6px; padding: .5rem;
+      background: white; flex-shrink: 0;
+    }
+    .uni-modal-titleblock { flex: 1; min-width: 0; }
+    .uni-modal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--dark);
+      line-height: 1.2; margin-bottom: .3rem;
+    }
+    .uni-modal-location {
+      font-size: .83rem; color: var(--muted); margin-bottom: .6rem;
+    }
+    .uni-modal-badges {
+      display: flex; flex-wrap: wrap; gap: .35rem;
+    }
+    .uni-modal-badge {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      padding: .2rem .6rem; border-radius: 20px;
+      background: rgba(193,18,31,.08); color: var(--red);
+    }
+    .uni-modal-badge.dark {
+      background: var(--dark); color: white;
+    }
+    .uni-modal-content { padding: 1.75rem 2.5rem 2.5rem; }
+    .uni-modal-about {
+      font-size: .93rem; line-height: 1.75; color: var(--muted);
+      margin-bottom: 1.75rem; border-bottom: 1px solid #f0ebe4;
+      padding-bottom: 1.75rem;
+    }
+    .uni-modal-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-bottom: 1.75rem;
+    }
+    .uni-modal-stat {
+      text-align: center; padding: .9rem .5rem;
+      background: #faf7f2; border-radius: 5px; border: 1px solid #ede8e0;
+    }
+    .uni-modal-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--red);
+    }
+    .uni-modal-stat-label {
+      font-size: .7rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .07em; margin-top: .2rem;
+    }
+    .uni-modal-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-bottom: 1.75rem;
+    }
+    .uni-modal-section-title {
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--dark); margin-bottom: .75rem;
+    }
+    .uni-modal-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: .4rem;
+    }
+    .uni-modal-list li {
+      font-size: .85rem; color: var(--muted); padding-left: 1rem;
+      position: relative; line-height: 1.5;
+    }
+    .uni-modal-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--red); font-size: .75rem; top: .1rem;
+    }
+    .uni-modal-programs {
+      display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.75rem;
+    }
+    .uni-modal-program-tag {
+      font-size: .75rem; font-weight: 500;
+      background: #f3ede5; color: var(--dark);
+      padding: .25rem .7rem; border-radius: 20px;
+    }
+    .uni-modal-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding-top: 1.5rem;
+      border-top: 1px solid #f0ebe4;
+    }
+    .uni-modal-apply-btn {
+      background: var(--red); color: white; border: none; border-radius: 2px;
+      padding: .75rem 1.75rem; font-size: .9rem; font-weight: 500;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      box-shadow: 3px 3px 0 var(--dark); letter-spacing: .02em;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .uni-modal-apply-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+    .uni-modal-visit {
+      font-size: .82rem; color: var(--muted); text-decoration: none;
+      border-bottom: 1.5px solid #ddd; padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    .uni-modal-visit:hover { color: var(--red); border-color: var(--red); }
+    @media (max-width: 640px) {
+      .uni-modal { max-height: 92vh; }
+      .uni-modal-hero { padding: 1.5rem 1.5rem 0; flex-direction: column; gap: 1rem; }
+      .uni-modal-content { padding: 1.25rem 1.5rem 1.75rem; }
+      .uni-modal-stats { grid-template-columns: repeat(2, 1fr); }
+      .uni-modal-grid { grid-template-columns: 1fr; }
+      .uni-modal-footer { flex-direction: column; align-items: stretch; }
+      .uni-modal-apply-btn { text-align: center; }
     }
     </style>
 </head>
@@ -1079,7 +1472,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Backed by MLP Care Group — Liv Hospital, Medical Park &amp; VM Medical Park — ISU offers students direct clinical training in 2 university hospitals. Ranked #1 in Turkey for International Outlook (THE 2026) and 1001–1200 globally.</p>
       <div class="uni-tags"><span>Medicine</span><span>Health Sciences</span><span>Engineering</span><span>165 Programs</span></div>
-      <a href="https://www.istinye.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- BAU -->
@@ -1093,7 +1486,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">A true global institution on the shores of the Bosphorus. Part of BAU Global with campuses in Berlin, Toronto, Washington DC &amp; more. Ranked 801–1000 globally (THE 2026), with a unique shuttle boat between campuses and 8,000+ international students from 127 countries.</p>
       <div class="uni-tags"><span>Business</span><span>Engineering</span><span>Medicine</span><span>Architecture</span></div>
-      <a href="https://www.bau.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Medipol -->
@@ -1107,7 +1500,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">One of Turkey's fastest-rising research universities — 9th nationally, 801–1000 globally (THE 2026). Home to 40,000+ students from 130 countries, 9 affiliated hospitals including a JCI-accredited mega hospital, and SABITA — among Europe's most advanced research centres.</p>
       <div class="uni-tags"><span>Medicine</span><span>Dentistry</span><span>Pharmacy</span><span>Engineering</span></div>
-      <a href="https://www.medipol.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Bilgi -->
@@ -1121,7 +1514,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">One of Turkey's most prestigious private universities, ranked 801–1000 globally (THE 2026). Known for Law, Communications, Engineering and Social Sciences — all primarily taught in English — with a modern campus in a beautifully restored historical powerhouse complex.</p>
       <div class="uni-tags"><span>Law</span><span>Communications</span><span>Engineering</span><span>Social Sciences</span></div>
-      <a href="https://www.bilgi.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Biruni -->
@@ -1135,7 +1528,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">A medical-focused university with its own fully equipped teaching hospital. Internationally recognised across the Arab world (Iraq, Egypt, Yemen, Libya) and Europe. Offers Medicine, Dentistry, and Health Sciences in English and Turkish with state-of-the-art laboratories.</p>
       <div class="uni-tags"><span>Medicine</span><span>Dentistry</span><span>Physiotherapy</span><span>Pharmacy</span></div>
-      <a href="https://www.biruni.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Aydın -->
@@ -1149,7 +1542,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Known especially for Medicine and Health Sciences, with advanced training hospitals and international accreditation recognised in Iraq, Jordan, Egypt, Libya and Sudan. Offers 100+ programs across 13 faculties with a strong focus on English-medium instruction.</p>
       <div class="uni-tags"><span>Medicine</span><span>Engineering</span><span>Architecture</span><span>Business</span></div>
-      <a href="https://www.aydin.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Gelişim -->
@@ -1163,7 +1556,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Turkey's most internationally accredited private university — 65 programs accredited by AQAS (Germany), ABET (USA), and UK bodies. Ranked 7th in Turkey by Round University Rankings, with 30,000+ students, 100+ laboratories and partnerships with 130+ global universities.</p>
       <div class="uni-tags"><span>Engineering</span><span>Dentistry</span><span>Business</span><span>Aviation</span></div>
-      <a href="https://www.gelisim.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Beykent -->
@@ -1177,7 +1570,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">A comprehensive university offering 100+ programs across engineering, business, health sciences, fine arts and aviation. Known for its flexibility — programs available in both English and Turkish — and a welcoming environment for international students.</p>
       <div class="uni-tags"><span>Engineering</span><span>Business</span><span>Fine Arts</span><span>Aviation</span></div>
-      <a href="https://www.beykent.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Nişantaşı -->
@@ -1191,7 +1584,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Located in the heart of Istanbul's fashion and cultural district, Nişantaşı offers over 100 programs — including some of Turkey's best design, fashion, and arts programs — at highly competitive fees. A popular choice for creative and business-oriented students alike.</p>
       <div class="uni-tags"><span>Design &amp; Fashion</span><span>Business</span><span>Engineering</span><span>Health</span></div>
-      <a href="https://www.nisantasi.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Okan -->
@@ -1205,7 +1598,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Renowned for Aviation and Engineering, with ABET accreditation for engineering programs globally recognised by employers. Located on the Asian side of Istanbul near Sabiha Gökçen Airport, with programs in Medicine, Law, and Business. A leader in applied sciences.</p>
       <div class="uni-tags"><span>Aviation</span><span>Engineering</span><span>Medicine</span><span>Law</span></div>
-      <a href="https://www.okan.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Atlas -->
@@ -1219,7 +1612,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">One of Istanbul's newest universities, built around the concept of the "butterfly effect" — small actions, transformative outcomes. Features a 110,000m² Valley Campus with 38 advanced labs and Atlas Creative Labs at the intersection of engineering, arts and AI. Ranked 15th among Turkish foundation universities for green campus sustainability.</p>
       <div class="uni-tags"><span>Medicine</span><span>Engineering</span><span>AI &amp; Technology</span><span>Psychology</span></div>
-      <a href="https://www.atlas.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Arel -->
@@ -1233,7 +1626,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Located on Istanbul's peaceful European coastline, Arel offers a broad range of undergraduate, graduate and doctoral programs across Business, Law, Health Sciences and Engineering. Known for its student-friendly environment and affordable fees for international students.</p>
       <div class="uni-tags"><span>Business</span><span>Law</span><span>Health Sciences</span><span>Engineering</span></div>
-      <a href="https://www.arel.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Kent -->
@@ -1247,7 +1640,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">One of Istanbul's newer universities, rapidly growing with a focus on student support and career development. Offers programs in Business Administration, Psychology, Law, Engineering and Health Sciences at highly competitive fees — among the most affordable in Istanbul.</p>
       <div class="uni-tags"><span>Business</span><span>Psychology</span><span>Law</span><span>Engineering</span></div>
-      <a href="https://www.kent.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Işık -->
@@ -1261,7 +1654,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Nestled in the green forests of Şile on the Black Sea coast, Işık is celebrated for Engineering excellence — most programs MÜDEK-accredited to international standards. A boutique institution offering a close-knit campus community, strong industry connections and a serene campus setting just an hour from central Istanbul.</p>
       <div class="uni-tags"><span>Engineering</span><span>Architecture</span><span>Business</span><span>Fine Arts</span></div>
-      <a href="https://www.isikun.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Beykoz -->
@@ -1275,7 +1668,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Turkey's specialist Logistics and Supply Chain university, the only higher education institution in Turkey dedicated to this field. Set in the historic Beykoz district on the Asian shores of the Bosphorus, it offers focused programs in Logistics, Business and Technology — ideal for students targeting global trade careers.</p>
       <div class="uni-tags"><span>Logistics</span><span>Business</span><span>Aviation</span><span>Technology</span></div>
-      <a href="https://www.beykoz.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
     <!-- Üsküdar -->
@@ -1289,7 +1682,7 @@ function submitAgent() {
       </div>
       <p class="uni-desc">Turkey's premier university for Neuroscience, Psychology and Health Sciences — with dedicated research centres in Neuroscience, Addiction Rehabilitation, Forensic Science and AI. Located on the serene Asian shore of the Bosphorus, it runs one of Turkey's most active graduate schools in Health and Behavioural Sciences.</p>
       <div class="uni-tags"><span>Neuroscience</span><span>Psychology</span><span>Nursing</span><span>Engineering</span></div>
-      <a href="https://www.uskudar.edu.tr/en" target="_blank" class="uni-link" rel="noopener">Visit Website →</a>
+      <button class="uni-more-btn" onclick="openUniModal(this)">Learn More →</button>
     </div>
 
   </div>
@@ -3448,6 +3841,262 @@ document.addEventListener('DOMContentLoaded', () => {
   if (el) el.href = 'mailto:' + email;
   if (txt) txt.textContent = email;
 })();
+// ── UNIVERSITY DATA ──
+const UNI_DATA = {
+  istinye: {
+    name: "Istinye University",
+    est: "2015", location: "Topkapı, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/7/79/Istinye_Universitesi_Logo.png",
+    website: "https://www.istinye.edu.tr/en",
+    badges: ["Medicine", "Health Sciences", "Engineering"],
+    stats: [{n:"19,000+",l:"Students"},{n:"#1",l:"Intl. Outlook in TR"},{n:"1001–1200",l:"THE World Rank"},{n:"800+",l:"Academic Staff"}],
+    about: "Founded in 2015 by the 21st Century Anatolian Foundation and backed by MLP Care Group — the parent company of Liv Hospital, Medical Park and VM Medical Park — Istinye University uniquely positions students for direct clinical training across 2 fully affiliated university hospitals. Within just a decade, ISU has become the #1 Turkish foundation university for International Outlook (THE 2026), ranked 1001–1200 globally, with 19 research centres and over 800 academic staff.",
+    highlights: ["#1 in Turkey for International Outlook (THE 2026)","Clinical training in Liv Hospital & Medical Park","19 research centres across campus","CERN ATLAS Experiment member"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Physiotherapy","Computer Engineering","Business Administration","Psychology","Architecture","Biomedical Engineering","Artificial Intelligence"],
+    facts: ["Students from 100+ countries","Two modern campuses in Istanbul","Founded on MLP Care Group's 29-year hospital expertise","ESSSR (European Sustainability) member"]
+  },
+  bau: {
+    name: "Bahçeşehir University (BAU)",
+    est: "1998", location: "Beşiktaş, Istanbul (Bosphorus)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/0/08/Bah%C3%A7e%C5%9Fehir_%C3%9Cniversitesi_logo.png",
+    website: "https://www.bau.edu.tr/en",
+    badges: ["Business","Engineering","Medicine","Architecture"],
+    stats: [{n:"20,500+",l:"Students"},{n:"127",l:"Countries"},{n:"801–1000",l:"THE World Rank"},{n:"200+",l:"Global Partners"}],
+    about: "Founded in 1998 by the Bahçeşehir-Uğur Educational Foundation, BAU truly lives up to its motto 'A World University in the Heart of Istanbul'. Its main campus sits on the shores of the Bosphorus in Beşiktaş, with 6 campuses across Istanbul connected by a unique private shuttle-boat service (BAUPORT). BAU Global extends to Berlin, Toronto, Washington DC, Batumi, Cyprus, Hanoi and more — allowing students to study a semester abroad with no extra tuition fees.",
+    highlights: ["Free shuttle boat between Bosphorus campuses (BAUPORT)","Study abroad at BAU Global campuses in DC, Berlin, Toronto & more","8,000+ international students from 127 countries","190 Erasmus+ agreements with European universities"],
+    programs: ["Medicine","Dentistry","Computer Engineering","Business Administration","Architecture","Psychology","Law","Communication Design","Artificial Intelligence","International Relations","Fine Arts"],
+    facts: ["Founded 1998 — one of Turkey's 5th oldest private universities","Part of BAU Global — one of the largest education networks in Europe","250,000+ publication library","Superbrands of Turkey 2007 award winner"]
+  },
+  medipol: {
+    name: "Istanbul Medipol University",
+    est: "2009", location: "Kavacık & Haliç, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/d/d0/Istanbul_Medipol_%C3%9Cniversitesi_logo.png",
+    website: "https://www.medipol.edu.tr/en",
+    badges: ["Medicine","Dentistry","Pharmacy","Engineering"],
+    stats: [{n:"40,000+",l:"Students"},{n:"801–1000",l:"THE World Rank"},{n:"9th",l:"In Turkey"},{n:"9",l:"Affiliated Hospitals"}],
+    about: "Established in 2009, Istanbul Medipol University is one of Turkey's fastest-rising research universities — ranked 801–1000 globally and 9th nationally (THE 2026). With 40,000+ students from 130 countries across campuses on both sides of the Bosphorus, it is home to SABITA — described as one of Europe's most advanced research centres — and the Medipol Mega University Hospital, Turkey's first JCI-accredited private academic hospital with 810 beds and robotic surgery facilities.",
+    highlights: ["JCI-accredited Mega University Hospital (810 beds)","SABITA — one of Europe's most advanced research centres","Ranked 5th in Turkey for Business & Economics (THE)","Ranked 801–1000 globally (THE 2026)"],
+    programs: ["Medicine (English)","Dentistry","Pharmacy","Nursing","Physiotherapy","Computer Engineering","Artificial Intelligence Engineering","Architecture","Law","Psychology","Business Administration"],
+    facts: ["Students from 130 countries","12 faculties, 5 institutes, 4 vocational schools","85 student clubs","17 research centres"]
+  },
+  bilgi: {
+    name: "Istanbul Bilgi University",
+    est: "1996", location: "Santral & Dolapdere, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/2/2a/Istanbul_Bilgi_%C3%9Cniversitesi.png",
+    website: "https://www.bilgi.edu.tr/en",
+    badges: ["Law","Communications","Engineering","Social Sciences"],
+    stats: [{n:"801–1000",l:"THE World Rank"},{n:"1996",l:"Founded"},{n:"English",l:"Primary Language"},{n:"100+",l:"Intl. Partners"}],
+    about: "One of Turkey's most prestigious private universities, Istanbul Bilgi University was founded in 1996 and has maintained a global ranking of 801–1000 (THE). Known for its primarily English-medium instruction across Law, Communications, Engineering and Social Sciences, Bilgi is housed in a beautifully restored historical powerhouse complex (Santral Istanbul) — a former 1911 power station transformed into a living museum and cultural centre alongside the campus. A first choice for students who value a liberal arts environment in the heart of Istanbul.",
+    highlights: ["Primarily English-medium instruction","Campus in a restored 1911 powerhouse (Santral Istanbul)","Ranked 801–1000 globally (THE 2026)","Strong focus on human rights, law, and social sciences"],
+    programs: ["Law","Communications","Computer Engineering","Psychology","Architecture","International Relations","Business Administration","New Media","Economics","Fine Arts","Clinical Psychology"],
+    facts: ["Founded 1996 — one of Turkey's oldest private universities","Santral campus is also a museum and cultural centre","Strong European and US university partnerships","Member of European Law Faculties Association"]
+  },
+  biruni: {
+    name: "Biruni University",
+    est: "2014", location: "Topkapı, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/6/6f/Biruni_%C3%9Cniversitesi_logo.png",
+    website: "https://www.biruni.edu.tr/en",
+    badges: ["Medicine","Dentistry","Pharmacy","Health Sciences"],
+    stats: [{n:"2014",l:"Founded"},{n:"Own Hospital",l:"Teaching facility"},{n:"English",l:"Medicine track"},{n:"Intl.",l:"Accreditations"}],
+    about: "Biruni University is one of Istanbul's premier medical universities, named after the 11th-century polymath Abu Rayhan Biruni. Founded in 2014, it stands out for its fully equipped teaching hospital and international recognition across the Arab world (Iraq, Egypt, Yemen, Libya) and Europe. Medicine, Dentistry, Pharmacy, Physiotherapy and Nursing are available in both English and Turkish, supported by state-of-the-art simulation labs and a modern campus in Topkapı.",
+    highlights: ["Own fully-equipped teaching hospital","Medicine available in English and Turkish","Internationally recognised in Iraq, Egypt, Yemen & Libya","Cutting-edge simulation laboratories"],
+    programs: ["Medicine","Dentistry","Pharmacy","Physiotherapy & Rehabilitation","Nursing","Computer Engineering","Biomedical Engineering","Molecular Biology & Genetics","Psychology","Business Administration"],
+    facts: ["Named after 11th-century scholar Abu Rayhan Biruni","Strong Arab-world recognition for medical degrees","Modern simulation-based medical education","Central Topkapı location — easy transport links"]
+  },
+  aydin: {
+    name: "Istanbul Aydın University",
+    est: "2007", location: "Küçükçekmece, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/9/90/Istanbul_Ay%C4%B1n_%C3%9Cniversitesi_logo.png",
+    website: "https://www.aydin.edu.tr/en",
+    badges: ["Medicine","Engineering","Architecture","Business"],
+    stats: [{n:"100+",l:"Programs"},{n:"13",l:"Faculties"},{n:"Intl.",l:"Accredited"},{n:"EQAR",l:"Recognised"}],
+    about: "Istanbul Aydın University (IAU) was founded in 2007 and is known especially for Medicine, Dentistry and Health Sciences, with advanced training hospitals and EQAR (European Quality Assurance Register) recognition, making IAU degrees valid across the European Higher Education Area. Particularly popular among students from Iraq, Jordan, Egypt, Libya and Sudan where IAU medical degrees carry formal recognition. Offers 100+ programs across 13 faculties with a strong English-medium offering.",
+    highlights: ["EQAR recognised — degrees valid in European Higher Education Area","Medical degrees recognised in Iraq, Jordan, Egypt, Libya & Sudan","Advanced training hospitals","100+ programs across 13 faculties"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Architecture","Computer Engineering","Business Administration","International Relations","Law","Psychology","Gastronomy"],
+    facts: ["Founded 2007 by Aydın Doğan Foundation","European Higher Education Area membership","Strong presence among Arab-world students","Large European side campus"]
+  },
+  gelisim: {
+    name: "Istanbul Gelişim University",
+    est: "2008", location: "Avcılar, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/6/6e/Istanbul_Gelisim_Universitesi_logo.png",
+    website: "https://www.gelisim.edu.tr/en",
+    badges: ["Engineering","Dentistry","Business","Aviation"],
+    stats: [{n:"30,000+",l:"Students"},{n:"65",l:"Accredited Programs"},{n:"7th",l:"In Turkey (RUR)"},{n:"130+",l:"Global Partners"}],
+    about: "Istanbul Gelişim University is Turkey's most internationally accredited private university — 65 programs accredited by AQAS (Germany), ABET (USA) and UK bodies, including the only Turkish university with ABET accreditation for engineering. Founded in 2008 and now ranked 7th in Turkey by Round University Rankings with 30,000+ students, 100+ laboratories, and 130+ global university partnerships. Its campus in Avcılar on the European side is one of Istanbul's largest private university research complexes.",
+    highlights: ["Only Turkish university with ABET engineering accreditation","65 programs internationally accredited (AQAS, ABET, UK bodies)","Ranked 7th in Turkey (Round University Rankings)","100+ laboratories on campus"],
+    programs: ["Dentistry","Computer Engineering","Software Engineering","Aeronautical Engineering","Architecture","Business Administration","Nursing","Physiotherapy","Psychology","Aviation Management","International Relations"],
+    facts: ["Founded 2008 — rapidly risen to top 10 Turkish universities","18 research centres, 78 student clubs","Most internationally accredited private university in Turkey","Evening (EP) programs available for many fields"]
+  },
+  beykent: {
+    name: "Istanbul Beykent University",
+    est: "1997", location: "Beylikdüzü, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/1/10/Istanbul_Beykent_University_Logo.png",
+    website: "https://www.beykent.edu.tr/en",
+    badges: ["Engineering","Business","Fine Arts","Aviation"],
+    stats: [{n:"1997",l:"Founded"},{n:"100+",l:"Programs"},{n:"EN & TR",l:"Medium of Instruction"},{n:"Intl.",l:"Students Welcome"}],
+    about: "Istanbul Beykent University has been welcoming students since 1997 and offers one of Istanbul's broadest program portfolios — over 100 programs spanning Engineering, Business, Health Sciences, Fine Arts, Architecture and Aviation, taught in both English and Turkish. Known for its welcoming attitude toward international students, competitive tuition fees, and flexible schedule options. Located on the European side of Istanbul in Beylikdüzü with modern facilities and strong industry links.",
+    highlights: ["100+ programs in English and Turkish","Strong aviation and engineering faculties","Welcoming environment for international students","Competitive tuition fees among Istanbul universities"],
+    programs: ["Computer Engineering","Electrical Engineering","Business Administration","Architecture","Graphic Design","Nursing","Civil Aviation","Gastronomy","Psychology","International Trade","New Media"],
+    facts: ["Founded 1997 — over 25 years of experience","Multiple campuses across Istanbul","Active student clubs and social life","Strong industry partnerships for internships"]
+  },
+  nisantasi: {
+    name: "Nişantaşı University",
+    est: "2009", location: "Şişli, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/f/f4/Nisantasi_Universitesi_Logo.png",
+    website: "https://www.nisantasi.edu.tr/en",
+    badges: ["Design & Fashion","Business","Engineering","Health"],
+    stats: [{n:"2009",l:"Founded"},{n:"100+",l:"Programs"},{n:"Şişli",l:"Fashion District"},{n:"Affordable",l:"Competitive Fees"}],
+    about: "Located in Şişli — Istanbul's vibrant fashion, arts and culture district — Nişantaşı University was founded in 2009 and has grown rapidly to offer over 100 programs. Its prime location puts students at the centre of Istanbul's creative industries, making it a natural choice for Fashion Design, Graphic Design, Architecture and Business students. Nişantaşı consistently offers some of the most competitive tuition fees in Istanbul while maintaining a quality academic environment.",
+    highlights: ["Located in Istanbul's fashion & arts district","One of Istanbul's most affordable quality universities","Strong fashion, design and creative programs","Growing engineering and health sciences faculties"],
+    programs: ["Fashion Design","Graphic Design","Architecture","Interior Architecture","Business Administration","Computer Engineering","Nursing","Psychology","Gastronomy","New Media","International Trade"],
+    facts: ["Founded 2009 in the heart of Istanbul's Şişli district","5 faculties and a graduate studies institute","Active in student exchange programs","Known for design and creative arts excellence"]
+  },
+  okan: {
+    name: "Istanbul Okan University",
+    est: "1999", location: "Tuzla, Istanbul (Asian side)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/e3/Okan_Universitesi_logo.png",
+    website: "https://www.okan.edu.tr/en",
+    badges: ["Aviation","Engineering","Medicine","Law"],
+    stats: [{n:"ABET",l:"Engineering Accreditation"},{n:"1999",l:"Founded"},{n:"Asian Side",l:"Near Sabiha Gökçen"},{n:"Medicine",l:"English track"}],
+    about: "Istanbul Okan University has been a pioneer in Aviation education in Turkey since its founding in 1999 — located near Sabiha Gökçen International Airport on Istanbul's Asian side, making it the ideal base for aviation studies. Its Engineering programs carry ABET accreditation (the gold standard recognised by engineering employers globally), and the university also offers Medicine, Law, Business and Health Sciences. A popular choice for students targeting careers in aviation, engineering, or applied sciences.",
+    highlights: ["ABET-accredited engineering programs (globally recognised)","Located adjacent to Sabiha Gökçen Airport","Medicine program available in English","Pioneer in Turkish aviation higher education"],
+    programs: ["Aviation Management","Pilot Training","Computer Engineering","Architecture","Medicine","Law","Business Administration","Nursing","Clinical Psychology","Logistics","Gastronomy"],
+    facts: ["Founded 1999 on Istanbul's Asian shore","Adjacent to Turkey's 2nd-busiest airport","One of few Turkish universities with ABET engineering accreditation","Strong industry connections in aviation & logistics sectors"]
+  },
+  atlas: {
+    name: "Istanbul Atlas University",
+    est: "2018", location: "Kağıthane (Valley Campus), Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/0/0f/Istanbul_Atlas_%C3%9Cniversitesi_logosu.png",
+    website: "https://www.atlas.edu.tr/en",
+    badges: ["Medicine","Engineering","AI & Technology","Psychology"],
+    stats: [{n:"2018",l:"Founded"},{n:"110,000m²",l:"Valley Campus"},{n:"38",l:"Advanced Labs"},{n:"743rd",l:"Green Campus (Global)"}],
+    about: "Istanbul Atlas University is one of Istanbul's newest and most forward-thinking institutions, founded in 2018 around the concept of the 'butterfly effect' — the idea that small, focused actions create transformative outcomes. Its striking 110,000m² Valley Campus in Kağıthane features 38 advanced laboratories and Atlas Creative Labs — an innovation hub at the intersection of engineering, arts and artificial intelligence. Despite its young age, Atlas has already achieved international recognition, ranking 743rd globally for green campus sustainability.",
+    highlights: ["110,000m² modern Valley Campus in Kağıthane","Atlas Creative Labs — engineering × arts × AI hub","38 advanced laboratories","Ranked 743rd globally for sustainability (GreenMetric)"],
+    programs: ["Medicine","Dentistry","Pharmacy","Nursing","Computer Engineering","Artificial Intelligence","Architecture","Psychology","Business Administration","Interior Architecture","Molecular Biology"],
+    facts: ["Founded 2018 — built from the ground up with modern learning in mind","Interdisciplinary research philosophy","Rapidly rising in Turkish university rankings","One of Istanbul's most modern campus environments"]
+  },
+  arel: {
+    name: "Istanbul Arel University",
+    est: "2007", location: "Büyükçekmece, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/ec/Arel_Universitesi_logo.png",
+    website: "https://www.arel.edu.tr/en",
+    badges: ["Business","Law","Health Sciences","Engineering"],
+    stats: [{n:"2007",l:"Founded"},{n:"Coastal",l:"European Istanbul"},{n:"EN & TR",l:"Programs"},{n:"Affordable",l:"Fees"}],
+    about: "Istanbul Arel University sits on Istanbul's peaceful European coastline in Büyükçekmece, offering a campus environment away from the city's intensity while remaining well-connected by transport. Founded in 2007, Arel provides undergraduate, graduate and doctoral programs across Business, Law, Health Sciences, Psychology and Engineering. Known for student-friendly policies, affordable international fees, and a supportive academic community. A solid choice for students seeking a quality degree without the highest price tag.",
+    highlights: ["Peaceful coastal campus on European Istanbul","Affordable fees for international students","Bachelor's, Master's and PhD programs","Supportive international student services"],
+    programs: ["Business Administration","Law","Psychology","Nursing","Computer Engineering","Graphic Design","Architecture","International Trade","New Media","Health Management"],
+    facts: ["Founded 2007","Coastal setting with good transport links to city centre","Student-focused with strong advising services","Competitive fee structure for international students"]
+  },
+  kent: {
+    name: "Istanbul Kent University",
+    est: "2016", location: "Fatih, Istanbul",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/b/b8/Istanbul_Kent_Universitesi_logo.png",
+    website: "https://www.kent.edu.tr/en",
+    badges: ["Business","Psychology","Law","Engineering"],
+    stats: [{n:"2016",l:"Founded"},{n:"Fatih",l:"Central Istanbul"},{n:"Affordable",l:"Fees from $2,250/yr"},{n:"Growing",l:"Student Community"}],
+    about: "Istanbul Kent University was founded in 2016 and is one of Istanbul's younger, fast-growing universities. Located in Fatih — a central, historic district — it focuses on delivering quality education with a strong emphasis on student support and career development. Kent offers programs in Business Administration, Psychology, Law, Engineering and Health Sciences at some of the most competitive tuition rates in Istanbul, making it an accessible option for budget-conscious international students who still want a central Istanbul experience.",
+    highlights: ["Central Fatih location — excellent transport access","Fees among the most competitive in Istanbul (from ~$2,250/yr)","Strong student support and mentoring programs","Career development focus"],
+    programs: ["Business Administration","Psychology","Law","Computer Engineering","Architecture","International Trade","Health Management","Nursing","New Media","Economics","Political Science"],
+    facts: ["Founded 2016 — modern curriculum design","Located in historic Fatih district","Strong focus on personalised student experience","Growing research and graduate programs"]
+  },
+  isik: {
+    name: "Işık University",
+    est: "1996", location: "Şile, Istanbul (Black Sea coast)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/4/4b/Isik_Universitesi_logo.png",
+    website: "https://www.isikun.edu.tr/en",
+    badges: ["Engineering","Architecture","Business","Fine Arts"],
+    stats: [{n:"1996",l:"Founded"},{n:"MÜDEK",l:"Accredited Engineering"},{n:"Şile Forest",l:"Campus Setting"},{n:"Boutique",l:"Close-knit Community"}],
+    about: "Işık University was founded in 1996 in the forested hills of Şile on Istanbul's Black Sea coast — a serene, green campus setting about an hour from the city centre. Most of Işık's engineering programs carry MÜDEK accreditation (Turkey's engineering quality standard, aligned with international EUR-ACE requirements), making its graduates competitive globally. As a smaller, boutique institution, Işık offers an intimate student-faculty dynamic that larger universities can rarely match, with strong industry connections especially in engineering and architecture.",
+    highlights: ["Most engineering programs MÜDEK-accredited (EUR-ACE aligned)","Intimate campus community in Black Sea forest setting","Strong industry partnerships in engineering","One of Turkey's oldest private universities"],
+    programs: ["Computer Engineering","Industrial Engineering","Electrical Engineering","Mechanical Engineering","Architecture","Business Administration","Fine Arts","Interior Architecture","Economics","International Relations"],
+    facts: ["Founded 1996 — nearly 30 years of engineering excellence","Şile campus surrounded by protected Black Sea forest","Small class sizes — personalised education","MÜDEK accreditation recognised across Europe"]
+  },
+  beykoz: {
+    name: "Beykoz University",
+    est: "2016", location: "Beykoz, Istanbul (Bosphorus Asian shore)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/9/9b/Beykoz_%C3%9Cniversitesi.png",
+    website: "https://www.beykoz.edu.tr/en",
+    badges: ["Logistics","Business","Aviation","Technology"],
+    stats: [{n:"2016",l:"Founded"},{n:"Turkey's #1",l:"Logistics University"},{n:"Bosphorus",l:"Asian Shore"},{n:"50",l:"Programs"}],
+    about: "Beykoz University holds a unique position in Turkish higher education as the country's only institution dedicated to Logistics and Supply Chain management — born from the Beykoz Logistics Vocational School, which has trained Turkey's logistics professionals for decades. Set on the scenic Asian shores of the Bosphorus in historic Beykoz, the university now offers Bachelor's, Master's and PhD programs across Logistics, Business Administration, Technology and Aviation. Its deep industry ties give students direct pathways into Turkey's and the region's logistics sector.",
+    highlights: ["Turkey's only logistics-specialist university","Direct industry connections to major logistics companies","Scenic Asian Bosphorus campus in historic Beykoz","Bachelor's, Master's & PhD programs in logistics"],
+    programs: ["Logistics Management","International Trade & Finance","Business Administration","Computer Engineering","Aviation Management","Psychology","Architecture","Software Engineering","Civil Aviation Cabin Services"],
+    facts: ["Born from decades of logistics vocational education","Located in one of Istanbul's most scenic historic districts","Strong MBA and postgraduate logistics programs","Deep ties with Turkish and regional logistics industry"]
+  },
+  uskudar: {
+    name: "Üsküdar University",
+    est: "2011", location: "Üsküdar, Istanbul (Asian shore)",
+    logo: "https://upload.wikimedia.org/wikipedia/tr/e/e5/%C3%9Csk%C3%BCdar_%C3%9Cniversitesi_logo.png",
+    website: "https://www.uskudar.edu.tr/en",
+    badges: ["Neuroscience","Psychology","Nursing","Engineering"],
+    stats: [{n:"2011",l:"Founded"},{n:"Turkey's #1",l:"For Neuroscience"},{n:"Bosphorus",l:"Asian Shore"},{n:"29",l:"Research Centres"}],
+    about: "Üsküdar University was founded in 2011 on the serene Asian shore of the Bosphorus and has rapidly established itself as Turkey's leading institution for Neuroscience, Psychology and Behavioural Health Sciences. It runs dedicated research centres in Neuroscience, Addiction Rehabilitation, Forensic Science, Molecular Biology and AI — among the most active graduate schools in Turkey for Health and Behavioural Sciences. The university also offers strong Engineering, Nursing and Allied Health programs, all set against the backdrop of one of Istanbul's most beautiful districts.",
+    highlights: ["Turkey's premier Neuroscience & Psychology university","29 research centres including Forensic Science & AI","Located on scenic Bosphorus Asian shore in historic Üsküdar","Strong graduate programs in Health & Behavioural Sciences"],
+    programs: ["Neuroscience","Clinical Psychology","Applied Psychology","Nursing","Physiotherapy","Computer Engineering","Cyber Security","Electrical Engineering","Bioengineering","Speech & Language Therapy","Health Management"],
+    facts: ["Founded 2011 by the Üsküdar Educational Foundation","Strong focus on mental health and neuroscience research","Beautiful campus in one of Istanbul's oldest districts","Active research in addiction, forensics and molecular biology"]
+  }
+};
+
+function openUniModal(btn) {
+  // Find which card was clicked
+  const card = btn.closest('.uni-card');
+  const uniName = card.querySelector('.uni-name').textContent.trim();
+  // Find matching key
+  const key = Object.keys(UNI_DATA).find(k => UNI_DATA[k].name === uniName || uniName.includes(UNI_DATA[k].name.split(' ')[0]));
+  const uni = UNI_DATA[key];
+  if (!uni) return;
+
+  const body = document.getElementById('uniModalBody');
+  body.innerHTML = `
+    <div class="uni-modal-hero">
+      <img src="${uni.logo}" alt="${uni.name}" class="uni-modal-logo" onerror="this.style.display='none'">
+      <div class="uni-modal-titleblock">
+        <div class="uni-modal-name">${uni.name}</div>
+        <div class="uni-modal-location">📍 ${uni.location} &nbsp;·&nbsp; Est. ${uni.est}</div>
+        <div class="uni-modal-badges">
+          ${uni.badges.map(b => `<span class="uni-modal-badge">${b}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="uni-modal-content">
+      <p class="uni-modal-about">${uni.about}</p>
+      <div class="uni-modal-stats">
+        ${uni.stats.map(s => `<div class="uni-modal-stat"><div class="uni-modal-stat-num">${s.n}</div><div class="uni-modal-stat-label">${s.l}</div></div>`).join('')}
+      </div>
+      <div class="uni-modal-grid">
+        <div>
+          <div class="uni-modal-section-title">Key Highlights</div>
+          <ul class="uni-modal-list">
+            ${uni.highlights.map(h => `<li>${h}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <div class="uni-modal-section-title">Key Facts</div>
+          <ul class="uni-modal-list">
+            ${uni.facts.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="uni-modal-section-title">Available Programs</div>
+      <div class="uni-modal-programs">
+        ${uni.programs.map(p => `<span class="uni-modal-program-tag">${p}</span>`).join('')}
+      </div>
+      <div class="uni-modal-footer">
+        <button class="uni-modal-apply-btn" onclick="closeUniModal();openModal();">Apply for This University →</button>
+        <a href="${uni.website}" target="_blank" rel="noopener" class="uni-modal-visit">Official Website ↗</a>
+      </div>
+    </div>`;
+
+  document.getElementById('uniModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeUniModal() {
+  document.getElementById('uniModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUniModal(); });
+
 // ── AGENT FORM SUBMISSION ──
 function submitAgent() {
   const name    = document.getElementById('agent-name')?.value.trim();
@@ -3476,5 +4125,13 @@ function submitAgent() {
 }
 
 </script>
+<!-- UNIVERSITY DETAIL MODAL -->
+<div class="uni-modal-overlay" id="uniModal" onclick="if(event.target===this)closeUniModal()">
+  <div class="uni-modal">
+    <button class="uni-modal-close" onclick="closeUniModal()" aria-label="Close">✕</button>
+    <div class="uni-modal-body" id="uniModalBody"></div>
+  </div>
+</div>
+
 </body>
 </html>
