@@ -5767,9 +5767,11 @@ function goToStep(n) {
   }
   showStep(n);
 }
+const uploadedFiles = {};
 function handleFileUpload(input,btnId){
   const btn=document.getElementById(btnId); if(!btn||!input.files||!input.files.length) return;
   btn.classList.add('uploaded');
+  uploadedFiles[btnId] = Array.from(input.files);
   const names=Array.from(input.files).map(f=>f.name);
   const last=btn.childNodes[btn.childNodes.length-1];
   if(last&&last.nodeType===3) last.textContent=input.files.length>1?' ✓ '+input.files.length+' files':' ✓ '+(names[0].length>22?names[0].substring(0,22)+'…':names[0]);
@@ -5787,18 +5789,33 @@ function submitApplication(){
   const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
   const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('\n');
 
+  const fd = new FormData();
+  fd.append('access_key', '7f15a283-e287-4462-a463-035bce9aeeea');
+  fd.append('subject', 'New Application \u2014 ' + fname + ' ' + lname);
+  fd.append('from_name', 'Aspire Education Website');
+  fd.append('name', fname + ' ' + lname);
+  fd.append('email', email);
+  fd.append('phone', phone || '\u2014');
+  fd.append('programs', progLines || '\u2014');
+
+  const docLabels = {
+    'btn-transcripts': 'Transcripts',
+    'btn-passport':    'Passport_ID',
+    'btn-diploma':     'Diploma',
+    'btn-language':    'Language_Score',
+    'btn-other':       'Other'
+  };
+  Object.entries(uploadedFiles).forEach(([btnId, files]) => {
+    const label = docLabels[btnId] || btnId;
+    files.forEach((file, i) => {
+      fd.append(label + (files.length > 1 ? '_' + (i+1) : ''), file, file.name);
+    });
+  });
+
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-      subject: 'New Application \u2014 ' + fname + ' ' + lname,
-      from_name: 'Aspire Education Website',
-      name: fname + ' ' + lname,
-      email: email,
-      phone: phone || '\u2014',
-      programs: progLines || '\u2014'
-    })
+    headers: { 'Accept': 'application/json' },
+    body: fd
   }).catch(()=>{});
 
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
