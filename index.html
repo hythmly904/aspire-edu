@@ -1254,7 +1254,7 @@
     <div class="modal-step" id="step1">
       <p class="modal-tag" data-i18n="modal_step1_tag">Step 1 of 3</p>
       <h2 data-i18n="modal_step1_h2">Choose Your Program</h2>
-      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
+      <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 3 programs (1st choice is required).</p>
 
       <!-- Search bar -->
       <div class="prog-search-wrap">
@@ -1279,7 +1279,7 @@
         <div class="prog-results" id="progResults"></div>
       </div>
 
-      <!-- Selected programs (up to 5 slots) -->
+      <!-- Selected programs (up to 3 slots) -->
       <div class="prog-selected-wrap">
         <div class="prog-slot prog-slot-required" id="progSlot0">
           <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
@@ -1299,18 +1299,7 @@
             <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
           </div>
         </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot3">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent3">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot4">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent4">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
+
       </div>
 
       <p class="modal-step-error" id="step1-error"></p>
@@ -5966,13 +5955,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 // ── MODAL & PROGRAM SEARCH JS ──
 let currentStep = 1;
-let progSelected = [null,null,null,null,null];
+let progSelected = [null,null,null];
 let progDegreeFilter = 'all';
 let progSearchQuery = '';
 
 function openModal() {
   currentStep = 1;
-  progSelected = [null,null,null,null,null];
+  progSelected = [null,null,null];
   progSearchQuery = ''; progDegreeFilter = 'all';
   const si = document.getElementById('progSearchInput');
   if (si) si.value = '';
@@ -6168,7 +6157,7 @@ function addProgram(el) {
 function removeProgram(slot){
   progSelected[slot]=null;
   const compact=progSelected.filter(Boolean);
-  for(let i=0;i<5;i++) progSelected[i]=compact[i]||null;
+  for(let i=0;i<3;i++) progSelected[i]=compact[i]||null;
   renderProgSlots(); renderProgResults();
 }
 function renderProgSlots() {
@@ -6177,15 +6166,13 @@ function renderProgSlots() {
   const slotLabels = [
     t.prog_slot_1 || '1st Choice',
     t.prog_slot_2 || '2nd Choice',
-    t.prog_slot_3 || '3rd Choice',
-    t.prog_slot_4 || '4th Choice',
-    t.prog_slot_5 || '5th Choice'
+    t.prog_slot_3 || '3rd Choice'
   ];
   const reqLabel = t.prog_required || 'Required';
   const optLabel = t.prog_optional || 'Optional';
   const phLabel = t.prog_slot_ph || 'Search and click a result above to select';
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     const content = document.getElementById('progSlotContent' + i);
     const labelEl = document.querySelector('#progSlot' + i + ' .prog-slot-label');
     if (!content) continue;
