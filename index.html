@@ -446,6 +446,8 @@
       .modal-submit, .modal-back-btn { width: 100%; text-align: center; }
       .doc-item { flex-direction: column; align-items: flex-start; gap: .5rem; }
       .doc-upload-btn { width: 100%; justify-content: center; }
+      .doc-upload-btn.uploading { opacity: .6; pointer-events: none; cursor: wait; }
+      .doc-upload-btn.uploading { opacity: .7; pointer-events: none; }
       .modal-form-row { grid-template-columns: 1fr; }
       footer { padding: 2rem 5vw; }
       .footer-social { flex-direction: column; gap: .7rem; }
@@ -1214,9 +1216,14 @@
     }
     .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
     .wa-float svg { width: 28px; height: 28px; }
+    /* Hide float when any modal is open */
+    .modal-open-wa .wa-float { display: none !important; }
     @media (max-width: 640px) {
       .wa-float { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; }
       .wa-float svg { width: 26px; height: 26px; }
+      /* Add padding so page content isn't hidden behind float */
+      .form-card { padding-bottom: 5rem; }
+      body { padding-bottom: 70px; }
     }
   </style>
 </head>
@@ -3065,11 +3072,13 @@ function openUniModal(btn) {
 
   document.getElementById('uniModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open-wa');
 }
 
 function closeUniModal() {
   document.getElementById('uniModal').classList.remove('open');
   document.body.style.overflow = '';
+  document.body.classList.remove('modal-open-wa');
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUniModal(); });
 
@@ -5962,6 +5971,7 @@ let progSearchQuery = '';
 function openModal() {
   currentStep = 1;
   progSelected = [null,null,null];
+  document.body.classList.add('modal-open-wa');
   progSearchQuery = ''; progDegreeFilter = 'all';
   const si = document.getElementById('progSearchInput');
   if (si) si.value = '';
@@ -5983,7 +5993,7 @@ function openModal() {
   document.getElementById('registerModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal() { document.getElementById('registerModal').classList.remove('open'); document.body.style.overflow=''; }
+function closeModal() { document.getElementById('registerModal').classList.remove('open'); document.body.style.overflow=''; document.body.classList.remove('modal-open-wa'); }
 function showStep(n) {
   [1,2,3].forEach(i => {
     const el=document.getElementById('step'+i); if(el) el.style.display=(i===n)?'block':'none';
@@ -6011,18 +6021,39 @@ function goToStep(n) {
   showStep(n);
 }
 const uploadedFiles = {};
-function handleFileUpload(input,btnId){
-  const btn=document.getElementById(btnId); if(!btn||!input.files||!input.files.length) return;
-  btn.classList.add('uploaded');
-  uploadedFiles[btnId] = Array.from(input.files);
-  const names=Array.from(input.files).map(f=>f.name);
-  const last=btn.childNodes[btn.childNodes.length-1];
-  if(last&&last.nodeType===3) last.textContent=input.files.length>1?' ✓ '+input.files.length+' files':' ✓ '+(names[0].length>22?names[0].substring(0,22)+'…':names[0]);
+const UC_KEY = '378d0f42f96fb2e991ed';
+
+async function handleFileUpload(input, btnId) {
+  const btn = document.getElementById(btnId);
+  if (!btn || !input.files || !input.files.length) return;
+  const file = input.files[0];
+  const last = btn.childNodes[btn.childNodes.length - 1];
+  btn.classList.remove('uploaded');
+  btn.classList.add('uploading');
+  if (last && last.nodeType === 3) last.textContent = ' Uploading…';
+  try {
+    const fd = new FormData();
+    fd.append('UPLOADCARE_PUB_KEY', UC_KEY);
+    fd.append('UPLOADCARE_STORE', '1');
+    fd.append('file', file, file.name);
+    const res = await fetch('https://upload.uploadcare.com/base/', { method: 'POST', body: fd });
+    const data = await res.json();
+    const url = 'https://ucarecdn.com/' + data.file + '/';
+    uploadedFiles[btnId] = { name: file.name, url };
+    btn.classList.remove('uploading');
+    btn.classList.add('uploaded');
+    const label = file.name.length > 22 ? file.name.substring(0, 22) + '…' : file.name;
+    if (last && last.nodeType === 3) last.textContent = ' ✓ ' + label;
+  } catch(e) {
+    btn.classList.remove('uploading');
+    if (last && last.nodeType === 3) last.textContent = ' ⚠ Failed — try again';
+  }
 }
+
 function submitApplication(){
   const t2=document.getElementById('btn-transcripts'); const p2=document.getElementById('btn-passport');
   if(!t2?.classList.contains('uploaded')||!p2?.classList.contains('uploaded')){
-    document.getElementById('step3-error').textContent='\u26a0 Please upload Transcripts & Passport.'; return;
+    document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
   }
   document.getElementById('step3-error').textContent='';
   const fname=document.getElementById('reg-fname')?.value||'';
@@ -6032,26 +6063,21 @@ function submitApplication(){
   const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
   const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('\n');
 
-  const docNames = Object.entries(uploadedFiles).map(([btnId, files]) => {
-    const label = {
-      'btn-transcripts':'Transcripts','btn-passport':'Passport/ID',
-      'btn-diploma':'Diploma','btn-language':'Language Score','btn-other':'Other'
-    }[btnId] || btnId;
-    return label + ': ' + files.map(f=>f.name).join(', ');
-  }).join('\n');
+  const labels = {'btn-transcripts':'Transcripts','btn-passport':'Passport/ID','btn-diploma':'Diploma','btn-language':'Language Score','btn-other':'Other'};
+  const docLines = Object.entries(uploadedFiles).map(([id,f]) => (labels[id]||id)+': '+f.url+' ('+f.name+')').join('\n');
 
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
       access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-      subject: 'New Application \u2014 ' + fname + ' ' + lname,
+      subject: 'New Application — ' + fname + ' ' + lname,
       from_name: 'Aspire Education Website',
       name: fname + ' ' + lname,
       email: email,
-      phone: phone || '\u2014',
-      programs: progLines || '\u2014',
-      documents_uploaded: docNames || '\u2014'
+      phone: phone || '—',
+      programs: progLines || '—',
+      documents: docLines || '—'
     })
   }).catch(()=>{});
 
