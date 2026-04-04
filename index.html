@@ -968,6 +968,90 @@
     .uni-region-divider::before, .uni-region-divider::after {
       content: ''; flex: 1; height: 1px; background: #e8e2da;
     }
+
+    /* ===== MOBILE FIXES ===== */
+
+    /* 1. Prevent iOS Safari auto-zoom (inputs need >= 16px font-size) */
+    @media (max-width: 768px) {
+      input, select, textarea { font-size: 16px !important; }
+    }
+
+    /* 2. Collapse consultation form first/last name row on mobile */
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* 3. Bigger touch targets */
+    @media (max-width: 768px) {
+      .prog-chip { padding: .5rem .85rem; min-height: 38px; }
+      .lang-btn { min-height: 36px; min-width: 36px; }
+      .modal-close {
+        width: 44px; height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        top: .75rem; right: .75rem;
+      }
+      .uni-modal-close { width: 44px; height: 44px; }
+      .doc-upload-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .prog-slot-remove { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+      .form-submit, .modal-submit, .agent-submit { min-height: 52px; }
+      .btn-primary { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; }
+    }
+
+    /* 4. Modal slides up from bottom on mobile (sheet pattern) */
+    @media (max-width: 640px) {
+      .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .modal {
+        border-radius: 18px 18px 0 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 94vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 1.5rem 1.1rem calc(1.5rem + env(safe-area-inset-bottom));
+      }
+      /* Stop double-scroll: let the modal itself scroll, not inner step */
+      .modal-step {
+        max-height: none;
+        overflow-y: visible;
+      }
+      /* Drag handle hint */
+      .modal::before {
+        content: '';
+        display: block;
+        width: 40px; height: 4px;
+        background: #ddd; border-radius: 2px;
+        margin: 0 auto 1.25rem;
+      }
+      .prog-results-wrap { max-height: 200px; }
+    }
+
+    /* 5. Nav on very small screens */
+    @media (max-width: 380px) {
+      nav { padding: .75rem 3vw; gap: .2rem; }
+      .lang-btn { padding: .35rem .45rem; font-size: .68rem; }
+      .nav-register-btn { padding: .4rem .7rem; font-size: .76rem; }
+    }
+
+    /* 6. Remove tap highlight & improve tap responsiveness */
+    * { -webkit-tap-highlight-color: transparent; }
+    button, a, label, [onclick] { touch-action: manipulation; }
+
+    /* 7. iOS momentum scrolling in scrollable containers */
+    .modal, .prog-results-wrap, .prog-selected-wrap, .uni-modal {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 8. Section padding tightening */
+    @media (max-width: 640px) {
+      .unis-section { padding: 3rem 4vw; }
+      .unis-header { margin-bottom: 2rem; }
+      .form-section { padding: 3rem 5vw 4rem; }
+      .form-card { box-shadow: 4px 4px 0 var(--red); }
+    }
+
   </style>
 </head>
 <body>
