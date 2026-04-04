@@ -1064,11 +1064,18 @@
         position: sticky;
         bottom: 0;
         background: var(--white);
-        padding: .6rem 0 .25rem;
+        /* Pull out to full modal width, overriding modal's side padding */
+        margin-left: -1.1rem;
+        margin-right: -1.1rem;
+        padding: .6rem 1.1rem .4rem;
         border-top: 2px solid #ede8e0;
         z-index: 10;
         box-shadow: 0 -4px 12px rgba(26,18,9,0.06);
       }
+      /* Tighter internal padding so text has more room */
+      .prog-selected-wrap .prog-slot-content { padding: .4rem .5rem; }
+      .prog-selected-wrap .prog-slot-label { padding: .25rem .5rem; }
+      .prog-selected-wrap .prog-slot { border-radius: 4px; }
       .prog-results-wrap { max-height: 220px; }
     }
 
