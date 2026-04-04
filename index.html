@@ -1058,8 +1058,17 @@
 
     /* 9. Apply Now modal — mobile-specific tuning */
 
-    /* Selected slots — always visible, results float above via position:absolute */
+    /* Selected slots — sticky at bottom of modal so always visible */
     @media (max-width: 768px) {
+      .prog-selected-wrap {
+        position: sticky;
+        bottom: 0;
+        background: var(--white);
+        padding: .6rem 0 .25rem;
+        border-top: 2px solid #ede8e0;
+        z-index: 10;
+        box-shadow: 0 -4px 12px rgba(26,18,9,0.06);
+      }
       .prog-results-wrap { max-height: 220px; }
     }
 
@@ -1239,42 +1248,6 @@
       <h2 data-i18n="modal_step1_h2">Choose Your Program</h2>
       <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
 
-      <!-- Selected programs — at top so always visible -->
-      <div class="prog-selected-wrap">
-        <div class="prog-slot prog-slot-required" id="progSlot0">
-          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent0">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot1">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent1">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot2">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent2">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot3">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent3">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot4">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent4">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="height:.75rem"></div>
-
       <!-- Search bar -->
       <div class="prog-search-wrap">
         <span class="prog-search-icon">🔍</span>
@@ -1296,6 +1269,40 @@
       <!-- Results list -->
       <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
         <div class="prog-results" id="progResults"></div>
+      </div>
+
+      <!-- Selected programs (up to 5 slots) -->
+      <div class="prog-selected-wrap">
+        <div class="prog-slot prog-slot-required" id="progSlot0">
+          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent0">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot1">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent1">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot2">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent2">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot3">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent3">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot4">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent4">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
+          </div>
+        </div>
       </div>
 
       <p class="modal-step-error" id="step1-error"></p>
@@ -6137,7 +6144,7 @@ function addProgram(el) {
   renderProgSlots();
   renderProgResults();
 
-  // Collapse results and scroll to top to reveal filled slot
+  // Collapse results and scroll to the filled slot
   const wrap = document.getElementById('progResultsWrap');
   if (wrap) wrap.style.display = 'none';
   const inp = document.getElementById('progSearchInput');
@@ -6145,11 +6152,10 @@ function addProgram(el) {
   const clr = document.getElementById('progSearchClear');
   if (clr) clr.style.display = 'none';
   progSearchQuery = '';
-  // Scroll modal to top so the filled slot is immediately visible
   setTimeout(() => {
-    const modal = document.querySelector('.modal');
-    if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 60);
+    const slotEl = document.getElementById('progSlotContent' + emptySlot);
+    if (slotEl) slotEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 80);
 }
 function removeProgram(slot){
   progSelected[slot]=null;
