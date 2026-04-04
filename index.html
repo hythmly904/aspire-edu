@@ -1052,6 +1052,73 @@
       .form-card { box-shadow: 4px 4px 0 var(--red); }
     }
 
+    /* 9. Apply Now modal — mobile-specific tuning */
+    @media (max-width: 640px) {
+      /* Compact modal header */
+      .modal h2 { font-size: 1.3rem; margin-bottom: .35rem; }
+      .modal-sub { font-size: .85rem; margin-bottom: 1.2rem; }
+      .modal-tag { margin-bottom: .5rem; }
+
+      /* Step indicator — tighter */
+      .step-indicator { margin-bottom: .85rem; }
+      .step-dot small { display: none; }
+
+      /* Search input full width, easy to tap */
+      .prog-search-wrap { border-radius: 8px; }
+      .prog-search-input { font-size: 16px !important; padding: .85rem 0; }
+
+      /* Filter chips — horizontally scrollable, no wrap */
+      .prog-filter-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: .25rem;
+        gap: .35rem;
+        scrollbar-width: none;
+      }
+      .prog-filter-row::-webkit-scrollbar { display: none; }
+      .prog-chip { flex-shrink: 0; min-height: 34px; }
+
+      /* Results list — taller so user can see more without scrolling */
+      .prog-results-wrap { max-height: 240px; border-radius: 8px; }
+
+      /* Each result row — bigger tap area, text wraps */
+      .prog-result-item { padding: .75rem .85rem; align-items: flex-start; }
+      .prog-result-name {
+        white-space: normal;
+        font-size: .85rem;
+        line-height: 1.35;
+      }
+      .prog-result-meta { font-size: .72rem; }
+      .prog-result-add {
+        padding: .35rem .65rem;
+        min-height: 32px;
+        align-self: center;
+      }
+
+      /* Selected slots — compact */
+      .prog-slot-filled-name {
+        white-space: normal;
+        font-size: .8rem;
+        line-height: 1.3;
+      }
+      .prog-slot-filled-meta { font-size: .68rem; }
+      .prog-slot-label { font-size: .7rem; }
+
+      /* Step 2 fields */
+      .modal-form-row { grid-template-columns: 1fr; gap: .75rem; }
+      .modal-field input, .modal-field select { font-size: 16px !important; padding: .85rem 1rem; }
+
+      /* Document upload rows */
+      .doc-item { gap: .65rem; }
+      .doc-upload-btn { font-size: .82rem; padding: .6rem 1rem; }
+
+      /* Continue / Submit buttons */
+      .modal-submit { padding: 1rem; font-size: .95rem; min-height: 52px; }
+      .modal-back-btn { min-height: 44px; }
+      .modal-nav-row { gap: .6rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -5954,14 +6021,10 @@ function renderProgResults() {
     const degLabel = degLabels[p.d] || p.d;
     const langLabel = p.lang === 'English' ? (t.lang_english || 'English') : p.lang === 'Turkish' ? (t.lang_turkish || 'Turkish') : p.lang;
     const uniShort = p.u.replace('Istanbul ','').replace(' University','').replace('University','').replace('Bahçeşehir ','BAU ').trim();
-    const logoHtml = p.logo ? `<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px">` : '';
     return `<div class="prog-result-item${isSelected ? ' selected' : ''}" ${!isSelected ? `onclick="addProgram(this)"` : ''} data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)} data-tr=${JSON.stringify(p.tr)} data-ar=${JSON.stringify(p.ar)} data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
-      <div class="prog-result-info" style="display:flex;align-items:center">
-        ${logoHtml}
-        <div>
-          <div class="prog-result-name">${progName}</div>
-          <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
-        </div>
+      <div class="prog-result-info">
+        <div class="prog-result-name">${progName}</div>
+        <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0">
         <span class="prog-result-fee">${p.fee}</span>
@@ -6025,10 +6088,8 @@ function renderProgSlots() {
       const uniName = p.u;
       const degLabel = {bachelor: t.deg_bachelor||"Bachelor's", associate: t.deg_associate||"Associate", master: t.deg_master||"Master's", phd: t.deg_phd||"PhD"}[p.d] || p.d;
       content.className = 'prog-slot-content filled';
-      const slotLogo = p.logo ? `<img src="${p.logo}" alt="" style="height:24px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:8px">` : '';
       content.innerHTML = `
         <div class="prog-slot-filled">
-          ${slotLogo}
           <div class="prog-slot-filled-info">
             <div class="prog-slot-filled-name">${progName}</div>
             <div class="prog-slot-filled-meta">${uniName} · ${degLabel} · <strong>${p.fee}</strong></div>
