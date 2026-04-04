@@ -1954,20 +1954,20 @@
     <div class="form-row">
       <div class="form-group">
         <label data-i18n="label_fname">First Name</label>
-        <input type="text" placeholder="Ahmed" />
+        <input type="text" id="consult-fname" placeholder="Ahmed" />
       </div>
       <div class="form-group">
         <label data-i18n="label_lname">Last Name</label>
-        <input type="text" placeholder="Al-Rashid" />
+        <input type="text" id="consult-lname" placeholder="Al-Rashid" />
       </div>
     </div>
     <div class="form-group">
       <label data-i18n="label_email">Email Address</label>
-      <input type="email" placeholder="ahmed@email.com" />
+      <input type="email" id="consult-email" placeholder="ahmed@email.com" />
     </div>
     <div class="form-group">
       <label data-i18n="label_phone">Phone / WhatsApp</label>
-      <input type="tel" placeholder="+1 234 567 8900" />
+      <input type="tel" id="consult-phone" placeholder="+1 234 567 8900" />
     </div>
     <div class="form-group">
       <label data-i18n="label_field">Field of Study</label>
@@ -1992,7 +1992,8 @@
         <option data-i18n="level3">Master's (applying for PhD)</option>
       </select>
     </div>
-    <button class="form-submit" data-i18n="form_submit">Request My Free Consultation →</button>
+    <button class="form-submit" onclick="submitConsultation()" data-i18n="form_submit">Request My Free Consultation →</button>
+    <p id="consult-success" style="display:none;color:#2e7d32;font-weight:500;margin-top:.75rem;">✓ Request received! We’ll be in touch within 24 hours.</p>
     <p class="form-note" data-i18n="form_note">No fees. No commitment. We'll contact you within 24 hours.</p>
   </div>
 </section>
@@ -2842,19 +2843,25 @@ function submitAgent() {
     alert('Please fill in all required fields.');
     return;
   }
-  const company = document.getElementById('agent-company')?.value.trim() || '—';
-  const msg     = document.getElementById('agent-msg')?.value.trim() || '—';
-  const body = 'Agent Application%0A%0A'
-    + 'Name: ' + encodeURIComponent(name) + '%0A'
-    + 'Email: ' + encodeURIComponent(email) + '%0A'
-    + 'Phone: ' + encodeURIComponent(phone) + '%0A'
-    + 'Country: ' + encodeURIComponent(country) + '%0A'
-    + 'Company: ' + encodeURIComponent(company) + '%0A%0A'
-    + 'Message:%0A' + encodeURIComponent(msg);
-  var a = 'info', b = 'aspire', d = 'tr';
-  window.location.href = 'mailto:' + a + '@' + b + '.' + d
-    + '?subject=' + encodeURIComponent('Agent Application — ' + name)
-    + '&body=' + body;
+  const company = document.getElementById('agent-company')?.value.trim() || '\u2014';
+  const msg     = document.getElementById('agent-msg')?.value.trim() || '\u2014';
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Agent Application \u2014 ' + name,
+      from_name: 'Aspire Education Website',
+      name: name,
+      email: email,
+      phone: phone,
+      country: country,
+      company: company,
+      message: msg
+    })
+  }).catch(()=>{});
+
   const s = document.getElementById('agent-success');
   if (s) { s.style.display = 'block'; }
 }
@@ -5770,7 +5777,7 @@ function handleFileUpload(input,btnId){
 function submitApplication(){
   const t2=document.getElementById('btn-transcripts'); const p2=document.getElementById('btn-passport');
   if(!t2?.classList.contains('uploaded')||!p2?.classList.contains('uploaded')){
-    document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
+    document.getElementById('step3-error').textContent='\u26a0 Please upload Transcripts & Passport.'; return;
   }
   document.getElementById('step3-error').textContent='';
   const fname=document.getElementById('reg-fname')?.value||'';
@@ -5778,10 +5785,22 @@ function submitApplication(){
   const email=document.getElementById('reg-email')?.value||'';
   const phone=document.getElementById('reg-phone')?.value||'';
   const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
-  const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('%0A');
-  const body='Name: '+fname+' '+lname+'%0AEmail: '+email+'%0APhone: '+(phone||'—')+'%0A%0APrograms:%0A'+progLines;
-  const mailto='mailto:info@aspire.tr?subject=New Application — '+encodeURIComponent(fname+' '+lname)+'&body='+body;
-  window.location.href=mailto;
+  const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('\n');
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'New Application \u2014 ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '\u2014',
+      programs: progLines || '\u2014'
+    })
+  }).catch(()=>{});
+
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
   const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
   const sv=document.getElementById('modalSuccessView');if(sv)sv.style.display='block';
@@ -5951,6 +5970,41 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
+
+
+function submitConsultation() {
+  const fname = document.getElementById('consult-fname')?.value.trim();
+  const lname = document.getElementById('consult-lname')?.value.trim();
+  const email = document.getElementById('consult-email')?.value.trim();
+  const phone = document.getElementById('consult-phone')?.value.trim();
+  const field = document.getElementById('field-select')?.value || '—';
+  const level = document.getElementById('level-select')?.value || '—';
+
+  if (!fname || !lname || !email) {
+    alert('Please fill in your name and email address.');
+    return;
+  }
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Free Consultation Request — ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '—',
+      field_of_study: field,
+      education_level: level
+    })
+  }).catch(() => {});
+
+  const btn = document.querySelector('.form-submit');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sent ✓'; }
+  const s = document.getElementById('consult-success');
+  if (s) s.style.display = 'block';
+}
 
 // ── LANGUAGE / TRANSLATION ENGINE ──
 let currentLang = 'en';
