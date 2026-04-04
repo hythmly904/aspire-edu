@@ -3083,7 +3083,7 @@ function closeUniModal() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUniModal(); });
 
 // ── AGENT FORM SUBMISSION ──
-function submitAgent() {
+async function submitAgent() {
   const name    = document.getElementById('agent-name')?.value.trim();
   const email   = document.getElementById('agent-email')?.value.trim();
   const phone   = document.getElementById('agent-phone')?.value.trim();
@@ -3095,24 +3095,29 @@ function submitAgent() {
   const company = document.getElementById('agent-company')?.value.trim() || '\u2014';
   const msg     = document.getElementById('agent-msg')?.value.trim() || '\u2014';
 
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-      subject: 'Agent Application \u2014 ' + name,
-      from_name: 'Aspire Education Website',
-      name: name,
-      email: email,
-      phone: phone,
-      country: country,
-      company: company,
-      message: msg
-    })
-  }).catch(()=>{});
-
-  const s = document.getElementById('agent-success');
-  if (s) { s.style.display = 'block'; }
+  const agentBtn = document.querySelector('.agent-submit');
+  if (agentBtn) { agentBtn.disabled = true; agentBtn.textContent = 'Sending…'; }
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+        subject: 'Agent Application — ' + name,
+        from_name: 'Aspire Education Website',
+        name: name, email: email, phone: phone,
+        country: country, company: company, message: msg
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error('Failed');
+    if (agentBtn) agentBtn.textContent = 'Sent ✓';
+    const s = document.getElementById('agent-success');
+    if (s) s.style.display = 'block';
+  } catch(e) {
+    if (agentBtn) { agentBtn.disabled = false; agentBtn.textContent = 'Submit Agent Application →'; }
+    alert('Submission failed. Please check your connection and try again.');
+  }
 }
 </script>
 
@@ -6050,12 +6055,17 @@ async function handleFileUpload(input, btnId) {
   }
 }
 
-function submitApplication(){
+async function submitApplication(){
   const t2=document.getElementById('btn-transcripts'); const p2=document.getElementById('btn-passport');
   if(!t2?.classList.contains('uploaded')||!p2?.classList.contains('uploaded')){
     document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
   }
   document.getElementById('step3-error').textContent='';
+
+  // Disable submit button and show sending state
+  const submitBtn = document.querySelector('#step3 .modal-submit');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
   const fname=document.getElementById('reg-fname')?.value||'';
   const lname=document.getElementById('reg-lname')?.value||'';
   const email=document.getElementById('reg-email')?.value||'';
@@ -6066,20 +6076,28 @@ function submitApplication(){
   const labels = {'btn-transcripts':'Transcripts','btn-passport':'Passport/ID','btn-diploma':'Diploma','btn-language':'Language Score','btn-other':'Other'};
   const docLines = Object.entries(uploadedFiles).map(([id,f]) => (labels[id]||id)+': '+f.url+' ('+f.name+')').join('\n');
 
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-      subject: 'New Application — ' + fname + ' ' + lname,
-      from_name: 'Aspire Education Website',
-      name: fname + ' ' + lname,
-      email: email,
-      phone: phone || '—',
-      programs: progLines || '—',
-      documents: docLines || '—'
-    })
-  }).catch(()=>{});
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+        subject: 'New Application — ' + fname + ' ' + lname,
+        from_name: 'Aspire Education Website',
+        name: fname + ' ' + lname,
+        email: email,
+        phone: phone || '—',
+        programs: progLines || '—',
+        documents: docLines || '—'
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.message || 'Failed');
+  } catch(e) {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit My Application →'; }
+    document.getElementById('step3-error').textContent = '⚠ Submission failed. Please check your connection and try again.';
+    return;
+  }
 
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
   const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
@@ -6257,7 +6275,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function submitConsultation() {
+async function submitConsultation() {
   const fname = document.getElementById('consult-fname')?.value.trim();
   const lname = document.getElementById('consult-lname')?.value.trim();
   const email = document.getElementById('consult-email')?.value.trim();
@@ -6270,25 +6288,33 @@ function submitConsultation() {
     return;
   }
 
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-      subject: 'Free Consultation Request — ' + fname + ' ' + lname,
-      from_name: 'Aspire Education Website',
-      name: fname + ' ' + lname,
-      email: email,
-      phone: phone || '—',
-      field_of_study: field,
-      education_level: level
-    })
-  }).catch(() => {});
-
   const btn = document.querySelector('.form-submit');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sent ✓'; }
-  const s = document.getElementById('consult-success');
-  if (s) s.style.display = 'block';
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+        subject: 'Free Consultation Request — ' + fname + ' ' + lname,
+        from_name: 'Aspire Education Website',
+        name: fname + ' ' + lname,
+        email: email,
+        phone: phone || '—',
+        field_of_study: field,
+        education_level: level
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error('Failed');
+    if (btn) btn.textContent = 'Sent ✓';
+    const s = document.getElementById('consult-success');
+    if (s) s.style.display = 'block';
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Consultation →'; }
+    alert('Submission failed. Please check your connection and try again.');
+  }
 }
 
 // ── LANGUAGE / TRANSLATION ENGINE ──
