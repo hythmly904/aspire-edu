@@ -568,6 +568,10 @@
       .modal-form-row { grid-template-columns: 1fr; }
     }
 
+    .prog-search-area {
+      position: relative;
+      margin-bottom: .75rem;
+    }
     .prog-search-wrap {
       position: relative; display: flex; align-items: center;
       border: 2px solid var(--red); border-radius: 6px;
@@ -596,9 +600,13 @@
     .prog-chip.active { background: var(--red); border-color: var(--red); color: white; }
     .prog-chip:hover:not(.active) { border-color: var(--red); color: var(--red); }
     .prog-results-wrap {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
       border: 1.5px solid #e2d9cf; border-radius: 6px;
-      max-height: 220px; overflow-y: auto; margin-bottom: .75rem;
-      background: white; box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      max-height: 260px; overflow-y: auto;
+      background: white; box-shadow: 0 8px 24px rgba(0,0,0,.14);
+      z-index: 50;
+      margin-top: -4px;
     }
     .prog-result-item {
       padding: .65rem 1rem; cursor: pointer; border-bottom: 1px solid #f0ebe4;
@@ -1054,21 +1062,9 @@
 
     /* 9. Apply Now modal — mobile-specific tuning */
 
-    /* Selected slots sticky at bottom so they're always visible */
+    /* Selected slots — always visible, results float above via position:absolute */
     @media (max-width: 768px) {
-      .prog-selected-wrap {
-        position: sticky;
-        bottom: 0;
-        background: var(--white);
-        padding: .5rem 0 .2rem;
-        border-top: 2px solid #ede8e0;
-        margin: 0 -1.1rem;
-        padding-left: 1.1rem;
-        padding-right: 1.1rem;
-        z-index: 10;
-        box-shadow: 0 -4px 12px rgba(26,18,9,0.06);
-      }
-
+      .prog-results-wrap { max-height: 220px; }
     }
 
     @media (max-width: 640px) {
@@ -1248,29 +1244,31 @@
       <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
 
       <!-- Search bar -->
-      <div class="prog-search-wrap">
-        <span class="prog-search-icon">🔍</span>
-        <input type="text" id="progSearchInput" class="prog-search-input"
-          placeholder="Search university, degree, program, language…"
-          autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
-        <button class="prog-search-clear" id="progSearchClear" onclick="clearProgSearch()" style="display:none">✕</button>
+      <div class="prog-search-area">
+        <div class="prog-search-wrap">
+          <span class="prog-search-icon">🔍</span>
+          <input type="text" id="progSearchInput" class="prog-search-input"
+            placeholder="Search university, degree, program, language…"
+            autocomplete="off" oninput="onProgSearch(this.value)" onfocus="onProgSearch(this.value)">
+          <button class="prog-search-clear" id="progSearchClear" onclick="clearProgSearch()" style="display:none">✕</button>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="prog-filter-row" id="progFilterRow">
+          <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')" data-i18n-filter="all">All</button>
+          <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')" data-i18n-filter="bachelor">Bachelor's</button>
+          <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')" data-i18n-filter="associate">Associate</button>
+          <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')" data-i18n-filter="master">Master's</button>
+          <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')" data-i18n-filter="phd">PhD</button>
+        </div>
+
+        <!-- Results dropdown — absolutely positioned so it overlays slots -->
+        <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
+          <div class="prog-results" id="progResults"></div>
+        </div>
       </div>
 
-      <!-- Filter chips -->
-      <div class="prog-filter-row" id="progFilterRow">
-        <button class="prog-chip active" data-filter="all" onclick="setDegreeFilter(this,'all')" data-i18n-filter="all">All</button>
-        <button class="prog-chip" data-filter="bachelor" onclick="setDegreeFilter(this,'bachelor')" data-i18n-filter="bachelor">Bachelor's</button>
-        <button class="prog-chip" data-filter="associate" onclick="setDegreeFilter(this,'associate')" data-i18n-filter="associate">Associate</button>
-        <button class="prog-chip" data-filter="master" onclick="setDegreeFilter(this,'master')" data-i18n-filter="master">Master's</button>
-        <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')" data-i18n-filter="phd">PhD</button>
-      </div>
-
-      <!-- Results dropdown -->
-      <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
-        <div class="prog-results" id="progResults"></div>
-      </div>
-
-      <!-- Selected programs (up to 5 slots) -->
+      <!-- Selected programs (up to 5 slots) — always visible below -->
       <div class="prog-selected-wrap">
         <div class="prog-slot prog-slot-required" id="progSlot0">
           <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
