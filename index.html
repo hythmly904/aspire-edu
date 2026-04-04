@@ -649,7 +649,7 @@
     .prog-slot-placeholder { font-size: .8rem; color: #b0a89a; font-style: italic; }
     .prog-slot-filled { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; }
     .prog-slot-filled-info { flex: 1; min-width: 0; }
-    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); white-space: normal; word-break: break-word; line-height: 1.3; }
     .prog-slot-filled-meta { font-size: .72rem; color: var(--muted); margin-top: .05rem; }
     .prog-slot-filled-fee { font-size: .8rem; font-weight: 700; color: var(--red); white-space: nowrap; }
     .prog-slot-remove {
@@ -6137,25 +6137,19 @@ function addProgram(el) {
   renderProgSlots();
   renderProgResults();
 
-  // On mobile: collapse results and scroll the filled slot into view
-  if (window.innerWidth <= 768) {
-    const wrap = document.getElementById('progResultsWrap');
-    if (wrap) wrap.style.display = 'none';
-    const inp = document.getElementById('progSearchInput');
-    if (inp) inp.value = '';
-    const clr = document.getElementById('progSearchClear');
-    if (clr) clr.style.display = 'none';
-    progSearchQuery = '';
-    setTimeout(() => {
-      const slotEl = document.getElementById('progSlotContent' + emptySlot);
-      const modal = document.querySelector('.modal');
-      if (slotEl && modal) {
-        const slotTop = slotEl.getBoundingClientRect().top;
-        const modalTop = modal.getBoundingClientRect().top;
-        modal.scrollBy({ top: slotTop - modalTop - 20, behavior: 'smooth' });
-      }
-    }, 80);
-  }
+  // Collapse results and scroll to top to reveal filled slot
+  const wrap = document.getElementById('progResultsWrap');
+  if (wrap) wrap.style.display = 'none';
+  const inp = document.getElementById('progSearchInput');
+  if (inp) inp.value = '';
+  const clr = document.getElementById('progSearchClear');
+  if (clr) clr.style.display = 'none';
+  progSearchQuery = '';
+  // Scroll modal to top so the filled slot is immediately visible
+  setTimeout(() => {
+    const modal = document.querySelector('.modal');
+    if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 60);
 }
 function removeProgram(slot){
   progSelected[slot]=null;
