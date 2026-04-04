@@ -568,6 +568,10 @@
       .modal-form-row { grid-template-columns: 1fr; }
     }
 
+    .prog-search-area {
+      position: relative;
+      margin-bottom: .75rem;
+    }
     .prog-search-wrap {
       position: relative; display: flex; align-items: center;
       border: 2px solid var(--red); border-radius: 6px;
@@ -597,7 +601,7 @@
     .prog-chip:hover:not(.active) { border-color: var(--red); color: var(--red); }
     .prog-results-wrap {
       border: 1.5px solid #e2d9cf; border-radius: 6px;
-      max-height: 220px; overflow-y: auto; margin-bottom: .75rem;
+      max-height: 260px; overflow-y: auto; margin-bottom: .75rem;
       background: white; box-shadow: 0 4px 16px rgba(0,0,0,.08);
     }
     .prog-result-item {
@@ -645,7 +649,7 @@
     .prog-slot-placeholder { font-size: .8rem; color: #b0a89a; font-style: italic; }
     .prog-slot-filled { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; }
     .prog-slot-filled-info { flex: 1; min-width: 0; }
-    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prog-slot-filled-name { font-size: .85rem; font-weight: 600; color: var(--dark); white-space: normal; word-break: break-word; line-height: 1.3; }
     .prog-slot-filled-meta { font-size: .72rem; color: var(--muted); margin-top: .05rem; }
     .prog-slot-filled-fee { font-size: .8rem; font-weight: 700; color: var(--red); white-space: nowrap; }
     .prog-slot-remove {
@@ -969,6 +973,218 @@
       content: ''; flex: 1; height: 1px; background: #e8e2da;
     }
 
+    /* ===== MOBILE FIXES ===== */
+
+    /* 1. Prevent iOS Safari auto-zoom (inputs need >= 16px font-size) */
+    @media (max-width: 768px) {
+      input, select, textarea { font-size: 16px !important; }
+    }
+
+    /* 2. Collapse consultation form first/last name row on mobile */
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* 3. Bigger touch targets */
+    @media (max-width: 768px) {
+      .prog-chip { padding: .5rem .85rem; min-height: 38px; }
+      .lang-btn { min-height: 36px; min-width: 36px; }
+      .modal-close {
+        width: 44px; height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        top: .75rem; right: .75rem;
+      }
+      .uni-modal-close { width: 44px; height: 44px; }
+      .doc-upload-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .prog-slot-remove { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+      .form-submit, .modal-submit, .agent-submit { min-height: 52px; }
+      .btn-primary { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; }
+    }
+
+    /* 4. Modal slides up from bottom on mobile (sheet pattern) */
+    @media (max-width: 640px) {
+      .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .modal {
+        border-radius: 18px 18px 0 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 94vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 1.5rem 1.1rem calc(1.5rem + env(safe-area-inset-bottom));
+      }
+      /* Stop double-scroll: let the modal itself scroll, not inner step */
+      .modal-step {
+        max-height: none;
+        overflow-y: visible;
+      }
+      /* Drag handle hint */
+      .modal::before {
+        content: '';
+        display: block;
+        width: 40px; height: 4px;
+        background: #ddd; border-radius: 2px;
+        margin: 0 auto 1.25rem;
+      }
+      .prog-results-wrap { max-height: 200px; }
+    }
+
+    /* 5. Nav on very small screens */
+    @media (max-width: 380px) {
+      nav { padding: .75rem 3vw; gap: .2rem; }
+      .lang-btn { padding: .35rem .45rem; font-size: .68rem; }
+      .nav-register-btn { padding: .4rem .7rem; font-size: .76rem; }
+    }
+
+    /* 6. Remove tap highlight & improve tap responsiveness */
+    * { -webkit-tap-highlight-color: transparent; }
+    button, a, label, [onclick] { touch-action: manipulation; }
+
+    /* 7. iOS momentum scrolling in scrollable containers */
+    .modal, .prog-results-wrap, .prog-selected-wrap, .uni-modal {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 8. Section padding tightening */
+    @media (max-width: 640px) {
+      .unis-section { padding: 3rem 4vw; }
+      .unis-header { margin-bottom: 2rem; }
+      .form-section { padding: 3rem 5vw 4rem; }
+      .form-card { box-shadow: 4px 4px 0 var(--red); }
+    }
+
+    /* 9. Apply Now modal — mobile-specific tuning */
+
+    /* Selected slots — always visible, results float above via position:absolute */
+    @media (max-width: 768px) {
+      .prog-results-wrap { max-height: 220px; }
+    }
+
+    @media (max-width: 640px) {
+      /* Compact modal header */
+      .modal h2 { font-size: 1.3rem; margin-bottom: .35rem; }
+      .modal-sub { font-size: .85rem; margin-bottom: 1.2rem; }
+      .modal-tag { margin-bottom: .5rem; }
+
+      /* Step indicator — tighter */
+      .step-indicator { margin-bottom: .75rem; }
+      .step-dot span { width: 28px; height: 28px; font-size: .8rem; }
+      .step-dot small { font-size: .6rem; }
+      .step-line { min-width: 20px; }
+
+      /* Search input full width, easy to tap */
+      .prog-search-wrap { border-radius: 8px; }
+      .prog-search-input { font-size: 16px !important; padding: .85rem 0; }
+
+      /* Filter chips — horizontally scrollable, no wrap */
+      .prog-filter-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: .25rem;
+        gap: .35rem;
+        scrollbar-width: none;
+      }
+      .prog-filter-row::-webkit-scrollbar { display: none; }
+      .prog-chip { flex-shrink: 0; min-height: 34px; }
+
+      /* Results list — taller so user can see more without scrolling */
+      .prog-results-wrap { max-height: 240px; border-radius: 8px; }
+
+      /* Each result row — bigger tap area, text wraps */
+      .prog-result-item { padding: .75rem .85rem; align-items: flex-start; }
+      .prog-result-name {
+        white-space: normal;
+        font-size: .85rem;
+        line-height: 1.35;
+      }
+      .prog-result-meta { font-size: .72rem; }
+      .prog-result-add {
+        padding: .35rem .65rem;
+        min-height: 32px;
+        align-self: center;
+      }
+
+      /* Selected slots — compact */
+      .prog-slot-filled-name {
+        white-space: normal;
+        font-size: .8rem;
+        line-height: 1.3;
+      }
+      .prog-slot-filled-meta { font-size: .68rem; }
+      .prog-slot-label { font-size: .7rem; }
+
+      /* Step 2 fields */
+      .modal-form-row { grid-template-columns: 1fr; gap: .75rem; }
+      .modal-field input, .modal-field select { font-size: 16px !important; padding: .85rem 1rem; }
+
+      /* Document upload rows */
+      .doc-item { gap: .65rem; }
+      .doc-upload-btn { font-size: .82rem; padding: .6rem 1rem; }
+
+      /* Continue / Submit buttons */
+      .modal-submit { padding: 1rem; font-size: .95rem; min-height: 52px; }
+      .modal-back-btn { min-height: 44px; }
+      .modal-nav-row { gap: .6rem; }
+    }
+
+    /* ── STEP INDICATOR ── */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 1.75rem;
+    }
+    .step-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .3rem;
+      position: relative;
+    }
+    .step-dot span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      background: var(--white);
+      color: var(--muted);
+      font-size: .85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .25s, border-color .25s, color .25s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .step-dot small {
+      font-size: .65rem; font-weight: 500;
+      color: var(--muted); letter-spacing: .04em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .step-dot.active span {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+    }
+    .step-dot.active small { color: var(--red); font-weight: 600; }
+    .step-dot.done span {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--white);
+    }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: #ddd;
+      min-width: 32px;
+      max-width: 80px;
+      margin: 0 .35rem;
+      margin-bottom: 1.2rem;
+      transition: background .25s;
+    }
+    .step-line.done { background: var(--dark); }
+
     /* ── FLOATING WHATSAPP BUTTON ── */
     .wa-float {
       position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
@@ -983,6 +1199,7 @@
     .wa-float svg { width: 28px; height: 28px; }
     @media (max-width: 640px) {
       .wa-float { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; }
+      .wa-float svg { width: 26px; height: 26px; }
     }
   </style>
 </head>
@@ -1022,6 +1239,42 @@
       <h2 data-i18n="modal_step1_h2">Choose Your Program</h2>
       <p class="modal-sub" data-i18n="modal_step1_sub">Search by university, degree, program, or language. Select up to 5 programs (1st choice is required).</p>
 
+      <!-- Selected programs — at top so always visible -->
+      <div class="prog-selected-wrap">
+        <div class="prog-slot prog-slot-required" id="progSlot0">
+          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent0">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot1">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent1">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot2">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent2">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot3">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent3">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
+          </div>
+        </div>
+        <div class="prog-slot prog-slot-optional" id="progSlot4">
+          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
+          <div class="prog-slot-content empty" id="progSlotContent4">
+            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Search below and tap a result to add</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:.75rem"></div>
+
       <!-- Search bar -->
       <div class="prog-search-wrap">
         <span class="prog-search-icon">🔍</span>
@@ -1040,43 +1293,9 @@
         <button class="prog-chip" data-filter="phd" onclick="setDegreeFilter(this,'phd')" data-i18n-filter="phd">PhD</button>
       </div>
 
-      <!-- Results dropdown -->
+      <!-- Results list -->
       <div class="prog-results-wrap" id="progResultsWrap" style="display:none">
         <div class="prog-results" id="progResults"></div>
-      </div>
-
-      <!-- Selected programs (up to 5 slots) -->
-      <div class="prog-selected-wrap">
-        <div class="prog-slot prog-slot-required" id="progSlot0">
-          <span class="prog-slot-label" data-i18n="prog_slot_required">1st Choice <span class="prog-required-badge">Required</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent0">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot1">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt2">2nd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent1">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot2">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt3">3rd Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent2">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot3">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt4">4th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent3">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
-        <div class="prog-slot prog-slot-optional" id="progSlot4">
-          <span class="prog-slot-label" data-i18n="prog_slot_opt5">5th Choice <span class="prog-optional-badge">Optional</span></span>
-          <div class="prog-slot-content empty" id="progSlotContent4">
-            <span class="prog-slot-placeholder" data-i18n="prog_slot_ph">Click a result above to select</span>
-          </div>
-        </div>
       </div>
 
       <p class="modal-step-error" id="step1-error"></p>
@@ -1139,7 +1358,7 @@
     <p class="hero-tagline" data-i18n-html="hero_tagline">We aspire to make a difference</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="openModal()" data-i18n="hero_cta1">Apply Now — It's Free</button>
-      <a href="https://wa.me/905551535659" target="_blank" rel="noopener" class="btn-ghost" style="color:#25D366;border-color:#25D366;display:flex;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:middle;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a>
+      <a href="https://wa.me/905551535659" target="_blank" rel="noopener" class="btn-ghost btn-whatsapp" style="color:#25D366;border-color:#25D366"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:middle;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span data-i18n="cta_whatsapp">Chat on WhatsApp</span></a>
     </div>
     <a class="hero-mobile-cta" href="#apply" data-i18n="nav_cta">Get Free Consultation ↓</a>
     <div class="hero-stats">
@@ -1148,7 +1367,7 @@
         <span class="stat-label" data-i18n="stat1">Students Placed</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">1,275+</span>
+        <span class="stat-num">+2500</span>
         <span class="stat-label" data-i18n="stat2">Programs</span>
       </div>
       <div class="stat-item">
@@ -1970,20 +2189,20 @@
     <div class="form-row">
       <div class="form-group">
         <label data-i18n="label_fname">First Name</label>
-        <input type="text" placeholder="Ahmed" />
+        <input type="text" id="consult-fname" placeholder="Ahmed" />
       </div>
       <div class="form-group">
         <label data-i18n="label_lname">Last Name</label>
-        <input type="text" placeholder="Al-Rashid" />
+        <input type="text" id="consult-lname" placeholder="Al-Rashid" />
       </div>
     </div>
     <div class="form-group">
       <label data-i18n="label_email">Email Address</label>
-      <input type="email" placeholder="ahmed@email.com" />
+      <input type="email" id="consult-email" placeholder="ahmed@email.com" />
     </div>
     <div class="form-group">
       <label data-i18n="label_phone">Phone / WhatsApp</label>
-      <input type="tel" placeholder="+1 234 567 8900" />
+      <input type="tel" id="consult-phone" placeholder="+1 234 567 8900" />
     </div>
     <div class="form-group">
       <label data-i18n="label_field">Field of Study</label>
@@ -2008,7 +2227,8 @@
         <option data-i18n="level3">Master's (applying for PhD)</option>
       </select>
     </div>
-    <button class="form-submit" data-i18n="form_submit">Request My Free Consultation →</button>
+    <button class="form-submit" onclick="submitConsultation()" data-i18n="form_submit">Request My Free Consultation →</button>
+    <p id="consult-success" style="display:none;color:#2e7d32;font-weight:500;margin-top:.75rem;">✓ Request received! We’ll be in touch within 24 hours.</p>
     <p class="form-note" data-i18n="form_note">No fees. No commitment. We'll contact you within 24 hours.</p>
   </div>
 </section>
@@ -2859,19 +3079,25 @@ function submitAgent() {
     alert('Please fill in all required fields.');
     return;
   }
-  const company = document.getElementById('agent-company')?.value.trim() || '—';
-  const msg     = document.getElementById('agent-msg')?.value.trim() || '—';
-  const body = 'Agent Application%0A%0A'
-    + 'Name: ' + encodeURIComponent(name) + '%0A'
-    + 'Email: ' + encodeURIComponent(email) + '%0A'
-    + 'Phone: ' + encodeURIComponent(phone) + '%0A'
-    + 'Country: ' + encodeURIComponent(country) + '%0A'
-    + 'Company: ' + encodeURIComponent(company) + '%0A%0A'
-    + 'Message:%0A' + encodeURIComponent(msg);
-  var a = 'info', b = 'aspire', d = 'tr';
-  window.location.href = 'mailto:' + a + '@' + b + '.' + d
-    + '?subject=' + encodeURIComponent('Agent Application — ' + name)
-    + '&body=' + body;
+  const company = document.getElementById('agent-company')?.value.trim() || '\u2014';
+  const msg     = document.getElementById('agent-msg')?.value.trim() || '\u2014';
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Agent Application \u2014 ' + name,
+      from_name: 'Aspire Education Website',
+      name: name,
+      email: email,
+      phone: phone,
+      country: country,
+      company: company,
+      message: msg
+    })
+  }).catch(()=>{});
+
   const s = document.getElementById('agent-success');
   if (s) { s.style.display = 'block'; }
 }
@@ -5267,6 +5493,7 @@ const translations = {
     hero_sub:         "Aspire Education guides international students through every step of the university application process — from choosing the right program to receiving your acceptance letter.",
     hero_cta1:        "Apply Now — It's Free",
     hero_cta2:        "How it works →",
+    cta_whatsapp:     "Chat on WhatsApp",
 
     prog_search_ph:"Search university, degree, program, language…",
     prog_search_hint:"Start typing to search…",
@@ -5401,13 +5628,14 @@ const translations = {
   },
 
   tr: {
-    hero_tagline:     `Fark yaratmak için buradayız`,
+    hero_tagline:     `We aspire to make a difference`,
     hero_tag:         "Üniversite Başvuruları",
     hero_h1:          "Geleceğin",
     hero_em:          " <span class=\"turkiye-word\" style=\"color:var(--red)\">Türkiye'de</span> Başlıyor",
     hero_sub:         "Aspire Education, uluslararası öğrencilere üniversite başvuru sürecinin her aşamasında rehberlik eder — doğru programı seçmekten kabul mektubunu almaya kadar.",
     hero_cta1:        "Şimdi Başvur — Ücretsiz",
     hero_cta2:        "Adımları Gör →",
+    cta_whatsapp:     "WhatsApp'tan Yaz",
 
     prog_search_ph:"Üniversite, derece, program veya dil arayın…",
     prog_search_hint:"Program aramak için yazın…",
@@ -5542,13 +5770,14 @@ const translations = {
   },
 
   ar: {
-    hero_tagline:     `نطمح لصنع الفرق`,
+    hero_tagline:     `We aspire to make a difference`,
     hero_tag:         "القبول الجامعي",
     hero_h1:          "مستقبلك يبدأ",
     hero_em:          " في <span class=\"turkiye-word\" style=\"color:var(--red)\">تركيا</span> ",
     hero_sub:         "تُرشد Aspire Education الطلاب الدوليين في كل خطوة من خطوات التقديم للجامعات — من اختيار البرنامج المناسب إلى استلام خطاب القبول.",
     hero_cta1:        "قدّم الآن — مجاناً",
     hero_cta2:        "ماهي الخطوات؟ →",
+    cta_whatsapp:     "تواصل عبر واتساب",
 
     prog_search_ph:"ابحث عن جامعة، درجة، برنامج، لغة…",
     prog_search_hint:"اكتب للبحث عن برامج…",
@@ -5777,9 +6006,11 @@ function goToStep(n) {
   }
   showStep(n);
 }
+const uploadedFiles = {};
 function handleFileUpload(input,btnId){
   const btn=document.getElementById(btnId); if(!btn||!input.files||!input.files.length) return;
   btn.classList.add('uploaded');
+  uploadedFiles[btnId] = Array.from(input.files);
   const names=Array.from(input.files).map(f=>f.name);
   const last=btn.childNodes[btn.childNodes.length-1];
   if(last&&last.nodeType===3) last.textContent=input.files.length>1?' ✓ '+input.files.length+' files':' ✓ '+(names[0].length>22?names[0].substring(0,22)+'…':names[0]);
@@ -5787,7 +6018,7 @@ function handleFileUpload(input,btnId){
 function submitApplication(){
   const t2=document.getElementById('btn-transcripts'); const p2=document.getElementById('btn-passport');
   if(!t2?.classList.contains('uploaded')||!p2?.classList.contains('uploaded')){
-    document.getElementById('step3-error').textContent='⚠ Please upload Transcripts & Passport.'; return;
+    document.getElementById('step3-error').textContent='\u26a0 Please upload Transcripts & Passport.'; return;
   }
   document.getElementById('step3-error').textContent='';
   const fname=document.getElementById('reg-fname')?.value||'';
@@ -5795,10 +6026,31 @@ function submitApplication(){
   const email=document.getElementById('reg-email')?.value||'';
   const phone=document.getElementById('reg-phone')?.value||'';
   const sel=progSelected.filter(Boolean).map((p,i)=>({slot:i+1,university:p.u,degree:p.d,program:p.en,fee:p.fee}));
-  const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('%0A');
-  const body='Name: '+fname+' '+lname+'%0AEmail: '+email+'%0APhone: '+(phone||'—')+'%0A%0APrograms:%0A'+progLines;
-  const mailto='mailto:info@aspire.tr?subject=New Application — '+encodeURIComponent(fname+' '+lname)+'&body='+body;
-  window.location.href=mailto;
+  const progLines=sel.map((s,i)=>(i+1)+'. '+s.university+' | '+s.degree+' | '+s.program+' ('+s.fee+')').join('\n');
+
+  const docNames = Object.entries(uploadedFiles).map(([btnId, files]) => {
+    const label = {
+      'btn-transcripts':'Transcripts','btn-passport':'Passport/ID',
+      'btn-diploma':'Diploma','btn-language':'Language Score','btn-other':'Other'
+    }[btnId] || btnId;
+    return label + ': ' + files.map(f=>f.name).join(', ');
+  }).join('\n');
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'New Application \u2014 ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '\u2014',
+      programs: progLines || '\u2014',
+      documents_uploaded: docNames || '\u2014'
+    })
+  }).catch(()=>{});
+
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
   const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
   const sv=document.getElementById('modalSuccessView');if(sv)sv.style.display='block';
@@ -5857,14 +6109,10 @@ function renderProgResults() {
     const degLabel = degLabels[p.d] || p.d;
     const langLabel = p.lang === 'English' ? (t.lang_english || 'English') : p.lang === 'Turkish' ? (t.lang_turkish || 'Turkish') : p.lang;
     const uniShort = p.u.replace('Istanbul ','').replace(' University','').replace('University','').replace('Bahçeşehir ','BAU ').trim();
-    const logoHtml = p.logo ? `<img src="${p.logo}" alt="" style="height:20px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:6px">` : '';
     return `<div class="prog-result-item${isSelected ? ' selected' : ''}" ${!isSelected ? `onclick="addProgram(this)"` : ''} data-u=${JSON.stringify(p.u)} data-d="${p.d}" data-en=${JSON.stringify(p.en)} data-tr=${JSON.stringify(p.tr)} data-ar=${JSON.stringify(p.ar)} data-fee=${JSON.stringify(p.fee)} data-lang="${p.lang}" data-logo=${JSON.stringify(p.logo||'')}>
-      <div class="prog-result-info" style="display:flex;align-items:center">
-        ${logoHtml}
-        <div>
-          <div class="prog-result-name">${progName}</div>
-          <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
-        </div>
+      <div class="prog-result-info">
+        <div class="prog-result-name">${progName}</div>
+        <div class="prog-result-meta">${uniShort} · ${degLabel} · ${langLabel}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0">
         <span class="prog-result-fee">${p.fee}</span>
@@ -5888,6 +6136,20 @@ function addProgram(el) {
   progSelected[emptySlot] = p;
   renderProgSlots();
   renderProgResults();
+
+  // Collapse results and scroll to top to reveal filled slot
+  const wrap = document.getElementById('progResultsWrap');
+  if (wrap) wrap.style.display = 'none';
+  const inp = document.getElementById('progSearchInput');
+  if (inp) inp.value = '';
+  const clr = document.getElementById('progSearchClear');
+  if (clr) clr.style.display = 'none';
+  progSearchQuery = '';
+  // Scroll modal to top so the filled slot is immediately visible
+  setTimeout(() => {
+    const modal = document.querySelector('.modal');
+    if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 60);
 }
 function removeProgram(slot){
   progSelected[slot]=null;
@@ -5928,10 +6190,8 @@ function renderProgSlots() {
       const uniName = p.u;
       const degLabel = {bachelor: t.deg_bachelor||"Bachelor's", associate: t.deg_associate||"Associate", master: t.deg_master||"Master's", phd: t.deg_phd||"PhD"}[p.d] || p.d;
       content.className = 'prog-slot-content filled';
-      const slotLogo = p.logo ? `<img src="${p.logo}" alt="" style="height:24px;width:auto;object-fit:contain;flex-shrink:0;border-radius:2px;margin-right:8px">` : '';
       content.innerHTML = `
         <div class="prog-slot-filled">
-          ${slotLogo}
           <div class="prog-slot-filled-info">
             <div class="prog-slot-filled-name">${progName}</div>
             <div class="prog-slot-filled-meta">${uniName} · ${degLabel} · <strong>${p.fee}</strong></div>
@@ -5968,6 +6228,41 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
+
+
+function submitConsultation() {
+  const fname = document.getElementById('consult-fname')?.value.trim();
+  const lname = document.getElementById('consult-lname')?.value.trim();
+  const email = document.getElementById('consult-email')?.value.trim();
+  const phone = document.getElementById('consult-phone')?.value.trim();
+  const field = document.getElementById('field-select')?.value || '—';
+  const level = document.getElementById('level-select')?.value || '—';
+
+  if (!fname || !lname || !email) {
+    alert('Please fill in your name and email address.');
+    return;
+  }
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Free Consultation Request — ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '—',
+      field_of_study: field,
+      education_level: level
+    })
+  }).catch(() => {});
+
+  const btn = document.querySelector('.form-submit');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sent ✓'; }
+  const s = document.getElementById('consult-success');
+  if (s) s.style.display = 'block';
+}
 
 // ── LANGUAGE / TRANSLATION ENGINE ──
 let currentLang = 'en';
