@@ -1053,6 +1053,27 @@
     }
 
     /* 9. Apply Now modal — mobile-specific tuning */
+
+    /* Selected slots sticky at bottom so they're always visible */
+    @media (max-width: 768px) {
+      .prog-selected-wrap {
+        position: sticky;
+        bottom: 0;
+        background: var(--white);
+        padding: .5rem 0 .2rem;
+        border-top: 2px solid #ede8e0;
+        margin: 0 -1.1rem;
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        z-index: 10;
+        box-shadow: 0 -4px 12px rgba(26,18,9,0.06);
+      }
+      /* Collapse empty optional slots — only show 1st choice + filled ones */
+      .prog-slot-optional:has(.prog-slot-content.empty) {
+        display: none;
+      }
+    }
+
     @media (max-width: 640px) {
       /* Compact modal header */
       .modal h2 { font-size: 1.3rem; margin-bottom: .35rem; }
@@ -6048,6 +6069,26 @@ function addProgram(el) {
   progSelected[emptySlot] = p;
   renderProgSlots();
   renderProgResults();
+
+  // On mobile: collapse results and scroll the filled slot into view
+  if (window.innerWidth <= 768) {
+    const wrap = document.getElementById('progResultsWrap');
+    if (wrap) wrap.style.display = 'none';
+    const inp = document.getElementById('progSearchInput');
+    if (inp) inp.value = '';
+    const clr = document.getElementById('progSearchClear');
+    if (clr) clr.style.display = 'none';
+    progSearchQuery = '';
+    setTimeout(() => {
+      const slotEl = document.getElementById('progSlotContent' + emptySlot);
+      const modal = document.querySelector('.modal');
+      if (slotEl && modal) {
+        const slotTop = slotEl.getBoundingClientRect().top;
+        const modalTop = modal.getBoundingClientRect().top;
+        modal.scrollBy({ top: slotTop - modalTop - 20, behavior: 'smooth' });
+      }
+    }, 80);
+  }
 }
 function removeProgram(slot){
   progSelected[slot]=null;
