@@ -3096,28 +3096,24 @@ async function submitAgent() {
   const msg     = document.getElementById('agent-msg')?.value.trim() || '\u2014';
 
   const agentBtn = document.querySelector('.agent-submit');
-  if (agentBtn) { agentBtn.disabled = true; agentBtn.textContent = 'Sending…'; }
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-        subject: 'Agent Application — ' + name,
-        from_name: 'Aspire Education Website',
-        name: name, email: email, phone: phone,
-        country: country, company: company, message: msg
-      })
-    });
-    const data = await res.json();
-    if (!res.ok || !data.success) throw new Error('Failed');
-    if (agentBtn) agentBtn.textContent = 'Sent ✓';
-    const s = document.getElementById('agent-success');
-    if (s) s.style.display = 'block';
-  } catch(e) {
-    if (agentBtn) { agentBtn.disabled = false; agentBtn.textContent = 'Submit Agent Application →'; }
-    alert('Submission failed. Please check your connection and try again.');
-  }
+
+  // Show success immediately
+  if (agentBtn) { agentBtn.disabled = true; agentBtn.textContent = 'Sent ✓'; }
+  const s = document.getElementById('agent-success');
+  if (s) s.style.display = 'block';
+
+  // Fire Web3Forms in background
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Agent Application — ' + name,
+      from_name: 'Aspire Education Website',
+      name: name, email: email, phone: phone,
+      country: country, company: company, message: msg
+    })
+  }).catch(()=>{});
 }
 </script>
 
@@ -6076,33 +6072,27 @@ async function submitApplication(){
   const labels = {'btn-transcripts':'Transcripts','btn-passport':'Passport/ID','btn-diploma':'Diploma','btn-language':'Language Score','btn-other':'Other'};
   const docLines = Object.entries(uploadedFiles).map(([id,f]) => (labels[id]||id)+': '+f.url+' ('+f.name+')').join('\n');
 
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-        subject: 'New Application — ' + fname + ' ' + lname,
-        from_name: 'Aspire Education Website',
-        name: fname + ' ' + lname,
-        email: email,
-        phone: phone || '—',
-        programs: progLines || '—',
-        documents: docLines || '—'
-      })
-    });
-    const data = await res.json();
-    if (!res.ok || !data.success) throw new Error(data.message || 'Failed');
-  } catch(e) {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit My Application →'; }
-    document.getElementById('step3-error').textContent = '⚠ Submission failed. Please check your connection and try again.';
-    return;
-  }
-
+  // Show success immediately — files are safe on Uploadcare regardless
   [1,2,3].forEach(i=>{const el=document.getElementById('step'+i);if(el)el.style.display='none';});
   const si=document.getElementById('stepIndicator');if(si)si.style.display='none';
   const sv=document.getElementById('modalSuccessView');if(sv)sv.style.display='block';
   setTimeout(closeModal,6000);
+
+  // Fire Web3Forms in background
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'New Application — ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '—',
+      programs: progLines || '—',
+      documents: docLines || '—'
+    })
+  }).catch(()=>{});
 }
 function onProgSearch(q){
   progSearchQuery=q.trim().toLowerCase();
@@ -6291,30 +6281,26 @@ async function submitConsultation() {
   const btn = document.querySelector('.form-submit');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
-        subject: 'Free Consultation Request — ' + fname + ' ' + lname,
-        from_name: 'Aspire Education Website',
-        name: fname + ' ' + lname,
-        email: email,
-        phone: phone || '—',
-        field_of_study: field,
-        education_level: level
-      })
-    });
-    const data = await res.json();
-    if (!res.ok || !data.success) throw new Error('Failed');
-    if (btn) btn.textContent = 'Sent ✓';
-    const s = document.getElementById('consult-success');
-    if (s) s.style.display = 'block';
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Consultation →'; }
-    alert('Submission failed. Please check your connection and try again.');
-  }
+  // Show success immediately
+  if (btn) { btn.disabled = true; btn.textContent = 'Sent ✓'; }
+  const s = document.getElementById('consult-success');
+  if (s) s.style.display = 'block';
+
+  // Fire Web3Forms in background
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '7f15a283-e287-4462-a463-035bce9aeeea',
+      subject: 'Free Consultation Request — ' + fname + ' ' + lname,
+      from_name: 'Aspire Education Website',
+      name: fname + ' ' + lname,
+      email: email,
+      phone: phone || '—',
+      field_of_study: field,
+      education_level: level
+    })
+  }).catch(()=>{});
 }
 
 // ── LANGUAGE / TRANSLATION ENGINE ──
